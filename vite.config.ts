@@ -553,7 +553,7 @@ function coveLocalPreviewProxy(): Plugin {
       }
     }
 
-    // 3. Ad-Free Full-Article Source Scraper API (/api/article?url=...)
+    // 3. Clean Full-Article Source Scraper API (/api/article?url=...)
     if (reqUrl.startsWith('/api/article')) {
       try {
         const parsed = new URL(reqUrl, 'http://localhost');

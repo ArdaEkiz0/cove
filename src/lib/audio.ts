@@ -9,7 +9,7 @@ import type {
 /**
  * Cove Neural Sound Engine (focus-oriented procedural Web Audio synthesizer)
  *
- * 100% Procedural Web Audio API — 0 KB external audio assets, 0 network requests.
+ * 100% Procedural Web Audio API — no external audio assets, no network requests.
  * Combines:
  *  1. Polyphonic Warm Harmonic Drone Pads (open 5th/9th voicings, zero melodic ear-catch)
  *  2. Neural Phase-Locking Modulation (Beta 16 Hz, Alpha 10.5 Hz, Low-Alpha 8.5 Hz, Theta 5.5 Hz)

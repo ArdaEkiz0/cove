@@ -71,7 +71,7 @@ test('MV3 Chrome manifest v0.1.1, CSP, 8 local scenic wallpapers, and <170 KB co
     );
   }
 
-  // Verify total JS + CSS gzipped bundle stays well under 150 KB PRD target (excluding background images)
+  // Verify total JS + CSS gzipped bundle stays under the 170 KB CI budget (excluding background images)
   const assetFiles = readdirSync(join(root, 'dist', 'assets'));
   let gzipBytes = 0;
   for (const f of assetFiles) {
@@ -229,10 +229,10 @@ test('Zero-Mock Audit, Precision Typography, Autonomous CSE v4 & Complete Full-P
   assert.ok(cacheSrc.includes('saveCachedFullArticle'), 'Full-article IndexedDB LRU cache must exist');
   assert.ok(cacheSrc.includes('clearAllNewsCache'), 'Cache purge helper must exist');
 
-  // Verify Cove Discover + On-Device Auto-Learning Recommender + Ad-Free Cove News Reader
+  // Verify Cove Discover + On-Device Auto-Learning Recommender + Clean Cove News Reader
   const discoverSrc = readFileSync(join(root, 'src', 'lib', 'discover.ts'), 'utf8');
   assert.ok(discoverSrc.includes('rankStoriesForUser'), 'Auto-learning Discover recommender must exist');
-  assert.ok(discoverSrc.includes('fetchFullCoveNewsArticle'), 'Ad-free Cove News full-article extractor must exist');
+  assert.ok(discoverSrc.includes('fetchFullCoveNewsArticle'), 'Clean Cove News full-article extractor must exist');
   assert.ok(
     existsSync(join(root, 'src', 'newtab', 'components', 'DiscoverFeed.svelte')),
     'DiscoverFeed.svelte must exist'

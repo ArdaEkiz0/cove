@@ -189,7 +189,7 @@ class CoveStore {
   editGridMode = $state(false);
   blockedPreviewDomain = $state<string | null>(null);
 
-  // Cove Discover (Verified News + IndexedDB Cache + Ad-Free Cove News Reader)
+  // Cove Discover (Verified News + IndexedDB Cache + Clean Cove News Reader)
   discoverStories = $state<DiscoverStory[]>([]);
   discoverLoading = $state(false);
   discoverRevalidating = $state(false);
@@ -2260,7 +2260,7 @@ class CoveStore {
   }
 
   /* ==========================================================================
-     COVE DISCOVER, INDEXEDDB NEWS CACHE & AD-FREE COVE NEWS READER
+     COVE DISCOVER, INDEXEDDB NEWS CACHE & CLEAN COVE NEWS READER
      ========================================================================== */
 
   public isStoryCached(url: string): boolean {

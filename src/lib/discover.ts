@@ -10,7 +10,7 @@ import { isExtensionContext } from './storage';
  *   (BBC World, The Guardian, The Verge, Ars Technica, Dezeen, NASA).
  * - Smart high-res banner extraction + background og:image enrichment.
  * - 100% On-Device Auto-Learning Interest & Keyword Recommendation Engine.
- * - Ad-Free Full-Article Source Scraper & Sanitizer for "Cove News".
+ * - Clean Full-Article Source Scraper & Sanitizer for "Cove News".
  */
 
 export type DiscoverTopicId =
@@ -823,7 +823,7 @@ export async function fetchAllDiscoverStories(
 }
 
 /* ============================================================================
-   AD-FREE FULL-ARTICLE SOURCE SCRAPER FOR "COVE NEWS" READER
+   CLEAN FULL-ARTICLE SOURCE SCRAPER FOR "COVE NEWS" READER
    ============================================================================ */
 
 function escapeHtml(raw: string): string {

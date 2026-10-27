@@ -1837,7 +1837,7 @@
 
                 <div class="card-row">
                   <div class="row-info">
-                    <strong>Enable Cove Discover &amp; Ad-Free Cove News</strong>
+                    <strong>Enable Cove Discover &amp; Clean Cove News</strong>
                     <span>Aggregates verified RSS &amp; free public news APIs with on-device interest ranking</span>
                   </div>
                   {@render switchControl(

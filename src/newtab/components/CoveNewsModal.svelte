@@ -228,7 +228,7 @@
             </div>
           </div>
 
-          <!-- Primary CTA -> Opens Full Ad-Free Article in Cove News -->
+          <!-- Primary CTA -> Opens Clean Article in Cove News -->
           <button
             type="button"
             class="read-full-cta"
@@ -260,7 +260,7 @@
       </div>
     {:else}
       <!-- ====================================================================
-           STAGE 2: FULL-SCREEN AD-FREE "COVE NEWS" MAGAZINE READER
+           STAGE 2: FULL-SCREEN CLEAN "COVE NEWS" MAGAZINE READER
            ==================================================================== -->
       <div
         class="cove-news-reader"
@@ -288,7 +288,7 @@
             <span class="cn-badge">
               <Icon name="newspaper" size={13} />
               <strong>Cove News</strong>
-              <em>{cove.coveNewsWasCached ? '⚡ Instant Cache' : 'Ad-Free Reader'}</em>
+              <em>{cove.coveNewsWasCached ? '⚡ Instant Cache' : 'Clean Reader'}</em>
             </span>
             <span class="cn-min-left">
               {minutesRemaining === 0 ? 'Completed ✓' : `${minutesRemaining} min left`}
@@ -774,7 +774,7 @@
   }
 
   /* ==========================================================================
-     STAGE 2: FRAMED FLOATING AD-FREE "COVE NEWS" MAGAZINE READER
+     STAGE 2: FRAMED FLOATING CLEAN "COVE NEWS" MAGAZINE READER
      ========================================================================== */
   .cove-news-reader {
     position: relative;
