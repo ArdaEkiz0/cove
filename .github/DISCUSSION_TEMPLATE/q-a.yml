@@ -1,0 +1,41 @@
+title: "[Q&A] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome. Please include enough detail for someone else to reproduce your setup.
+  - type: input
+    id: version
+    attributes:
+      label: Cove version
+      placeholder: 0.1.1
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: Brave 1.84 on Windows 11 / Zen 1.15 on macOS 15
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: What are you trying to do, and where are you stuck?
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before posting
+      options:
+        - label: I read the FAQ and troubleshooting guide.
+          required: true
+        - label: I did not include private notes, history, or backup files.
+          required: true
