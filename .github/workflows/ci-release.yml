@@ -8,12 +8,17 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: cove-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-verify:
-    name: Typecheck, Build MV3 Bundles & Audit (<165 KB Gzip)
+  verify:
+    name: Typecheck, test, build & audit (<170 KB gzip)
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,33 +29,62 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Install locked dependencies
         run: npm ci
 
       - name: TypeScript strict check
-        run: npx tsc --noEmit
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
 
       - name: Build & package Chrome + Firefox MV3 bundles
         run: npm run build
 
-      - name: Run zero-mock, CSP & bundle-budget test suite
-        run: node --test tests/core.test.mjs
+      - name: MV3 CSP, zero-mock & integration tests
+        run: npm run test:core
+
+      - name: Bundle budget
+        run: npm run budget
+
+      - name: Release artifact, checksum & manifest verification
+        run: npm run verify
 
       - name: Upload MV3 extension artifacts
         uses: actions/upload-artifact@v4
         with:
           name: cove-mv3-bundles
+          if-no-files-found: error
+          retention-days: 14
           path: |
             releases/cove-chrome-mv3-v*.zip
             releases/cove-firefox-mv3-v*.zip
             releases/SHA256SUMS.txt
+            releases/release-manifest.json
 
-      - name: Publish GitHub Release on version tag
-        if: startsWith(github.ref, 'refs/tags/v')
+  release:
+    name: Publish GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Download verified release artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: cove-mv3-bundles
+          path: releases
+
+      - name: Publish immutable release notes & assets
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
+          fail_on_unmatched_files: true
           files: |
             releases/cove-chrome-mv3-v*.zip
             releases/cove-firefox-mv3-v*.zip
             releases/SHA256SUMS.txt
+            releases/release-manifest.json
