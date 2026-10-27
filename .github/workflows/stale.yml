@@ -1,0 +1,43 @@
+name: Triage stale issues
+
+on:
+  schedule:
+    - cron: '43 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    name: Mark inactive reports
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Run stale action
+        uses: actions/stale@v9
+        with:
+          days-before-issue-stale: 45
+          days-before-issue-close: 14
+          days-before-pr-stale: 30
+          days-before-pr-close: 14
+          exempt-issue-labels: 'security,pinned,roadmap,good first issue'
+          exempt-pr-labels: 'security,pinned,dependencies'
+          stale-issue-label: 'status: stale'
+          stale-pr-label: 'status: stale'
+          close-issue-label: 'status: closed'
+          close-pr-label: 'status: closed'
+          stale-issue-message: >-
+            This report has been quiet for 45 days. If it still reproduces on the
+            latest release, add a fresh trace or recording and we will keep it open.
+          stale-pr-message: >-
+            This pull request has been quiet for 30 days. Rebase when you are ready
+            and a maintainer will pick it back up.
+          close-issue-message: >-
+            Closing for now to keep the tracker honest. Reopen with current details
+            whenever the issue returns.
+          close-pr-message: >-
+            Closing this stale proposal. You are welcome to open a fresh pull request
+            against the current `main` branch.
+          operations-per-run: 40
