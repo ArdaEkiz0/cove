@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 370" width="1200" height="370" role="img" aria-labelledby="benchTitle benchDesc">
   <title id="benchTitle">Cove v0.1.1 Performance and Privacy Benchmarks</title>
-  <desc id="benchDesc">Benchmark comparison showing Cove v0.1.1 achieving 11ms cold tab paint, 164 KB gzipped runtime, 0 boot trackers, and $0/year Apache-2.0 cost versus Momentum Plus, Edge/MSN Start, and Feedly Pro.</desc>
+  <desc id="benchDesc">Benchmark comparison showing Cove v0.1.1 achieving 11ms cold tab paint, 168 KB gzipped runtime, 0 boot trackers, and $0/year Apache-2.0 cost versus Momentum Plus, Edge/MSN Start, and Feedly Pro.</desc>
   <rect width="1200" height="370" rx="20" fill="#060B17"/>
   <rect x="1" y="1" width="1198" height="368" rx="19" fill="none" stroke="#1E3A5F" stroke-width="1.5"/>
 
@@ -41,7 +41,7 @@
     <!-- Cove -->
     <text x="24" y="74" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700">Cove v0.1.1</text>
     <rect x="170" y="59" width="46" height="20" rx="5" fill="#34D399"/>
-    <text x="226" y="74" fill="#34D399" font-family="ui-monospace, monospace" font-size="12.5" font-weight="700">164 KB  ·  $0/yr (Apache-2.0)</text>
+    <text x="226" y="74" fill="#34D399" font-family="ui-monospace, monospace" font-size="12.5" font-weight="700">168 KB  ·  $0/yr (Apache-2.0)</text>
 
     <!-- Momentum -->
     <text x="24" y="118" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Momentum Plus</text>

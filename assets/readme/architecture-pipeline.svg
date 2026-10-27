@@ -17,7 +17,7 @@
 
   <!-- Header -->
   <text x="40" y="44" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1.2">SYSTEM ARCHITECTURE · ZERO-CLOUD EXECUTION PIPELINE</text>
-  <text x="40" y="72" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="22" font-weight="700">How Cove Achieves &lt;16ms Cold Paint &amp; Instant Offline Reading in 164 KB</text>
+  <text x="40" y="72" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="22" font-weight="700">How Cove Achieves &lt;16ms Cold Paint &amp; Instant Offline Reading in 168 KB</text>
 
   <!-- Row 1: 3 Modules -->
   <g transform="translate(40, 98)">

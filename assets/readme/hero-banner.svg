@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 540" width="1280" height="540" role="img" aria-labelledby="coveHeroTitle coveHeroDesc">
   <title id="coveHeroTitle">Cove v0.1.1 — Calm, Local-First Browser New Tab Sanctuary</title>
-  <desc id="coveHeroDesc">Open-source Apache-2.0 Manifest V3 New Tab extension for Chrome, Brave, Arc, Edge, Firefox, and Zen Browser featuring 0ms Midnight Cobalt Dark Mode, 20+ source ad-free RSS newsroom, 16 Hz Web Audio neural focus sound, and on-device 2nd-order Markov memory in 164 KB gzipped.</desc>
+  <desc id="coveHeroDesc">Open-source Apache-2.0 Manifest V3 New Tab extension for Chrome, Brave, Arc, Edge, Firefox, and Zen Browser featuring 0ms Midnight Cobalt Dark Mode, 20+ source ad-free RSS newsroom, 16 Hz Web Audio neural focus sound, and on-device 2nd-order Markov memory in 168 KB gzipped.</desc>
   <defs>
     <linearGradient id="bgCanvas" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#050914"/>
@@ -64,12 +64,12 @@
 
   <!-- Subtitle -->
   <text x="64" y="318" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="15.5" font-weight="400">Replaces ad-heavy browser start pages, $40/yr wallpaper subscriptions, and</text>
-  <text x="64" y="342" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="15.5" font-weight="400">cloud RSS readers inside one 164 KB Manifest V3 workspace.</text>
+  <text x="64" y="342" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="15.5" font-weight="400">cloud RSS readers inside one 168 KB Manifest V3 workspace.</text>
 
   <!-- Metric Pills -->
   <g transform="translate(64, 376)">
     <rect x="0" y="0" width="136" height="58" rx="12" fill="#0D182E" stroke="#1E3A5F"/>
-    <text x="16" y="26" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="700">164 KB</text>
+    <text x="16" y="26" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="700">168 KB</text>
     <text x="16" y="45" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">Gzipped Runtime</text>
 
     <rect x="148" y="0" width="136" height="58" rx="12" fill="#0D182E" stroke="#1E3A5F"/>
