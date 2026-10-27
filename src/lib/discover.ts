@@ -211,11 +211,14 @@ export function extractStoryKeywords(title: string): string[] {
 }
 
 /**
- * Reinforces on-device interest profile from user actions:
- * - 'brief': opened News Brief popup (+1.2)
- * - 'full_read': opened Full Article in Cove News (+2.8)
- * - 'boost': clicked "More like this" (+3.6)
- * - 'less': clicked "Less like this" (-3.2 & dismiss)
+ * Reinforces the on-device interest profile from user actions.
+ * Positive actions add `delta` to the topic, 0.85 * delta to the source,
+ * and 0.7 * delta to each title keyword. A "less" action lowers the topic
+ * and source, mutes related keywords, and dismisses the story.
+ * - brief: delta 0.85
+ * - full_read: delta 1.8
+ * - boost: delta 2.4
+ * - less: topic -0.65, source -1.4, muted keyword +1.5
  */
 export function recordDiscoverFeedback(
   profile: DiscoverInterestProfile,
@@ -266,8 +269,9 @@ export function recordDiscoverFeedback(
 }
 
 /**
- * Scores & ranks stories using recency half-life, explicit/learned topic affinity,
- * TF keyword match, publisher trust, banner quality, and community velocity.
+ * Scores and ranks stories using recency half-life, explicit/learned topic affinity,
+ * source affinity, title keywords, banner quality, community velocity, unread state,
+ * and a publisher diversity pass.
  */
 export function rankStoriesForUser(
   stories: DiscoverStory[],
