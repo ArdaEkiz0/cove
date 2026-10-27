@@ -1,0 +1,31 @@
+name: Bug Report
+description: Report a UI, extension, Discover feed, or browser compatibility issue
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser & Environment
+      options:
+        - Chrome (Manifest V3)
+        - Brave (Manifest V3)
+        - Arc (Manifest V3)
+        - Microsoft Edge (Manifest V3)
+        - Firefox / Zen (Gecko MV3)
+        - Standalone Web App
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: "1. Open New Tab...\n2. Click Discover (D)..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs Actual Behavior
+    validations:
+      required: true

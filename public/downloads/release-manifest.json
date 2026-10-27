@@ -1,0 +1,25 @@
+{
+  "version": "0.1.1",
+  "releasedAt": "2026-10-27",
+  "license": "MIT",
+  "artifacts": {
+    "chrome": {
+      "filename": "cove-chrome-mv3-v0.1.1.zip",
+      "bytes": 1850623,
+      "sizeLabel": "1.76 MB",
+      "sha256": "7508ff590a26b4202dfeeb195ab92346be5dc10c0c700f63ca24315c18b09da9"
+    },
+    "firefox": {
+      "filename": "cove-firefox-mv3-v0.1.1.zip",
+      "bytes": 1850568,
+      "sizeLabel": "1.76 MB",
+      "sha256": "4806fd912525805712689c710c3dc9f2f86d4e293cc8a85d139b55f908595868"
+    },
+    "source": {
+      "filename": "cove-github-source-v0.1.1.zip",
+      "bytes": 1942810,
+      "sizeLabel": "1.85 MB",
+      "sha256": "7a4988df042cbc797bd70660387fe94713715e7562ebfe861ba7641fc6da7263"
+    }
+  }
+}

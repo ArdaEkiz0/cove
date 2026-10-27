@@ -1,0 +1,22 @@
+{
+  "name": "cove-tab",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Cove — Your calm corner of the web. Local-first, keyboard-first new tab extension.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build && node scripts/package-extensions.mjs",
+    "preview": "vite preview --host 0.0.0.0 --port 4173"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/chrome": "^0.0.287",
+    "open-props": "^1.7.23",
+    "svelte": "^5.19.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}
