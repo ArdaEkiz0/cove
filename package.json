@@ -47,7 +47,7 @@
     "build": "vite build && node scripts/package-extensions.mjs",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/fuzzy.test.mjs tests/instant-answer.test.mjs tests/markdown.test.mjs tests/moon.test.mjs tests/i18n.test.mjs tests/triage-core.test.mjs tests/defaults.test.mjs tests/rss-parser.test.mjs tests/validation.test.mjs",
+    "test": "node --experimental-strip-types --test tests/fuzzy.test.mjs tests/instant-answer.test.mjs tests/markdown.test.mjs tests/moon.test.mjs tests/i18n.test.mjs tests/triage-core.test.mjs tests/defaults.test.mjs tests/rss-parser.test.mjs tests/validation.test.mjs tests/story-id.test.mjs",
     "test:core": "node --test tests/core.test.mjs",
     "budget": "node scripts/check-budget.mjs",
     "verify": "node scripts/verify-release.mjs",
