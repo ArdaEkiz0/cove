@@ -1,0 +1,44 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - 'docs/**'
+          - 'assets/readme/**'
+
+github-actions:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+          - '.github/actions/**'
+
+security:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'SECURITY.md'
+          - 'src/lib/validation.ts'
+          - 'manifest.json'
+          - 'manifest.firefox.json'
+          - 'src/background/**'
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'tests/**'
+          - 'scripts/verify-release.mjs'
+          - 'scripts/check-budget.mjs'
+
+design:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/newtab/styles/**'
+          - 'src/newtab/components/**'
+          - 'public/wallpapers/**'
+          - 'public/fonts/**'
+
+release:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'scripts/package-extensions.mjs'
+          - 'releases/**'
+          - 'public/downloads/**'
+          - 'CHANGELOG.md'
