@@ -1,29 +1,51 @@
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
   copyFileSync,
   cpSync,
   existsSync,
   mkdirSync,
+  mkdtempSync,
   readFileSync,
   readdirSync,
   rmSync,
   statSync,
   writeFileSync
 } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
+import { join, relative, resolve, sep } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const version = pkg.version || '0.1.1';
+const releaseDate = process.env.COVE_RELEASE_DATE || new Date().toISOString().slice(0, 10);
 
 const distDir = join(root, 'dist');
 const releasesDir = join(root, 'releases');
 const unpackedDir = join(root, 'unpacked-chrome-mv3');
 const publicDownloads = join(root, 'public', 'downloads');
+const stageDirs = {
+  firefox: join(releasesDir, '.ff-stage')
+};
 
 mkdirSync(releasesDir, { recursive: true });
 mkdirSync(publicDownloads, { recursive: true });
+
+/**
+ * Create a deterministic ZIP archive without requiring a `zip` binary on Windows.
+ * Windows 10+ ships bsdtar, which understands `-a` (auto-detect from .zip) and
+ * includes dotfiles, making it a reliable cross-platform fallback.
+ */
+function createZip(sourceDir, outFile) {
+  if (existsSync(outFile)) rmSync(outFile, { force: true });
+  if (process.platform === 'win32') {
+    execFileSync('tar', ['-a', '-c', '-f', outFile, '-C', sourceDir, '.'], {
+      stdio: 'pipe'
+    });
+  } else {
+    execFileSync('zip', ['-rq', outFile, '.'], { cwd: sourceDir, stdio: 'pipe' });
+  }
+}
 
 // Keep root manifest.json synced with public/manifest.json for repo clarity
 copyFileSync(join(root, 'public', 'manifest.json'), join(root, 'manifest.json'));
@@ -43,30 +65,51 @@ cpSync(distDir, unpackedDir, { recursive: true });
 // 1. Package Chrome MV3 zip (both canonical & versioned filenames)
 const chromeZip = join(releasesDir, 'cove-chrome-mv3.zip');
 const chromeVersionedZip = join(releasesDir, `cove-chrome-mv3-v${version}.zip`);
-if (existsSync(chromeZip)) rmSync(chromeZip);
-if (existsSync(chromeVersionedZip)) rmSync(chromeVersionedZip);
-execSync(`cd "${distDir}" && zip -rq "${chromeZip}" .`);
+createZip(distDir, chromeZip);
 copyFileSync(chromeZip, chromeVersionedZip);
 
 // 2. Package Firefox MV3 zip (both canonical & versioned filenames)
-const ffTmp = join(releasesDir, '.ff-stage');
-if (existsSync(ffTmp)) rmSync(ffTmp, { recursive: true, force: true });
-cpSync(distDir, ffTmp, { recursive: true });
-copyFileSync(join(root, 'manifest.firefox.json'), join(ffTmp, 'manifest.json'));
+if (existsSync(stageDirs.firefox)) {
+  rmSync(stageDirs.firefox, { recursive: true, force: true });
+}
+cpSync(distDir, stageDirs.firefox, { recursive: true });
+copyFileSync(join(root, 'manifest.firefox.json'), join(stageDirs.firefox, 'manifest.json'));
 const firefoxZip = join(releasesDir, 'cove-firefox-mv3.zip');
 const firefoxVersionedZip = join(releasesDir, `cove-firefox-mv3-v${version}.zip`);
-if (existsSync(firefoxZip)) rmSync(firefoxZip);
-if (existsSync(firefoxVersionedZip)) rmSync(firefoxVersionedZip);
-execSync(`cd "${ffTmp}" && zip -rq "${firefoxZip}" .`);
+createZip(stageDirs.firefox, firefoxZip);
 copyFileSync(firefoxZip, firefoxVersionedZip);
-rmSync(ffTmp, { recursive: true, force: true });
+rmSync(stageDirs.firefox, { recursive: true, force: true });
 
-// 3. Package clean GitHub Source Repository zip (ready to unzip & push to GitHub)
+// 3. Package clean GitHub Source Repository zip (ready to unzip & push to GitHub).
+//    Stage first so generated artifacts are excluded without relying on `zip -x`,
+//    which is unavailable on Windows.
 const sourceVersionedZip = join(releasesDir, `cove-github-source-v${version}.zip`);
-if (existsSync(sourceVersionedZip)) rmSync(sourceVersionedZip);
-execSync(
-  `cd "${root}" && zip -rq "${sourceVersionedZip}" . -x "node_modules/*" "dist/*" ".git/*" "unpacked-chrome-mv3/*" "public/downloads/*" "releases/*"`
-);
+const skipRootDirs = new Set([
+  'node_modules',
+  'dist',
+  '.git',
+  'unpacked-chrome-mv3',
+  'releases',
+  '.vite',
+  'coverage'
+]);
+const skipNames = new Set(['.DS_Store', 'Thumbs.db']);
+const sourceStage = mkdtempSync(join(tmpdir(), 'cove-source-'));
+cpSync(root, sourceStage, {
+  recursive: true,
+  filter: (source) => {
+    const rel = relative(root, source);
+    if (!rel) return true;
+    const parts = rel.split(sep);
+    if (skipRootDirs.has(parts[0])) return false;
+    if (parts[0] === 'public' && parts[1] === 'downloads') return false;
+    if (skipNames.has(parts[parts.length - 1])) return false;
+    if (/\.(log|tmp)$/i.test(rel)) return false;
+    return true;
+  }
+});
+createZip(sourceStage, sourceVersionedZip);
+rmSync(sourceStage, { recursive: true, force: true });
 
 // 4. Generate cryptographic SHA-256 checksums + machine-readable release-manifest.json
 function sha256File(filePath) {
@@ -92,7 +135,7 @@ writeFileSync(join(releasesDir, 'SHA256SUMS.txt'), sha256Txt, 'utf8');
 
 const releaseManifest = {
   version,
-  releasedAt: '2026-10-27',
+  releasedAt: releaseDate,
   license: 'Apache-2.0',
   artifacts: {
     chrome: {
