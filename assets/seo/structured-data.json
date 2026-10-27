@@ -1,0 +1,132 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://appcove.vercel.app/#software",
+      "name": "Cove",
+      "alternateName": "Cove New Tab",
+      "description": "A calm, local-first Manifest V3 new tab that combines a workspace, 11 curated RSS feeds plus 3 keyless APIs, an offline article reader, a Pomodoro timer, and procedural focus audio. No account, no analytics, no Cove server.",
+      "applicationCategory": "BrowserApplication",
+      "applicationSubCategory": "New tab extension",
+      "operatingSystem": "Chrome, Brave, Arc, Edge, Firefox 128+, Zen",
+      "softwareVersion": "0.1.1",
+      "releaseNotes": "https://github.com/DevAnimecx/cove/blob/main/CHANGELOG.md",
+      "downloadUrl": "https://github.com/DevAnimecx/cove/releases/latest",
+      "installUrl": "https://github.com/DevAnimecx/cove/releases/latest",
+      "codeRepository": "https://github.com/DevAnimecx/cove",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "DevAnimecx",
+        "url": "https://github.com/DevAnimecx"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "DevAnimecx",
+        "url": "https://github.com/DevAnimecx"
+      },
+      "sameAs": [
+        "https://github.com/DevAnimecx/cove",
+        "https://appcove.vercel.app/"
+      ],
+      "screenshot": [
+        "https://raw.githubusercontent.com/DevAnimecx/cove/main/assets/screenshots/newtab-dark.png",
+        "https://raw.githubusercontent.com/DevAnimecx/cove/main/assets/screenshots/discover.png",
+        "https://raw.githubusercontent.com/DevAnimecx/cove/main/assets/screenshots/focus.png",
+        "https://raw.githubusercontent.com/DevAnimecx/cove/main/assets/screenshots/sound-sanctuary.png"
+      ],
+      "featureList": [
+        "Four calm new tab stages with a Bento workspace",
+        "Cove Discover with 11 curated RSS feeds, 3 keyless APIs, and custom feeds",
+        "On-device story ranking with an 18-hour freshness half-life",
+        "Offline article reader with up to 120 cached articles",
+        "Pomodoro timer and declarativeNetRequest site blocker",
+        "Five procedural soundscapes and four neural-style audio modes",
+        "Tab triage, saved sessions, notes, and read-later queue",
+        "Eight local wallpapers, five accents, and four font pairings",
+        "JSON backup and import with validated schemas",
+        "Five interface languages with English fallback"
+      ],
+      "privacyPolicy": "https://github.com/DevAnimecx/cove/blob/main/docs/privacy.md",
+      "securityPolicy": "https://github.com/DevAnimecx/cove/blob/main/SECURITY.md"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://appcove.vercel.app/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Cove?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cove is a free, open-source browser new tab extension that combines a calm workspace, a local-first RSS newsroom, an offline article reader, and focus tools in one Manifest V3 extension. It is built with Svelte 5 and TypeScript and stores data in the browser profile."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Cove free and open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Cove is licensed under Apache-2.0. There is no subscription, paid tier, account, or advertising. The source can be inspected, built, and modified under the license."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Cove collect telemetry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Cove includes no analytics, crash reporting, session replay, advertising SDK, or Cove telemetry endpoint. It makes network requests for enabled features such as RSS, weather, article extraction, favicons, search suggestions, and read-later metadata; those requests go to publishers and public services, not a Cove analytics service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Cove require an account or cloud sync?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There is no Cove account and no Cove sync service. Settings, notes, sessions, feeds, and the local ranking profile stay in browser storage. Data moves between devices through a validated JSON export and import."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Cove work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The shell, fonts, wallpapers, notes, settings, focus timer, sound engine, cached Discover feed, and up to 120 cached full articles work offline. New feeds, uncached articles, weather refreshes, and optional images need a network connection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many news sources does Cove Discover include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cove Discover includes 11 curated RSS/Atom sources plus 3 keyless public APIs: Spaceflight News, DEV.to, and Hacker News Algolia. Users can also add custom RSS/Atom feeds. Cove does not claim 20 or more built-in sources."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Cove on the Chrome Web Store or Firefox Add-ons?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not in version 0.1.1. Cove is installed manually from GitHub Releases by loading the unpacked Chrome or Firefox Manifest V3 package. Store submission is a roadmap item, not a current claim."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Cove's neural audio medically proven?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Cove's sound engine is a procedural ambient synthesizer with adjustable modulation. It is not a medical device and does not claim to treat ADHD, anxiety, sleep disorders, tinnitus, or any other condition."
+          }
+        }
+      ]
+    }
+  ]
+}
