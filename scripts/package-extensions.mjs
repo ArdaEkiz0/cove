@@ -93,7 +93,7 @@ writeFileSync(join(releasesDir, 'SHA256SUMS.txt'), sha256Txt, 'utf8');
 const releaseManifest = {
   version,
   releasedAt: '2026-10-27',
-  license: 'MIT',
+  license: 'Apache-2.0',
   artifacts: {
     chrome: {
       filename: `cove-chrome-mv3-v${version}.zip`,

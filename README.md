@@ -11,7 +11,7 @@
 [![Manifest V3](https://img.shields.io/badge/Chrome%20%7C%20Brave%20%7C%20Arc%20%7C%20Edge%20%7C%20Firefox-Manifest%20V3-059669?style=flat-square)](#30-second-installation)
 [![Bundle Size](https://img.shields.io/badge/gzip%20bundle-%3C165%20KB-7c3aed?style=flat-square)](#architecture--performance-budget)
 [![Privacy](https://img.shields.io/badge/telemetry-0%20cloud%20calls-10b981?style=flat-square)](SECURITY.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-0f172a?style=flat-square)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-0f172a?style=flat-square)](LICENSE)
 
 [**Download Chrome / Brave / Arc / Edge (.zip)**](releases/cove-chrome-mv3-v0.1.1.zip) · [**Download Firefox / Zen (.zip)**](releases/cove-firefox-mv3-v0.1.1.zip) · [**SHA-256 Checksums**](releases/SHA256SUMS.txt) · [**Changelog**](CHANGELOG.md)
 
@@ -26,7 +26,7 @@ Modern browser start pages force an ugly trade-off:
 - **Wallpaper extensions (Momentum)** lock basic widgets and static sound loops behind `$40–$60/yr` cloud subscriptions.
 - **Legacy RSS readers (Feedly / Inoreader)** dump unread-count anxiety and broken text snippets that kick you out to cookie-walled publisher sites.
 
-**Cove** unifies a calm Midnight Cobalt spatial New Tab, a **side-navigation `Cove Discover` newsroom** with **0ms IndexedDB full-article caching**, a **Brain.fm-grade `0 KB` Web Audio neural synthesizer**, and an **autonomous on-device Markov workflow engine (CSE v4)**—100% free, open-source (MIT), and local-first.
+**Cove** unifies a calm Midnight Cobalt spatial New Tab, a **side-navigation `Cove Discover` newsroom** with **0ms IndexedDB full-article caching**, a **Brain.fm-grade `0 KB` Web Audio neural synthesizer**, and an **autonomous on-device Markov workflow engine (CSE v4)**—100% free, open-source (Apache 2.0), and local-first.
 
 ---
 
@@ -41,7 +41,7 @@ Modern browser start pages force an ugly trade-off:
 | **Neural Focus Audio** | **`0 KB` Procedural Web Audio** (`16Hz` / `10.5Hz` / `8.5Hz` / `5.5Hz`) | None | Static MP3 loops | None |
 | **Workflow Intelligence** | **Autonomous CSE v4** (2nd-order Markov + 14d decay) | Cloud behavioral profiling | Static links | Static folders |
 | **Code Footprint** | **`~164 KB` gzipped** (`0` external runtime scripts) | Multi-MB ad SDKs | `4–9 MB` bundle | Cloud SPA |
-| **Cost & Telemetry** | **Free · MIT · `0` Cloud Calls** | Paid with your data | `$40–$60 / yr` | `$72–$144 / yr` |
+| **Cost & Telemetry** | **Free · Apache 2.0 · `0` Cloud Calls** | Paid with your data | `$40–$60 / yr` | `$72–$144 / yr` |
 
 ---
 
@@ -118,4 +118,4 @@ node --test tests/core.test.mjs
 
 ## License
 
-Released under the [MIT License](LICENSE). Built with zero trackers, zero cloud lock-in, and calm craftsmanship.
+Licensed under the [Apache License, Version 2.0](LICENSE) (`Apache-2.0`). Built with zero trackers, zero cloud lock-in, and calm craftsmanship.

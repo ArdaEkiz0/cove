@@ -27,3 +27,7 @@ node --test tests/core.test.mjs
 ```
 
 All PRs must pass TypeScript strict checking, compile under the `< 165 KB` gzipped budget, and pass `tests/core.test.mjs` with zero warnings.
+
+## Licensing
+
+By submitting a contribution, you agree that your contribution is licensed under the [Apache License, Version 2.0](LICENSE) (per Section 5 of Apache-2.0).
