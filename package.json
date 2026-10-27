@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/DevAnimecx/cove/issues"
   },
-  "description": "Cove - calm, local-first Manifest V3 new tab with a workspace, 11 curated feeds plus 3 keyless APIs, offline reader, focus timer, and procedural audio. 167.5 KB gzipped. No account, no analytics, no Cove server.",
+  "description": "Cove - calm, local-first Manifest V3 new tab with a workspace, 11 curated feeds plus 3 keyless APIs, offline reader, focus timer, and procedural audio. 167.7 KB gzipped. No account, no analytics, no Cove server.",
   "keywords": [
     "browser-extension",
     "new-tab",
