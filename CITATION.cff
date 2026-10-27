@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If Cove helps your research, teaching, or product, please cite the project using this metadata."
+title: "Cove: a calm, local-first Manifest V3 new tab workspace"
+abstract: >-
+  Cove is an open-source Apache-2.0 browser new tab extension for Chrome, Brave,
+  Arc, Edge, Firefox, and Zen Browser. It combines a Midnight Cobalt spatial
+  workspace, an ad-free RSS newsroom with an IndexedDB offline cache, procedural
+  Web Audio focus soundscapes, and an on-device Markov workflow engine without
+  cloud telemetry.
+authors:
+  - family-names: "DevAnimecx"
+    given-names: "Cove Open Source Project"
+    website: "https://appcove.vercel.app/"
+    alias: "DevAnimecx"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/DevAnimecx/cove"
+url: "https://appcove.vercel.app/"
+version: "0.1.1"
+date-released: "2026-10-27"
+keywords:
+  - browser-extension
+  - new-tab
+  - manifest-v3
+  - local-first
+  - privacy
+  - rss-reader
+  - web-audio
+  - productivity
