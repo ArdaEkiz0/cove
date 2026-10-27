@@ -1,0 +1,10 @@
+node_modules/
+dist/
+unpacked-chrome-mv3/
+releases/
+public/downloads/
+public/fonts/
+public/wallpapers/
+assets/readme/
+stats.json
+package-lock.json
