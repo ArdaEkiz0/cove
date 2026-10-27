@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" width="1200" height="430" role="img" aria-labelledby="archTitle archDesc">
   <title id="archTitle">Cove v0.1.1 Local-First System Architecture</title>
-  <desc id="archDesc">Six-module architecture showing 0ms synchronous boot theme, Svelte 5 Runes spatial stages, Cove Discover 20+ RSS aggregation, 3-tier RAM and IndexedDB cache, CSE v4 2nd-order Markov predictor, and procedural Web Audio synthesizer inside a strict Manifest V3 zero-telemetry sandbox.</desc>
+  <desc id="archDesc">Six-module architecture showing synchronous pre-paint theme application, Svelte 5 spatial stages, Cove Discover with 11 curated feeds plus 3 keyless APIs, local IndexedDB caching, an on-device second-order Markov layer, and a procedural Web Audio synthesizer inside a strict Manifest V3 privacy boundary.</desc>
   <defs>
     <linearGradient id="archBg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#060B17"/>
@@ -16,16 +16,16 @@
   <rect x="1" y="1" width="1198" height="428" rx="19" fill="none" stroke="#1E3A5F" stroke-width="1.5"/>
 
   <!-- Header -->
-  <text x="40" y="44" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1.2">SYSTEM ARCHITECTURE · ZERO-CLOUD EXECUTION PIPELINE</text>
-  <text x="40" y="72" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="22" font-weight="700">How Cove Achieves &lt;16ms Cold Paint &amp; Instant Offline Reading in 168 KB</text>
+  <text x="40" y="44" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1.2">SYSTEM ARCHITECTURE · LOCAL-FIRST RUNTIME</text>
+  <text x="40" y="72" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="22" font-weight="700">How the local shell, reader, and focus tools fit together</text>
 
   <!-- Row 1: 3 Modules -->
   <g transform="translate(40, 98)">
     <rect width="356" height="112" rx="14" fill="#0D182E" stroke="url(#nodeBorder)" stroke-width="1.2"/>
     <text x="20" y="28" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="11" font-weight="700">01 · SYNCHRONOUS PRE-PAINT BOOT</text>
-    <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">boot-theme.ts (4.0 KB Gzip)</text>
-    <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Locks Midnight Cobalt Dark Mode, font pair, and</text>
-    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">UI scale before first frame—zero white flash.</text>
+    <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">boot-theme.ts (3.9 KB Gzip)</text>
+    <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Applies cached theme, font pair, and UI scale</text>
+    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">before the app mounts to avoid a white flash.</text>
   </g>
 
   <g transform="translate(422, 98)">
@@ -33,24 +33,24 @@
     <text x="20" y="28" fill="#60A5FA" font-family="ui-monospace, monospace" font-size="11" font-weight="700">02 · FINE-GRAINED REACTIVE UI</text>
     <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">Svelte 5 Runes + 4 Spatial Stages</text>
     <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Zero Virtual-DOM overhead. Keys 1–4 switch Bento,</text>
-    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Ambient Monolith, Focus Sanctuary &amp; 4K Stillness.</text>
+    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Ambient Home, Focus Sanctuary &amp; 4K Stillness.</text>
   </g>
 
   <g transform="translate(804, 98)">
     <rect width="356" height="112" rx="14" fill="#0D182E" stroke="url(#nodeBorder)" stroke-width="1.2"/>
     <text x="20" y="28" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="700">03 · COVE DISCOVER &amp; READER</text>
-    <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">20+ Verified RSS/APIs + Cove News</text>
+    <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">11 RSS + 3 APIs + Cove News</text>
     <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Side-nav newsroom + custom RSS URLs + sanitized</text>
-    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">full-article extraction with Key Takeaways.</text>
+    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">full-article extraction with story key points.</text>
   </g>
 
   <!-- Row 2: 3 Modules -->
   <g transform="translate(40, 228)">
     <rect width="356" height="112" rx="14" fill="#0D182E" stroke="url(#nodeBorder)" stroke-width="1.2"/>
-    <text x="20" y="28" fill="#2DD4BF" font-family="ui-monospace, monospace" font-size="11" font-weight="700">04 · 3-TIER OFFLINE PERSISTENCE</text>
+    <text x="20" y="28" fill="#2DD4BF" font-family="ui-monospace, monospace" font-size="11" font-weight="700">04 · LOCAL CACHE LAYERS</text>
     <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">RAM Map → IndexedDB (120-Article LRU)</text>
-    <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">cove_news_cache_v1 serves cached feeds in 0ms and</text>
-    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">pre-warms full articles for offline reading.</text>
+    <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">cove_news_cache_v1 serves warm cached feeds</text>
+    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">and pre-warms full articles for offline reading.</text>
   </g>
 
   <g transform="translate(422, 228)">
@@ -64,13 +64,13 @@
   <g transform="translate(804, 228)">
     <rect width="356" height="112" rx="14" fill="#0D182E" stroke="url(#nodeBorder)" stroke-width="1.2"/>
     <text x="20" y="28" fill="#A78BFA" font-family="ui-monospace, monospace" font-size="11" font-weight="700">06 · PROCEDURAL NEURAL AUDIO</text>
-    <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">Web Audio DSP (0 KB Sample Loops)</text>
+    <text x="20" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" font-weight="700">Web Audio DSP (no audio files)</text>
     <text x="20" y="74" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">Real-time 16 Hz Beta, 10.5 Hz Alpha, 8.5 Hz Calm,</text>
-    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">5.5 Hz Theta + 300–2500 Hz Speech Masking.</text>
+    <text x="20" y="92" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5">5.5 Hz Theta + speech-band shaping filter.</text>
   </g>
 
   <!-- Security Perimeter Footer -->
   <rect x="40" y="360" width="1120" height="46" rx="12" fill="#081121" stroke="#10B981" stroke-opacity="0.4"/>
   <circle cx="64" cy="383" r="5" fill="#10B981"/>
-  <text x="80" y="388" fill="#D1FAE5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="600">MANIFEST V3 PRIVACY BOUNDARY:  script-src 'self'  ·  0 Content Scripts  ·  0 Analytics  ·  0 Cloud Accounts  ·  Apache-2.0</text>
+  <text x="80" y="388" fill="#D1FAE5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="600">MANIFEST V3 PRIVACY BOUNDARY:  script-src 'self'  ·  No Cove Server  ·  No Analytics  ·  No Account  ·  Apache-2.0</text>
 </svg>

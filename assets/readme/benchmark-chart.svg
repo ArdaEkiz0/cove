@@ -1,61 +1,78 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 370" width="1200" height="370" role="img" aria-labelledby="benchTitle benchDesc">
-  <title id="benchTitle">Cove v0.1.1 Performance and Privacy Benchmarks</title>
-  <desc id="benchDesc">Benchmark comparison showing Cove v0.1.1 achieving 11ms cold tab paint, 168 KB gzipped runtime, 0 boot trackers, and $0/year Apache-2.0 cost versus Momentum Plus, Edge/MSN Start, and Feedly Pro.</desc>
-  <rect width="1200" height="370" rx="20" fill="#060B17"/>
-  <rect x="1" y="1" width="1198" height="368" rx="19" fill="none" stroke="#1E3A5F" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="benchTitle benchDesc">
+  <title id="benchTitle">Cove v0.1.1 measured code budget</title>
+  <desc id="benchDesc">A measured breakdown of Cove's 167.5 KB gzipped JavaScript and CSS against a 170 KB enforced budget. The chart is code weight, not total archive size, and excludes bundled wallpapers, fonts, HTML, icons, and runtime caches.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0C162B"/>
+      <stop offset="100%" stop-color="#080F1E"/>
+    </linearGradient>
+    <linearGradient id="coveBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <linearGradient id="budgetBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+  </defs>
 
-  <text x="40" y="44" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1.2">VERIFIED BENCHMARKS · PRODUCTION MV3 BUILD (v0.1.1)</text>
-  <text x="40" y="72" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="22" font-weight="700">Engineered for Sub-Frame Cold Paint &amp; Zero Bloat</text>
+  <rect width="1200" height="420" rx="20" fill="#060B17"/>
+  <rect x="1" y="1" width="1198" height="418" rx="19" fill="none" stroke="#1E3A5F" stroke-width="1.5"/>
 
-  <!-- Left Panel: Cold Paint Latency -->
-  <g transform="translate(40, 100)">
-    <rect width="544" height="236" rx="14" fill="#0C162B" stroke="#1E293B"/>
-    <text x="24" y="34" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="700">Cold New-Tab Interactive Paint (Lower is Faster)</text>
+  <text x="40" y="44" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1.2">MEASURED AT v0.1.1 · npm run budget</text>
+  <text x="40" y="76" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="24" font-weight="700">167.5 KB measured. 170 KB enforced.</text>
+  <text x="40" y="101" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Gzipped JavaScript + CSS in dist/. Code weight, not a total download claim.</text>
 
-    <!-- Cove -->
-    <text x="24" y="74" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700">Cove v0.1.1</text>
-    <rect x="170" y="59" width="28" height="20" rx="5" fill="#38BDF8"/>
-    <text x="208" y="74" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="12.5" font-weight="700">11 ms (0ms Dark Pre-Paint)</text>
+  <!-- Left panel: composition -->
+  <g transform="translate(40, 126)">
+    <rect width="660" height="248" rx="14" fill="url(#panel)" stroke="#1E293B"/>
+    <text x="24" y="34" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700">Where the bytes go</text>
 
-    <!-- Bonjourr -->
-    <text x="24" y="118" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Minimalist NTPs</text>
-    <rect x="170" y="103" width="62" height="20" rx="5" fill="#334155"/>
-    <text x="242" y="118" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12">38 ms (No RSS / No Audio)</text>
+    <text x="24" y="68" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">new tab JS</text>
+    <rect x="150" y="55" width="438" height="16" rx="4" fill="#1E293B"/>
+    <rect x="150" y="55" width="408" height="16" rx="4" fill="url(#coveBar)"/>
+    <text x="598" y="68" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">138.8 KB</text>
 
-    <!-- Momentum Plus -->
-    <text x="24" y="162" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Momentum Plus</text>
-    <rect x="170" y="147" width="184" height="20" rx="5" fill="#475569"/>
-    <text x="364" y="162" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12">190 ms ($40/yr Cloud)</text>
+    <text x="24" y="99" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">new tab CSS</text>
+    <rect x="150" y="86" width="438" height="16" rx="4" fill="#1E293B"/>
+    <rect x="150" y="86" width="63" height="16" rx="4" fill="#60A5FA"/>
+    <text x="598" y="99" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">21.4 KB</text>
 
-    <!-- Edge / MSN -->
-    <text x="24" y="206" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Edge / MSN Start</text>
-    <rect x="170" y="191" width="278" height="20" rx="5" fill="#EF4444" fill-opacity="0.65"/>
-    <text x="456" y="206" fill="#FCA5A5" font-family="ui-monospace, monospace" font-size="12">640 ms+</text>
+    <text x="24" y="130" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">pre-paint theme</text>
+    <rect x="150" y="117" width="438" height="16" rx="4" fill="#1E293B"/>
+    <rect x="150" y="117" width="11" height="16" rx="4" fill="#34D399"/>
+    <text x="598" y="130" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">3.9 KB</text>
+
+    <text x="24" y="161" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">workers, bg, blocked</text>
+    <rect x="150" y="148" width="438" height="16" rx="4" fill="#1E293B"/>
+    <rect x="150" y="148" width="8" height="16" rx="4" fill="#A78BFA"/>
+    <text x="598" y="161" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">3.3 KB</text>
+
+    <line x1="24" y1="184" x2="624" y2="184" stroke="#1E293B"/>
+
+    <text x="24" y="212" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">measured total</text>
+    <text x="24" y="240" fill="#F8FAFC" font-family="ui-monospace, monospace" font-size="21" font-weight="700">167.5 KB</text>
+    <text x="160" y="240" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11">of 170 KB</text>
+    <text x="598" y="212" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="600">2.5 KB</text>
+    <text x="598" y="240" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="600">headroom</text>
   </g>
 
-  <!-- Right Panel: Runtime & Privacy Footprint -->
-  <g transform="translate(616, 100)">
-    <rect width="544" height="236" rx="14" fill="#0C162B" stroke="#1E293B"/>
-    <text x="24" y="34" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="700">Gzipped Code Budget &amp; Annual Subscription Cost</text>
+  <!-- Right panel: what is excluded -->
+  <g transform="translate(724, 126)">
+    <rect width="436" height="248" rx="14" fill="url(#panel)" stroke="#1E293B"/>
+    <text x="24" y="34" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700">What this number is not</text>
+    <text x="24" y="60" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">The full archive and browser profile are larger:</text>
+    <text x="24" y="84" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">· 8 local wallpapers</text>
+    <text x="24" y="106" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">· 4 self-hosted font families</text>
+    <text x="24" y="128" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">· icons, HTML, and manifests</text>
+    <text x="24" y="150" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">· runtime caches created after install</text>
 
-    <!-- Cove -->
-    <text x="24" y="74" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700">Cove v0.1.1</text>
-    <rect x="170" y="59" width="46" height="20" rx="5" fill="#34D399"/>
-    <text x="226" y="74" fill="#34D399" font-family="ui-monospace, monospace" font-size="12.5" font-weight="700">168 KB  ·  $0/yr (Apache-2.0)</text>
+    <line x1="24" y1="174" x2="412" y2="174" stroke="#1E293B"/>
 
-    <!-- Momentum -->
-    <text x="24" y="118" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Momentum Plus</text>
-    <rect x="170" y="103" width="165" height="20" rx="5" fill="#475569"/>
-    <text x="345" y="118" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12">~1,850 KB  ·  $40–$60/yr</text>
-
-    <!-- Feedly + Brain.fm -->
-    <text x="24" y="162" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Feedly + Brain.fm</text>
-    <rect x="170" y="147" width="215" height="20" rx="5" fill="#475569"/>
-    <text x="395" y="162" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="12">2 Cloud Apps · $140+/yr</text>
-
-    <!-- Edge / MSN -->
-    <text x="24" y="206" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Edge / MSN Start</text>
-    <rect x="170" y="191" width="248" height="20" rx="5" fill="#EF4444" fill-opacity="0.65"/>
-    <text x="426" y="206" fill="#FCA5A5" font-family="ui-monospace, monospace" font-size="12">4.2 MB + Ads</text>
+    <text x="24" y="198" fill="#38BDF8" font-family="ui-monospace, monospace" font-size="10.5" font-weight="700" letter-spacing="0.4">GUARDRAILS</text>
+    <text x="24" y="220" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">No runtime framework download</text>
+    <text x="24" y="240" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">No third-party fonts or audio files</text>
   </g>
+
+  <text x="40" y="398" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10.5">Methodology, limitations, and the cold-paint caveat: docs/performance.md · CI fails at 170 × 1024 bytes gzipped.</text>
 </svg>
