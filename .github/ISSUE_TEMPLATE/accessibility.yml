@@ -1,0 +1,53 @@
+name: Accessibility issue
+description: Report a keyboard, screen-reader, contrast, motion, or zoom barrier
+title: "[A11y]: "
+labels: ["accessibility", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cove should be usable with a keyboard, a screen reader, reduced motion, high contrast, and 200% zoom. Please describe the barrier precisely.
+  - type: dropdown
+    id: barrier
+    attributes:
+      label: Barrier type
+      options:
+        - Keyboard navigation
+        - Screen reader announcement
+        - Focus visibility or focus trap
+        - Color contrast
+        - Reduced motion
+        - Forced colors / high contrast
+        - Zoom or text scaling
+        - Touch target size
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Where does it happen?
+      placeholder: Settings Studio → Sound → Neural depth
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the browser, screen reader, zoom level, and whether keyboard-only navigation was used.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked the Accessibility guide at docs/ACCESSIBILITY.md.
+        - label: I searched existing accessibility issues.
+          required: true
