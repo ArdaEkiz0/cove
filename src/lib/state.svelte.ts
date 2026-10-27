@@ -84,6 +84,16 @@ import {
   storageGet,
   storageSet
 } from './storage';
+import {
+  sanitizeCountdowns,
+  sanitizeImportedSettings,
+  sanitizeNotes,
+  sanitizeQuickLinkGroups,
+  sanitizeQuickLinks,
+  sanitizeReadLater,
+  sanitizeRssFeeds,
+  sanitizeSessions
+} from './validation';
 import type {
   AutonomyMode,
   BrowserTabItem,
@@ -2203,28 +2213,29 @@ class CoveStore {
 
   public async importAllDataJson(rawJson: string): Promise<boolean> {
     try {
+      if (typeof rawJson !== 'string' || rawJson.length > 25_000_000) {
+        this.notify('Backup is too large. Cove accepts files up to 25 MB.');
+        return false;
+      }
       const parsed = JSON.parse(rawJson) as Partial<CoveFullExport>;
       if (!parsed || parsed.app !== 'Cove' || !parsed.settings) {
         this.notify('Invalid Cove backup file.');
         return false;
       }
       const base = createDefaultSettings();
-      this.settings = {
-        ...base,
-        ...parsed.settings,
-        version: 6,
-        typography: { ...base.typography, ...(parsed.settings.typography || {}) },
-        smartEngine: { ...base.smartEngine, ...(parsed.settings.smartEngine || {}) },
-        focus: { ...base.focus, ...(parsed.settings.focus || {}) }
-      };
+      this.settings = sanitizeImportedSettings(parsed.settings, base);
       if (parsed.smartMemory) this.smartMemory = upgradeSmartMemory(parsed.smartMemory);
-      if (Array.isArray(parsed.quickLinkGroups)) this.quickLinkGroups = parsed.quickLinkGroups;
-      if (Array.isArray(parsed.quickLinks)) this.quickLinks = parsed.quickLinks;
-      if (Array.isArray(parsed.notes)) this.notes = parsed.notes;
-      if (Array.isArray(parsed.sessions)) this.sessions = parsed.sessions;
-      if (Array.isArray(parsed.readLater)) this.readLater = parsed.readLater;
-      if (Array.isArray(parsed.rssFeeds)) this.rssFeeds = parsed.rssFeeds;
-      if (Array.isArray(parsed.countdowns)) this.countdowns = parsed.countdowns;
+      if (Array.isArray(parsed.quickLinkGroups)) {
+        this.quickLinkGroups = sanitizeQuickLinkGroups(parsed.quickLinkGroups);
+      }
+      if (Array.isArray(parsed.quickLinks)) {
+        this.quickLinks = sanitizeQuickLinks(parsed.quickLinks);
+      }
+      if (Array.isArray(parsed.notes)) this.notes = sanitizeNotes(parsed.notes);
+      if (Array.isArray(parsed.sessions)) this.sessions = sanitizeSessions(parsed.sessions);
+      if (Array.isArray(parsed.readLater)) this.readLater = sanitizeReadLater(parsed.readLater);
+      if (Array.isArray(parsed.rssFeeds)) this.rssFeeds = sanitizeRssFeeds(parsed.rssFeeds);
+      if (Array.isArray(parsed.countdowns)) this.countdowns = sanitizeCountdowns(parsed.countdowns);
 
       this.applyDomTheme();
       await this.refreshWallpaperAtmosphere();
