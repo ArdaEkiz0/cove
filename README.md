@@ -5,11 +5,11 @@
 # Cove `v0.1.1`
 
 ### **The Browser New Tab that Quietly Evolves.**
-*Midnight Dark Mode · Ad-Free Cove Discover News + IndexedDB Cache · 16 Hz Procedural Neural Audio · Autonomous On-Device Smart Engine — in **164 KB** with **0 Cloud Calls**.*
+*Midnight Dark Mode · Ad-Free Cove Discover News + IndexedDB Cache · 16 Hz Procedural Neural Audio · Autonomous On-Device Smart Engine — in **168 KB** with **0 Cloud Calls**.*
 
 [![Release v0.1.1](https://img.shields.io/badge/release-v0.1.1-2563eb?style=flat-square)](CHANGELOG.md)
 [![Manifest V3](https://img.shields.io/badge/Chrome%20%7C%20Brave%20%7C%20Arc%20%7C%20Edge%20%7C%20Firefox-Manifest%20V3-059669?style=flat-square)](#30-second-installation)
-[![Bundle Size](https://img.shields.io/badge/gzip%20bundle-%3C165%20KB-7c3aed?style=flat-square)](#architecture--performance-budget)
+[![Bundle Size](https://img.shields.io/badge/gzip%20bundle-%3C170%20KB-7c3aed?style=flat-square)](#architecture--performance-budget)
 [![Privacy](https://img.shields.io/badge/telemetry-0%20cloud%20calls-10b981?style=flat-square)](SECURITY.md)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-0f172a?style=flat-square)](LICENSE)
 
@@ -40,7 +40,7 @@ Modern browser start pages force an ugly trade-off:
 | **Offline News Cache** | **3-Tier RAM + IndexedDB LRU Cache** (120 full articles) | None | None | Cloud account required |
 | **Neural Focus Audio** | **`0 KB` Procedural Web Audio** (`16Hz` / `10.5Hz` / `8.5Hz` / `5.5Hz`) | None | Static MP3 loops | None |
 | **Workflow Intelligence** | **Autonomous CSE v4** (2nd-order Markov + 14d decay) | Cloud behavioral profiling | Static links | Static folders |
-| **Code Footprint** | **`~164 KB` gzipped** (`0` external runtime scripts) | Multi-MB ad SDKs | `4–9 MB` bundle | Cloud SPA |
+| **Code Footprint** | **`~168 KB` gzipped** (`0` external runtime scripts) | Multi-MB ad SDKs | `4–9 MB` bundle | Cloud SPA |
 | **Cost & Telemetry** | **Free · Apache 2.0 · `0` Cloud Calls** | Paid with your data | `$40–$60 / yr` | `$72–$144 / yr` |
 
 ---
@@ -93,7 +93,7 @@ cove/
 ├── public/                        # Bundled 4K wallpapers, .woff2 fonts, icons & Chrome MV3 manifest
 ├── manifest.firefox.json          # Native Gecko Manifest V3 configuration
 ├── scripts/package-extensions.mjs # Deterministicpackager + SHA-256 checksum generator
-└── tests/core.test.mjs            # Automated MV3 CSP, <165 KB gzipped budget & zero-mock audit
+└── tests/core.test.mjs            # Automated MV3 CSP, <170 KB gzipped budget & zero-mock audit
 ```
 
 ---
@@ -108,7 +108,7 @@ npm install
 # Start local dev & live preview server
 npm run dev
 
-# Run TypeScript check, build dist/, package .zip releases & verify SHA-256 + <165 KB budget
+# Run TypeScript check, build dist/, package .zip releases & verify SHA-256 + <170 KB budget
 npx tsc --noEmit
 npm run build
 node --test tests/core.test.mjs

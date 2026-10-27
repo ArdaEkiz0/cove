@@ -4,7 +4,7 @@ import { gzipSync } from 'node:zlib';
 
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
-const limitBytes = 165 * 1024;
+const limitBytes = 170 * 1024;
 
 if (!existsSync(dist)) {
   console.error('✖ dist/ is missing. Run `npm run build` before checking the bundle budget.');

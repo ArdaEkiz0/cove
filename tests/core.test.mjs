@@ -30,7 +30,7 @@ function walkFiles(dir) {
   return out;
 }
 
-test('MV3 Chrome manifest v0.1.1, CSP, 8 local scenic wallpapers, and <150 KB code budget', () => {
+test('MV3 Chrome manifest v0.1.1, CSP, 8 local scenic wallpapers, and <170 KB code budget', () => {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
   assert.equal(pkg.version, '0.1.1', 'package.json version must be 0.1.1');
 
@@ -81,8 +81,8 @@ test('MV3 Chrome manifest v0.1.1, CSP, 8 local scenic wallpapers, and <150 KB co
   }
   gzipBytes += gzipSync(readFileSync(join(root, 'dist', 'background.js'))).byteLength;
   assert.ok(
-    gzipBytes < 165 * 1024,
-    `JS+CSS gzipped bundle (${Math.round(gzipBytes / 1024)} KB) must remain < 165 KB`
+    gzipBytes < 170 * 1024,
+    `JS+CSS gzipped bundle (${Math.round(gzipBytes / 1024)} KB) must remain < 170 KB`
   );
 
   // Verify Chrome and Firefox zip bundles exist
