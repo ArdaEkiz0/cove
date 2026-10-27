@@ -44,7 +44,7 @@ There is no fixed contribution count. Trust, judgment, and consistency matter mo
 
 ## Releases
 
-Cove follows [Semantic Versioning](https://semver.org/). Releases are prepared from `main`, verified by CI, and published with signed checksums. See [docs/RELEASING.md](docs/RELEASING.md) for the exact process.
+Cove follows [Semantic Versioning](https://semver.org/). Releases are prepared from `main`, verified by CI, and published with signed checksums. See [docs/releasing.md](docs/releasing.md) for the exact process.
 
 ## Changes to this document
 
