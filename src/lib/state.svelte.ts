@@ -84,6 +84,7 @@ import {
   storageGet,
   storageSet
 } from './storage';
+import { ensureUniqueStoryIds } from './story-id';
 import {
   sanitizeCountdowns,
   sanitizeImportedSettings,
@@ -487,11 +488,11 @@ class CoveStore {
     // Hydrate IndexedDB News Feed + Cached Full-Article Index (0ms instant load)
     const idbFeed = await loadCachedDiscoverFeed();
     if (idbFeed?.stories?.length) {
-      this.discoverStories = idbFeed.stories;
+      this.discoverStories = ensureUniqueStoryIds(idbFeed.stories);
       this.discoverLastFetchedAt = idbFeed.fetchedAt;
       this.discoverFromCache = true;
     } else if (savedDiscoverCache?.stories?.length) {
-      this.discoverStories = savedDiscoverCache.stories;
+      this.discoverStories = ensureUniqueStoryIds(savedDiscoverCache.stories);
       this.discoverLastFetchedAt = savedDiscoverCache.fetchedAt || 0;
       this.discoverFromCache = true;
     }
@@ -2287,7 +2288,7 @@ class CoveStore {
 
     try {
       this.networkLedger.rss += 1;
-      const stories = await fetchAllDiscoverStories(this.rssFeeds, force);
+      const stories = ensureUniqueStoryIds(await fetchAllDiscoverStories(this.rssFeeds, force));
       if (stories.length > 0) {
         this.discoverStories = stories;
         this.discoverLastFetchedAt = Date.now();
@@ -2307,7 +2308,10 @@ class CoveStore {
           const existingUrls = new Set(this.discoverStories.map((s) => s.url));
           const uniqueCustom = customItems.filter((c) => !existingUrls.has(c.url));
           if (uniqueCustom.length > 0) {
-            this.discoverStories = [...uniqueCustom, ...this.discoverStories];
+            this.discoverStories = ensureUniqueStoryIds([
+              ...uniqueCustom,
+              ...this.discoverStories
+            ]);
             await saveCachedDiscoverFeed(this.discoverStories, this.discoverLastFetchedAt);
           }
         }
