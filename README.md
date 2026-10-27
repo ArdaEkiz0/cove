@@ -13,7 +13,7 @@
 [![Privacy](https://img.shields.io/badge/telemetry-0%20cloud%20calls-10b981?style=flat-square)](SECURITY.md)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-0f172a?style=flat-square)](LICENSE)
 
-[**Download Chrome / Brave / Arc / Edge (.zip)**](releases/cove-chrome-mv3-v0.1.1.zip) · [**Download Firefox / Zen (.zip)**](releases/cove-firefox-mv3-v0.1.1.zip) · [**SHA-256 Checksums**](releases/SHA256SUMS.txt) · [**Changelog**](CHANGELOG.md)
+[**Live Website (`appcove.vercel.app`)**](https://appcove.vercel.app/) · [**30s Install Guide**](https://appcove.vercel.app/install) · [**Chrome / Brave / Arc / Edge (.zip)**](releases/cove-chrome-mv3-v0.1.1.zip) · [**Firefox / Zen (.zip)**](releases/cove-firefox-mv3-v0.1.1.zip) · [**SHA-256 Checksums**](releases/SHA256SUMS.txt)
 
 </div>
 
@@ -101,7 +101,7 @@ cove/
 ## Build from Source
 
 ```bash
-git clone https://github.com/cove-tab/cove.git
+git clone https://github.com/devanimecx/cove.git
 cd cove
 npm install
 

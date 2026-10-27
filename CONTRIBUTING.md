@@ -12,7 +12,7 @@ Thank you for helping build a calmer, local-first web!
 ## Local Setup
 
 ```bash
-git clone https://github.com/cove-tab/cove.git
+git clone https://github.com/devanimecx/cove.git
 cd cove
 npm install
 npm run dev

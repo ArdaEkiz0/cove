@@ -2,12 +2,13 @@
   "manifest_version": 3,
   "name": "Cove — Calm New Tab",
   "short_name": "Cove",
-  "version": "1.0.0",
-  "description": "Your calm corner of the web. Local-first, keyboard-driven new tab with smart tab triage, focus engine, read-later, and RSS.",
+  "version": "0.1.1",
+  "homepage_url": "https://appcove.vercel.app/",
+  "description": "Your calm corner of the web. Precision typography, Autonomous CSE v4, Functional Neural Sound Engine (16Hz Beta / 10.5Hz Alpha / 5.5Hz Theta), and complete full-page settings.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "cove@getcove.app",
-      "strict_min_version": "115.0"
+      "id": "cove@appcove.vercel.app",
+      "strict_min_version": "128.0"
     }
   },
   "icons": {
