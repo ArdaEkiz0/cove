@@ -3,7 +3,7 @@
   "name": "Cove — Calm New Tab",
   "short_name": "Cove",
   "version": "0.1.1",
-  "homepage_url": "https://appcove.vercel.app/",
+  "homepage_url": "https://github.com/DevAnimecx/cove",
   "description": "Your calm corner of the web. Precision typography, Autonomous CSE v4, Functional Neural Sound Engine (16Hz Beta / 10.5Hz Alpha / 5.5Hz Theta), and complete full-page settings.",
   "browser_specific_settings": {
     "gecko": {

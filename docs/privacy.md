@@ -52,7 +52,6 @@ This table is the complete production network surface in `v0.1.1`. The exact end
 | Favicons | `google.com/s2/favicons`, `icons.duckduckgo.com` | When a quick link or tab needs an icon | On | Settings > Appearance/Search |
 | Read-later metadata | The saved page URL | When you save an article, if metadata fetch is on | On | Settings > Privacy & Feeds |
 | Unsplash scene image | `images.unsplash.com` | Only when you enable Unsplash for a curated scene | Off | Keep local wallpapers |
-| Cove app website | `appcove.vercel.app` | Only if you click a link | Off | Do not click |
 
 ### What is never requested
 

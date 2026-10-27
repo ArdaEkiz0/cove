@@ -18,11 +18,13 @@ A calm, local-first new tab with curated reading, offline articles, and focus to
 
 ## Website
 
+There is no deployed project website yet. Leave GitHub's Website field blank, or use the repository URL until the landing site is live:
+
 ```text
-https://appcove.vercel.app/
+https://github.com/DevAnimecx/cove
 ```
 
-Use the repository releases page as the install source until the site's download links are verified for the current release.
+Do not set `https://appcove.vercel.app/` until it resolves; it currently returns `DEPLOYMENT_NOT_FOUND`. The separate `cove-landing` project must be corrected to match the README before it is published. Use the repository releases page as the install source in the meantime.
 
 ## Topics
 

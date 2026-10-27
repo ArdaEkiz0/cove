@@ -5,7 +5,7 @@
 **DevAnimecx** — creator, maintainer, product design, and engineering.
 
 - GitHub: [@DevAnimecx](https://github.com/DevAnimecx)
-- Website: [appcove.vercel.app](https://appcove.vercel.app/)
+- Repository: [DevAnimecx/cove](https://github.com/DevAnimecx/cove)
 
 ## Cove contributors
 

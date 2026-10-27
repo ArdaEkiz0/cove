@@ -52,12 +52,12 @@ test('sanitizes quick links, groups, notes, feeds, sessions, read-later, and cou
   assert.deepEqual(groups, [{ id: 'g1', name: 'Reading', context: 'personal' }]);
 
   const links = sanitizeQuickLinks([
-    { id: 'l1', title: 'Cove', url: 'https://appcove.vercel.app/', groupId: 'g1' },
+    { id: 'l1', title: 'Cove', url: 'https://github.com/DevAnimecx/cove', groupId: 'g1' },
     { id: 'l2', title: 'Bad', url: 'javascript:alert(1)', groupId: 'g1' },
     { id: 'l1', title: 'Duplicate', url: 'https://example.com/', groupId: 'g1' }
   ]);
   assert.equal(links.length, 1);
-  assert.equal(links[0].url, 'https://appcove.vercel.app/');
+  assert.equal(links[0].url, 'https://github.com/DevAnimecx/cove');
 
   const notes = sanitizeNotes([{ id: 'n1', title: 'Note', content: 'x'.repeat(200_000), pinned: true }]);
   assert.equal(notes[0].content.length, 100_000);

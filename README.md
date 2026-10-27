@@ -16,7 +16,7 @@ Curated reading, an offline article reader, a tab workspace, a Pomodoro timer, a
 [![Manifest V3](https://img.shields.io/badge/manifest-v3-1d4ed8?style=flat-square)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
 [![Telemetry](https://img.shields.io/badge/telemetry-none-0f766e?style=flat-square)](docs/privacy.md)
 
-[**Website**](https://appcove.vercel.app/) · [**Install**](https://github.com/DevAnimecx/cove/releases/latest) · [**Documentation**](docs/README.md) · [**Screenshots**](#screenshots) · [**Privacy**](docs/privacy.md) · [**Security**](SECURITY.md) · [**Changelog**](CHANGELOG.md)
+[**Install**](https://github.com/DevAnimecx/cove/releases/latest) · [**Documentation**](docs/README.md) · [**Screenshots**](#screenshots) · [**Privacy**](docs/privacy.md) · [**Security**](SECURITY.md) · [**Changelog**](CHANGELOG.md)
 
 </div>
 
@@ -389,7 +389,7 @@ Licensed under the [Apache License, Version 2.0](LICENSE). You may use, modify, 
 
 **Cove** · _Your calm corner of the web._
 
-[Website](https://appcove.vercel.app/) · [Releases](https://github.com/DevAnimecx/cove/releases) · [Issues](https://github.com/DevAnimecx/cove/issues) · [Discussions](https://github.com/DevAnimecx/cove/discussions) · [Security](SECURITY.md)
+[Source](https://github.com/DevAnimecx/cove) · [Releases](https://github.com/DevAnimecx/cove/releases) · [Issues](https://github.com/DevAnimecx/cove/issues) · [Discussions](https://github.com/DevAnimecx/cove/discussions) · [Security](SECURITY.md)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=DevAnimecx/cove&type=Date)](https://star-history.com/#DevAnimecx/cove&Date)
 

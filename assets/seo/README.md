@@ -14,7 +14,7 @@ These files make Cove easier to discover, quote, and verify. They are static ass
 ## Deployment notes
 
 - `llms.txt`, `llms-full.txt`, `humans.txt`, and `.well-known/security.txt` are served from the repository root. If the website is deployed separately, copy them to the site's public root.
-- Inject `structured-data.json` into the website `<head>` as `<script type="application/ld+json">` after replacing any placeholder origin. The canonical origin in this file is `https://appcove.vercel.app/`.
+- Inject `structured-data.json` into a website `<head>` as `<script type="application/ld+json">` only after a public site exists. It currently uses the GitHub repository origin because no website is deployed. Replace the origin with the live site's canonical URL before publishing it there.
 - Keep `softwareVersion`, test counts, and bundle size in sync with a release. Stale structured data is worse than none.
 - Do not add rating, award, or store-availability properties until they are true.
 

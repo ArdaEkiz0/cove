@@ -11,8 +11,7 @@ The Svelte, Vite, TypeScript, and open-web communities.
 /* SITE */
 Project: Cove
 Tagline: Your calm corner of the web.
-Website: https://appcove.vercel.app/
-Source: https://github.com/DevAnimecx/cove
+Repository: https://github.com/DevAnimecx/cove
 Docs: https://github.com/DevAnimecx/cove/blob/main/docs/README.md
 Language: English (plus Hindi, Spanish, German, and Japanese interface copy)
 License: Apache-2.0

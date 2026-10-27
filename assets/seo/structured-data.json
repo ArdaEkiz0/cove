@@ -3,7 +3,7 @@
   "@graph": [
     {
       "@type": "SoftwareApplication",
-      "@id": "https://appcove.vercel.app/#software",
+      "@id": "https://github.com/DevAnimecx/cove#software",
       "name": "Cove",
       "alternateName": "Cove New Tab",
       "description": "A calm, local-first Manifest V3 new tab that combines a workspace, 11 curated RSS feeds plus 3 keyless APIs, an offline article reader, a Pomodoro timer, and procedural focus audio. No account, no analytics, no Cove server.",
@@ -34,8 +34,7 @@
         "url": "https://github.com/DevAnimecx"
       },
       "sameAs": [
-        "https://github.com/DevAnimecx/cove",
-        "https://appcove.vercel.app/"
+        "https://github.com/DevAnimecx/cove"
       ],
       "screenshot": [
         "https://raw.githubusercontent.com/DevAnimecx/cove/main/assets/screenshots/newtab-dark.png",
@@ -60,7 +59,7 @@
     },
     {
       "@type": "FAQPage",
-      "@id": "https://appcove.vercel.app/#faq",
+      "@id": "https://github.com/DevAnimecx/cove#faq",
       "mainEntity": [
         {
           "@type": "Question",

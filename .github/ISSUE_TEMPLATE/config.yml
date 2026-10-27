@@ -9,6 +9,3 @@ contact_links:
   - name: Report a security vulnerability privately
     url: https://github.com/DevAnimecx/cove/security/advisories/new
     about: Never disclose a vulnerability in a public issue.
-  - name: Visit the official Cove website
-    url: https://appcove.vercel.app/
-    about: Downloads, live Discover preview, installation guide, and release notes.

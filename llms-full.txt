@@ -5,7 +5,7 @@ Cove is a free, open-source, local-first browser new tab extension. It replaces 
 Current release: `v0.1.1` (pre-1.0), released 2026-10-27. Installation is manual from GitHub Releases. Cove is not published on the Chrome Web Store or Firefox Add-ons as of this release.
 
 - Repository: https://github.com/DevAnimecx/cove
-- Website: https://appcove.vercel.app/
+- Website: none deployed yet; use the repository at https://github.com/DevAnimecx/cove.
 - Releases: https://github.com/DevAnimecx/cove/releases
 - License: https://github.com/DevAnimecx/cove/blob/main/LICENSE
 
@@ -88,7 +88,6 @@ Network features and defaults at `v0.1.1`:
 | Favicons | google.com/s2/favicons, icons.duckduckgo.com | On | Settings > Search / Appearance |
 | Read-later metadata | The page you save | On | Settings > Privacy & Feeds |
 | Unsplash wallpaper | images.unsplash.com | Off | Enable in Atmosphere |
-| Cove website | appcove.vercel.app | Only on click | Do not click |
 
 Never requested: Google Fonts or other font CDNs, analytics/tag managers, session replay/heatmaps/A-B testing, ad networks, remote JavaScript/CSS/audio, Cove sync endpoints.
 

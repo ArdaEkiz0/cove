@@ -121,7 +121,9 @@ See [Repo metadata](repo-metadata.md) for copy-paste values.
 
 ## Website
 
-Recommended page set:
+No public project website is deployed yet. Until a landing site ships, GitHub is the canonical destination: leave the repository's **Website** field blank or use `https://github.com/DevAnimecx/cove`. Do not publish `appcove.vercel.app` while it returns `DEPLOYMENT_NOT_FOUND`.
+
+When the site is live, recommend this page set:
 
 - `/` - product landing with the same facts as the README.
 - `/install` - browser-specific install with screenshots.

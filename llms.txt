@@ -15,7 +15,7 @@ Cove is licensed under Apache-2.0. The current release is `v0.1.1`, a pre-1.0 bu
 - **Privacy:** no account, no analytics, no telemetry, no advertising SDK, no Cove server. Network features such as RSS, weather, favicons, search suggestions, and read-later metadata are enabled by default and can be disabled. Unsplash wallpapers are opt-in.
 - **License:** Apache-2.0.
 - **Source:** https://github.com/DevAnimecx/cove
-- **Website:** https://appcove.vercel.app/
+- **Website:** none deployed yet; use the [repository](https://github.com/DevAnimecx/cove).
 
 ## Documentation
 

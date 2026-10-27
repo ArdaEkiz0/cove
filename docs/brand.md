@@ -7,7 +7,7 @@ Cove is a quiet product. The brand should feel like a well-made room: warm light
 - Written **Cove** in prose. Not COVE, not Cove™.
 - The wordmark is set in a humanist sans or the Editorial serif depending on context.
 - Product surfaces use **Cove Discover**, **Cove News**, **Smart Engine**, **Focus Sanctuary**, and **Sound Sanctuary** as proper names.
-- The repository is `cove`; the extension package is `cove-tab`; the website is `appcove.vercel.app`.
+- The repository is `cove`; the extension package is `cove-tab`. The landing site is planned in the separate `cove-landing` project and is not deployed; use the GitHub repository as the canonical public URL until it is.
 
 ## Tagline
 
