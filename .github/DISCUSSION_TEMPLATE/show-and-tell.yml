@@ -1,0 +1,29 @@
+title: "[Show & tell] "
+labels: ["show-and-tell"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Show us your Cove setup: a Bento layout, a custom theme, a Discover channel mix, or a focus ritual that works for you. Remove personal links and notes before posting.
+  - type: textarea
+    id: setup
+    attributes:
+      label: What did you build or customize?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does this setup work for you?
+    validations:
+      required: true
+  - type: input
+    id: theme
+    attributes:
+      label: Theme, preset, and font pair
+      placeholder: Midnight Cobalt · Instrument Serif · Spacious
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot or recording
+      description: Drag an image here. Please redact private tabs, bookmarks, and notes.
