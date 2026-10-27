@@ -1,0 +1,5 @@
+Contact: https://github.com/DevAnimecx/cove/security/advisories/new
+Expires: 2027-10-27T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://github.com/DevAnimecx/cove/blob/main/.well-known/security.txt
+Policy: https://github.com/DevAnimecx/cove/blob/main/SECURITY.md

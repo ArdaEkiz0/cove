@@ -1,0 +1,20 @@
+/* TEAM */
+Maintainer: DevAnimecx
+Role: Design, engineering, documentation
+Contact: https://github.com/DevAnimecx
+Location: The open web
+
+/* THANKS */
+Everyone who files a specific bug, tests a feed, improves a translation, or fixes an accessibility issue.
+The Svelte, Vite, TypeScript, and open-web communities.
+
+/* SITE */
+Project: Cove
+Tagline: Your calm corner of the web.
+Website: https://appcove.vercel.app/
+Source: https://github.com/DevAnimecx/cove
+Docs: https://github.com/DevAnimecx/cove/blob/main/docs/README.md
+Language: English (plus Hindi, Spanish, German, and Japanese interface copy)
+License: Apache-2.0
+Standards: HTML, CSS, TypeScript, Manifest V3, Web Audio, IndexedDB
+Software: Svelte 5, Vite 6, TypeScript 5, Node.js 22
