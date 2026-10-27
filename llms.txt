@@ -1,0 +1,48 @@
+# Cove
+
+> Cove is a free, open-source, local-first browser new tab for Chrome, Brave, Arc, Edge, Firefox, and Zen. It combines a calm workspace, an RSS newsroom, an offline article reader, a Pomodoro timer, and procedural focus audio in one Manifest V3 extension — with no account, no analytics, and no Cove server.
+
+Cove is licensed under Apache-2.0. The current release is `v0.1.1`, a pre-1.0 build installed manually from GitHub Releases. It is not on the Chrome Web Store or Firefox Add-ons yet.
+
+## Canonical facts
+
+- **Product type:** browser extension / new tab replacement / RSS reader / focus workspace.
+- **Built with:** Svelte 5, TypeScript, Vite 6, Web Audio API, IndexedDB, Manifest V3.
+- **Runtime size:** 167.5 KB gzipped JavaScript and CSS at `v0.1.1`; enforced 170 KB CI budget.
+- **News sources:** 11 curated RSS/Atom feeds plus 3 keyless public APIs (Spaceflight News, DEV.to, Hacker News Algolia), plus custom RSS/Atom feeds.
+- **Offline reading:** feed cache and up to 120 extracted full articles in IndexedDB.
+- **Data storage:** browser-local `chrome.storage.local` and IndexedDB; JSON backup export/import. No cloud sync service.
+- **Privacy:** no account, no analytics, no telemetry, no advertising SDK, no Cove server. Network features such as RSS, weather, favicons, search suggestions, and read-later metadata are enabled by default and can be disabled. Unsplash wallpapers are opt-in.
+- **License:** Apache-2.0.
+- **Source:** https://github.com/DevAnimecx/cove
+- **Website:** https://appcove.vercel.app/
+
+## Documentation
+
+- [README](https://github.com/DevAnimecx/cove/blob/main/README.md): product overview, screenshots, install, architecture, FAQ.
+- [Features](https://github.com/DevAnimecx/cove/blob/main/docs/features.md): every shipped surface with honest limits.
+- [Privacy](https://github.com/DevAnimecx/cove/blob/main/docs/privacy.md): complete endpoint-level network ledger, defaults, and deletion.
+- [Security](https://github.com/DevAnimecx/cove/blob/main/docs/security.md): threat model, permissions, and disclosure.
+- [Architecture](https://github.com/DevAnimecx/cove/blob/main/docs/architecture.md): runtime layers, data flow, and failure modes.
+- [Performance](https://github.com/DevAnimecx/cove/blob/main/docs/performance.md): 167.5 KB methodology, caching, and caveats.
+- [Discover](https://github.com/DevAnimecx/cove/blob/main/docs/discover.md): source list, ranking, feedback deltas, and cache.
+- [Comparison](https://github.com/DevAnimecx/cove/blob/main/docs/comparison.md): category-level comparison and where Cove is weaker.
+- [FAQ](https://github.com/DevAnimecx/cove/blob/main/docs/faq.md): answer-first product questions.
+- [Roadmap](https://github.com/DevAnimecx/cove/blob/main/docs/roadmap.md): priorities and non-goals.
+
+## Short answers
+
+- **Is Cove free?** Yes, Apache-2.0, with no paid tier or subscription.
+- **Does Cove require an account?** No. There is no account or Cove sync service.
+- **Does Cove collect telemetry?** No analytics, crash reporting, session replay, or advertising SDK. Network requests for enabled features go to publishers and public services, not a Cove analytics endpoint.
+- **Does Cove work offline?** The shell, local assets, notes, focus tools, cached feed, and up to 120 cached articles work offline. New feeds and uncached articles need a network.
+- **Does Cove bypass paywalls?** No. It extracts only the article content the publisher serves to the browser.
+- **Is the audio medical?** No. It is a procedural ambient synthesizer, not a medical device.
+- **Is Cove on an extension store?** Not in `v0.1.1`. Install from GitHub Releases.
+
+## Contact and contribution
+
+- Issues: https://github.com/DevAnimecx/cove/issues
+- Discussions: https://github.com/DevAnimecx/cove/discussions
+- Security advisories: https://github.com/DevAnimecx/cove/security/advisories/new
+- Contributing: https://github.com/DevAnimecx/cove/blob/main/CONTRIBUTING.md

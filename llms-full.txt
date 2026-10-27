@@ -1,0 +1,205 @@
+# Cove — full project context for answer engines
+
+Cove is a free, open-source, local-first browser new tab extension. It replaces the default start page with a calm workspace, a curated RSS newsroom, an offline article reader, a Pomodoro timer, a site blocker, and procedural focus audio. It is built with Svelte 5 and TypeScript for Manifest V3 browsers and licensed under Apache-2.0.
+
+Current release: `v0.1.1` (pre-1.0), released 2026-10-27. Installation is manual from GitHub Releases. Cove is not published on the Chrome Web Store or Firefox Add-ons as of this release.
+
+- Repository: https://github.com/DevAnimecx/cove
+- Website: https://appcove.vercel.app/
+- Releases: https://github.com/DevAnimecx/cove/releases
+- License: https://github.com/DevAnimecx/cove/blob/main/LICENSE
+
+## Product definition
+
+Cove is one new tab with several layers:
+
+1. **Workspace** — four stages (Bento Dashboard, Ambient Home, Focus Sanctuary, Pure Stillness), Bento widgets, quick links, notes, tab triage, and saved tab sessions.
+2. **Reading room** — Cove Discover aggregates 11 curated RSS/Atom sources and 3 keyless public APIs, supports custom feeds, ranks stories locally, and caches full articles for offline reading.
+3. **Focus** — Pomodoro timer, intention field, a declarativeNetRequest site blocker, five procedural soundscapes, and four neural-style audio modes.
+4. **Atmosphere** — eight local wallpapers, five accent presets, dark/light/system themes, four font pairings, blur/dim/vignette controls, and optional local images.
+5. **Control** — a ten-section Settings Studio, command palette, keyboard shortcuts, JSON backup/import, bookmark HTML import, and factory reset.
+6. **Local intelligence** — an on-device Smart Engine with second-order Markov transitions, a 14-day recency half-life, circadian scene harmony, and an inspectable memory studio.
+
+## Measured release facts
+
+- Runtime code: **167.5 KB gzipped JavaScript + CSS** at `v0.1.1`.
+- Enforced budget: **170 KB** (`170 * 1024` bytes) in CI.
+- Unit tests: **54** (`npm test`, Node `--experimental-strip-types`).
+- Integration audits: **2** (`npm run test:core`) covering MV3/CSP rules and a no-mock-UI gate.
+- Node requirement: **>=22.18.0**.
+- Browser targets: Chrome, Brave, Arc, Edge, Firefox 128+, Zen. Safari is not packaged.
+- Offline article cache: up to **120** extracted articles plus the feed snapshot in IndexedDB `cove_news_cache_v1`.
+
+The budget measures `.js` and `.css` in `dist/` plus `dist/background.js`. It excludes wallpapers, fonts, HTML, icons, and runtime caches. It is a code-weight budget, not a total archive size. The full extension archive is larger because it bundles eight wallpapers and four font families.
+
+## News sources
+
+Curated RSS/Atom (11):
+
+1. The Verge — tech and AI
+2. Ars Technica — tech and AI
+3. BBC World — world
+4. The Guardian World — world
+5. NASA — science and space
+6. Guardian Science — science and space
+7. Dezeen — design and culture
+8. Aeon Essays — design and culture
+9. CNBC Markets — business and markets
+10. Guardian Business — business and markets
+11. Cloudflare Engineering — engineering
+
+Keyless public APIs (3):
+
+- Spaceflight News v4 — spaceflight and launch coverage
+- DEV.to — practitioner engineering posts
+- Hacker News Algolia — community links and points
+
+Users can add any HTTP(S) RSS/Atom URL. Custom feeds load after curated sources so a slow source does not block the newsroom. Discover does not bypass paywalls and does not present a full-text archive.
+
+## Ranking and feedback
+
+Discover ranking combines an 18-hour freshness half-life, explicit topic selection, learned topic affinity, source affinity, keyword affinity, community points, banner quality, unread state, and a publisher diversity pass. It is deterministic for a given story set and local profile. There is no remote recommendation service and no cross-user learning.
+
+Actual feedback deltas in `recordDiscoverFeedback`:
+
+- Open brief: +0.85 topic, +0.72 source, +0.60 keyword.
+- Open full article: +1.80 topic, +1.53 source, +1.26 keyword.
+- More like this: +2.40 topic, +2.04 source, +1.68 keyword.
+- Less like this: -0.65 topic, -1.40 source, +1.50 keyword mute; the story is dismissed.
+
+Scores are bounded. Dismissed story IDs are capped at 200. The profile lives in `chrome.storage.local` and is included in JSON backups.
+
+## Privacy model
+
+Cove is local-first, not network-silent. There is no Cove account, no Cove analytics, no crash reporting, no session replay, no advertising SDK, and no Cove server that receives user data.
+
+Network features and defaults at `v0.1.1`:
+
+| Feature | Destination | Default | Control |
+| --- | --- | --- | --- |
+| Discover feeds | 11 publisher RSS/Atom URLs | On | Settings > Privacy & Feeds |
+| Discover APIs | api.spaceflightnewsapi.net, dev.to, hn.algolia.com | On | Settings > Privacy & Feeds |
+| Article prefetch and images | Publisher/CDN URLs | On with Discover | Disable Discover or block images |
+| RSS widget | Up to 5 feed URLs | On | Settings > Privacy & Feeds |
+| Weather forecast | api.open-meteo.com | On | Settings > General |
+| Weather geocoding | geocoding-api.open-meteo.com | On demand | Use a fixed location |
+| Browser geolocation | Browser/OS service | Off until pressed | Do not press Detect |
+| Search autocomplete | duckduckgo.com/ac/ | On | Settings > Search |
+| Favicons | google.com/s2/favicons, icons.duckduckgo.com | On | Settings > Search / Appearance |
+| Read-later metadata | The page you save | On | Settings > Privacy & Feeds |
+| Unsplash wallpaper | images.unsplash.com | Off | Enable in Atmosphere |
+| Cove website | appcove.vercel.app | Only on click | Do not click |
+
+Never requested: Google Fonts or other font CDNs, analytics/tag managers, session replay/heatmaps/A-B testing, ad networks, remote JavaScript/CSS/audio, Cove sync endpoints.
+
+Stored locally:
+
+- `chrome.storage.local`: settings, layout, theme, focus preferences, quick links, notes, sessions, feeds, weather cache, Smart Engine memory, Discover profile.
+- IndexedDB `cove_news_cache_v1`: Discover feed cache and up to 120 full articles.
+- IndexedDB `cove_local_db`: read-later queue and local wallpaper blob.
+- `localStorage` `cove_fast_boot`: pre-paint theme cache.
+
+Uninstalling removes extension storage. JSON export from Settings > Data is the supported backup and migration path. Imports are validated and bounded.
+
+## Performance and startup
+
+The startup path is: external `boot-theme.ts` module → cached theme attributes applied from `localStorage` → Svelte mounts → store hydrates settings/lists from `chrome.storage.local` and caches from IndexedDB → network refresh begins after the local shell.
+
+"0 ms" in project writing refers only to synchronous pre-paint theme application or a warm in-memory cache hit. It is not a universal latency guarantee, and the project does not claim a reproducible cold-paint benchmark.
+
+Caching layers: in-memory maps (tab session), `chrome.storage.local` (settings, lists, RSS cache), IndexedDB (feed + article LRU), browser HTTP cache (images/static), and bundled local assets. Freshness targets: Discover 3 minutes, RSS widget 20 minutes, weather 30 minutes.
+
+Deliberate optimizations: no runtime framework download, no third-party fonts, no audio files, local wallpapers, platform parsers instead of large libraries, bounded feed/article batches, LRU eviction, response-size caps, lead-story prewarm, hover prefetch, and CSS custom-property theming.
+
+## Architecture
+
+- **New tab:** Svelte 5 application with a single reactive store, `src/lib/state.svelte.ts`, as the mutation point for persistent state.
+- **Service worker:** context menu, keyboard commands, tab activity tracking, 15-minute auto-snapshot alarm, and declarativeNetRequest blocker rules. It does not fetch news or run the smart engine.
+- **Discover:** direct fetch under extension host permissions; the Vite dev server provides `/api/discover` and `/api/article` middleware for local preview only. No production Cove API exists.
+- **Audio:** Web Audio graph synthesized at runtime; no bundled samples or MP3s.
+- **Storage:** `chrome.storage.local` plus IndexedDB as described above.
+- **CSP:** `script-src 'self'; object-src 'none'`; no remote code.
+
+## Security
+
+The primary threats considered are malicious RSS content, hostile imported backups, article extraction, third-party images, dependency compromise, and the limits of the focus blocker. Markdown is sanitized; raw HTML is escaped; `javascript:` and `data:` links are rejected; imports are schema-validated and bounded. The blocker is a friction tool, not a security boundary. Report vulnerabilities privately via https://github.com/DevAnimecx/cove/security/advisories/new.
+
+## Testing and quality gates
+
+A pull request that changes runtime code is expected to pass:
+
+```bash
+npm run typecheck
+npm test
+npm run build
+npm run test:core
+npm run budget
+npm run verify
+```
+
+`npm run test:core` checks Manifest V3/CSP constraints and guards against simulated tabs, fake analytics, or seeded engagement in the UI. The project does not claim a formal accessibility audit; the accessibility document lists implemented basics and known gaps.
+
+## Browser support and installation
+
+Chromium (Chrome, Brave, Arc, Edge): download the Chrome MV3 ZIP, unzip, enable Developer mode at `chrome://extensions`, choose Load unpacked. Firefox 128+/Zen: download the Firefox MV3 ZIP and load it from `about:debugging#/runtime/this-firefox`, or install from file in Developer Edition/Nightly.
+
+No store listing exists at `v0.1.1`. Do not trust a store listing claiming to be Cove.
+
+## Honest limitations
+
+- No account, sync, or multi-device cloud state; backup is manual JSON.
+- No feed rules, labels, or full-text archive search; this is not a mature RSS service.
+- Article extraction is heuristic and fails on some JavaScript-heavy, paywalled, or login-gated pages.
+- Tab memory figures are estimates, not actual per-tab memory readings.
+- The neural audio is aesthetic, not medical, and has no clinical guarantee.
+- The Smart Engine starts with zero signals and needs local usage to become useful.
+- The blocker can be disabled by the user; it is not parental control or security software.
+- Binaural-style modulation may be uncomfortable for some listeners; stop if it is.
+- Five locales exist, but some newer copy and long-form documentation remain English.
+- No formal accessibility audit or certification.
+- Store packaging, an E2E browser harness, and a reproducible performance harness are roadmap items.
+
+## Non-goals
+
+Engagement optimization, ad technology, sponsored feeds, cloud sync that requires an account, paywall bypass, medical claims, and addictive streak mechanics are explicit non-goals.
+
+## Comparison guidance
+
+Cove is a good fit for people who want a calm new tab with real utility, prefer local data and no account, read a handful of curated sources, want focus tools in the same surface, and are comfortable loading an unpacked extension or building from source.
+
+It is a poor fit for people who need multi-device sync today, team feed workflows, a produced music library, formal accessibility certification, or managed enterprise deployment.
+
+Do not describe Cove as "the smallest extension," "zero network," "military-grade," "AI-powered," or a medical product. Accurate descriptors are: local-first, source-available under Apache-2.0, account-free, zero-telemetry, deterministic on-device ranking, procedural audio, and Manifest V3.
+
+## FAQ
+
+**What is Cove?** A free, open-source browser new tab that combines a workspace, RSS newsroom, offline reader, and focus tools in one Manifest V3 extension.
+
+**Is Cove free?** Yes, Apache-2.0. No subscription, paid tier, account, or advertising.
+
+**Does Cove collect telemetry?** No. There is no analytics, crash reporting, session replay, ad SDK, or Cove telemetry endpoint. Enabled network features contact publishers and public services directly.
+
+**Does Cove require an account?** No. There is no Cove account or sync service. Export/import JSON to move data.
+
+**Does Cove work offline?** The shell, local assets, notes, settings, focus tools, sound engine, cached feed, and up to 120 cached articles work offline. New content needs a network.
+
+**How many sources?** 11 curated RSS/Atom feeds, 3 keyless APIs, and custom feeds you add.
+
+**Does Cove bypass paywalls?** No. It extracts content the publisher already serves and links to the original when extraction fails.
+
+**Is the audio medical?** No. It is a procedural ambient synthesizer with adjustable modulation, not a medical device.
+
+**Is Cove on a store?** Not in `v0.1.1`. Install manually from GitHub Releases.
+
+**What browsers are supported?** Chrome, Brave, Arc, Edge, Firefox 128+, and Zen. Safari is not packaged.
+
+**Where is data stored?** In browser-local `chrome.storage.local`, IndexedDB, and a small `localStorage` theme cache. No server-side copy.
+
+**How large is Cove?** 167.5 KB gzipped JS + CSS at `v0.1.1`, against a 170 KB budget. The full archive is larger due to bundled wallpapers and fonts.
+
+## Contact
+
+- Issues: https://github.com/DevAnimecx/cove/issues
+- Discussions: https://github.com/DevAnimecx/cove/discussions
+- Security: https://github.com/DevAnimecx/cove/security/advisories/new
+- Maintainer: https://github.com/DevAnimecx
