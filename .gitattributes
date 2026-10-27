@@ -1,0 +1,23 @@
+# Normalize text files across Windows, macOS, and Linux contributors.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.pdf binary
+
+# Keep generated release archives out of GitHub's language statistics.
+releases/** linguist-generated=true
+unpacked-chrome-mv3/** linguist-generated=true
+public/downloads/** linguist-generated=true
+assets/readme/*.png linguist-documentation=true
+docs/** linguist-documentation=true
+
+# Diffs that are useful in code review.
+package-lock.json merge=binary
+*.svelte diff=svelte
