@@ -19,7 +19,7 @@
         <div>
           <h3>4K Atmospheric Scenes & Luminance Engine</h3>
           <p>
-            Bundled locally for <span class="mono">0ms</span> offline load. Cove dynamically samples scene brightness & palette to calibrate glass contrast.
+            Bundled locally for offline load. Cove dynamically samples scene brightness & palette to calibrate glass contrast.
           </p>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">

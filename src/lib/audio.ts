@@ -7,7 +7,7 @@ import type {
 } from './types';
 
 /**
- * Cove Neural Sound Engine (Brain.fm-Inspired Functional Web Audio Synthesizer)
+ * Cove Neural Sound Engine (focus-oriented procedural Web Audio synthesizer)
  *
  * 100% Procedural Web Audio API — 0 KB external audio assets, 0 network requests.
  * Combines:
@@ -187,7 +187,7 @@ class NeuralSoundEngine {
   }
 
   /**
-   * Spawns or transitions the Brain.fm-style polyphonic neural entrainment graph
+   * Spawns or transitions the procedural polyphonic audio graph
    */
   public setNeuralState(
     mode: NeuralModeId,
@@ -246,7 +246,7 @@ class NeuralSoundEngine {
     spatialLfo.connect(spatialDepth).connect(stereoPanner.pan);
     spatialLfo.start(now);
 
-    // Smooth fade-in output stage (3.5s gentle entrainment ramp)
+    // Smooth fade-in output stage (3.5s gentle amplitude ramp)
     const padOutGain = ctx.createGain();
     padOutGain.gain.setValueAtTime(0.0001, now);
     padOutGain.gain.setTargetAtTime(scale.padGain, now, 0.9);

@@ -485,7 +485,7 @@ class CoveStore {
       this.discoverProfile = { ...createDefaultDiscoverProfile(), ...savedDiscoverProfile };
     }
 
-    // Hydrate IndexedDB News Feed + Cached Full-Article Index (0ms instant load)
+    // Hydrate IndexedDB News Feed + Cached Full-Article Index (warm-cache load)
     const idbFeed = await loadCachedDiscoverFeed();
     if (idbFeed?.stories?.length) {
       this.discoverStories = ensureUniqueStoryIds(idbFeed.stories);
@@ -1566,7 +1566,7 @@ class CoveStore {
       }
       this.saveSettings();
       this.selectFocusPhase('break');
-      // Gently morph neural entrainment down to 5.5 Hz Theta Unwind for restorative break
+      // Gently morph neural modulation down to 5.5 Hz Theta Unwind for restorative break
       if (this.audioPlaying && this.settings.focus.coupleSoundWithFocus && this.settings.focus.neuralMode !== 'off') {
         soundEngine.setNeuralState('unwind', 'subtle', this.settings.focus.speechBlocker);
       }
@@ -2295,7 +2295,7 @@ class CoveStore {
         this.discoverFromCache = false;
         await saveCachedDiscoverFeed(stories, this.discoverLastFetchedAt);
 
-        // Pre-cache #1 hero lead story silently for 0ms instant reader open
+        // Pre-cache #1 hero lead story silently for instant reader open
         const topStory = rankStoriesForUser(stories, this.discoverProfile, this.discoverActiveTopic)[0];
         if (topStory) {
           this.prefetchDiscoverArticle(topStory);
@@ -2358,7 +2358,7 @@ class CoveStore {
     this.precacheRunning = true;
     try {
       await Promise.all(targets.map((s) => this.prefetchDiscoverArticle(s)));
-      this.notify(`Cached top ${targets.length} full articles for 0ms offline reading.`);
+      this.notify(`Cached top ${targets.length} full articles for offline reading.`);
     } finally {
       this.precacheRunning = false;
     }
@@ -2453,7 +2453,7 @@ class CoveStore {
     storageSet('discoverProfile', this.discoverProfile);
 
     const key = normalizeStoryKey(target.url);
-    // 1. Synchronous memory cache check (0ms instant paint, zero spinner!)
+    // 1. Synchronous memory cache check (warm-cache paint, zero spinner!)
     const memHit = getMemoryCachedArticle(key);
     if (memHit) {
       this.coveNewsArticle = memHit;

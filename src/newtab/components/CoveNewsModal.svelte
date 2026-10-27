@@ -422,7 +422,7 @@
                 <div class="cn-line w95"></div>
                 <div class="cn-line w70"></div>
                 <span class="cn-load-label">
-                  Fetching clean ad-free article directly from {story.domain}…
+                  Fetching clean article directly from {story.domain}…
                 </span>
               </div>
             {:else if article}
@@ -433,7 +433,7 @@
 
             <footer class="cn-art-foot">
               <div class="cn-foot-note">
-                <span>Fetched directly from <strong>{story.domain}</strong> · Rendered 100% ad-free in Cove News</span>
+                <span>Fetched directly from <strong>{story.domain}</strong> · Rendered in Cove’s reader view</span>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;">
                   <button
                     type="button"

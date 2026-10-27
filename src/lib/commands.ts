@@ -127,7 +127,7 @@ export function buildPaletteIndex(rawQuery: string): PaletteItem[] {
       category: 'Focus',
       title: 'Open Multi-Layer Soundscape Studio',
       subtitle: 'Blend Cove Waves, Rain, Quiet Café, Velvet Noise & Pine Wind',
-      badge: cove.activeSoundLayersCount > 0 ? `${cove.activeSoundLayersCount} active` : '0 KB Audio',
+      badge: cove.activeSoundLayersCount > 0 ? `${cove.activeSoundLayersCount} active` : 'Audio: local',
       icon: 'waves',
       searchText: 'sound mixer studio rain waves cafe wind ambient audio blend',
       run: () => {
@@ -430,7 +430,7 @@ export function buildPaletteIndex(rawQuery: string): PaletteItem[] {
       id: 'cmd-settings-privacy',
       category: 'System',
       title: 'Settings: Privacy & Network Ledger',
-      subtitle: 'Inspect every opt-in network call & local storage guarantees',
+      subtitle: 'Inspect external network calls & local storage guarantees',
       icon: 'shield',
       searchText: 'settings privacy ledger network switches offline',
       run: () => cove.openSettings('privacy')

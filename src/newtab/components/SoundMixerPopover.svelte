@@ -101,7 +101,7 @@
       <!-- Header -->
       <header class="ns-head">
         <div>
-          <span class="ns-eyebrow">Functional Neural Audio · 0 KB Synth</span>
+          <span class="ns-eyebrow">Procedural Neural Audio · No audio files</span>
           <h2>Sound Sanctuary</h2>
         </div>
 

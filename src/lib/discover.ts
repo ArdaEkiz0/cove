@@ -922,7 +922,7 @@ function sanitizeExtractedContainer(root: Element, baseUrl: string): { html: str
  * trackers, popups, and clutter, and returns crisp magazine-grade Cove News HTML.
  */
 export async function fetchFullCoveNewsArticle(story: DiscoverStory): Promise<DiscoverFullArticle> {
-  // Fast server-extracted ad-free prose in Web / Live Preview mode
+  // Fast server-extracted prose in Web / Live Preview mode
   if (!isExtensionContext()) {
     try {
       const apiRes = await fetch(`/api/article?url=${encodeURIComponent(story.url)}`);

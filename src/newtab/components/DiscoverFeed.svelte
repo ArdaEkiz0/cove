@@ -230,7 +230,7 @@
           <span class="sn-cache-stat">{cove.cachedArticleKeys.length} articles</span>
         </div>
         <p class="sn-cache-sub">
-          IndexedDB + memory cache opens full ad-free articles in <code>0ms</code>.
+          IndexedDB + memory cache reopens saved articles without a network round trip.
         </p>
         <div class="sn-cache-actions">
           <button
@@ -271,7 +271,7 @@
           {#if filterQuery}
             Filtering <strong>{filteredStories.length}</strong> matches for “{filterQuery}”
           {:else if savedTabActive}
-            {cove.readLater.length} articles stored offline for ad-free reading
+            {cove.readLater.length} articles stored offline for clean reading
           {:else}
             Verified RSS &amp; open APIs · Hover any card to pre-cache · Zero ads
           {/if}
@@ -431,7 +431,7 @@
     {#if savedTabActive}
       {#if cove.readLater.length === 0}
         <div class="dm-empty">
-          <p>Your offline vault is empty. Click “Save Offline” on any story to keep a clean ad-free copy here.</p>
+          <p>Your offline vault is empty. Click “Save Offline” on any story to keep a clean reader copy here.</p>
           <button type="button" class="dm-pill active" onclick={() => (savedTabActive = false)}>
             Browse Live Stories
           </button>
@@ -472,7 +472,7 @@
                   <span>{fmtRel(item.addedAt)}</span>
                 </div>
                 <h3 class="sc-title">{item.title}</h3>
-                <p class="sc-summary">{item.description || 'Saved full article ready for ad-free offline reading.'}</p>
+                <p class="sc-summary">{item.description || 'Saved full article ready for offline reading.'}</p>
                 <footer class="sc-foot">
                   <span class="sc-reason">{item.readingTimeMin || 4} min read</span>
                   <span class="sc-read">Open Reader →</span>

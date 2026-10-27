@@ -1299,8 +1299,8 @@
               <div class="studio-card">
                 <div class="card-subhead">
                   <div>
-                    <strong>Functional Neural Entrainment Mode (0 KB Web Audio Synth)</strong>
-                    <span>Polyphonic harmonic beds with phase-locked filter &amp; amplitude modulation</span>
+                    <strong>Neural Audio Mode (procedural Web Audio)</strong>
+                    <span>Polyphonic harmonic beds with phase-locked filter &amp; amplitude modulation. An aesthetic tool, not a medical treatment.</span>
                   </div>
                   <button
                     type="button"
@@ -1432,8 +1432,8 @@
               <div class="studio-card">
                 <div class="card-row">
                   <div class="row-info">
-                    <strong>Zero-Latency Instant Answers</strong>
-                    <span>Evaluates math, unit conversions, world time &amp; hex swatches locally in 0ms</span>
+                    <strong>On-Device Instant Answers</strong>
+                    <span>Evaluates math, unit conversions, world time &amp; hex swatches locally, with no network round trip</span>
                   </div>
                   {@render switchControl(
                     cove.settings.instantAnswers !== false,
@@ -1757,7 +1757,7 @@
                 <div class="card-subhead">
                   <div>
                     <strong>Transparent Session Network Ledger</strong>
-                    <span>Every external request is opt-in and counted live. Zero analytics or cloud AI.</span>
+                    <span>External requests are counted live, including default-on feeds and weather. No analytics or cloud AI.</span>
                   </div>
                 </div>
 
