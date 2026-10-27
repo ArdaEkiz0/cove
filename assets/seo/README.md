@@ -20,6 +20,6 @@ These files make Cove easier to discover, quote, and verify. They are static ass
 
 ## Related reading
 
-- [SEO and AEO playbook](../seo-aeo.md)
-- [Repository metadata](../repo-metadata.md)
-- [Brand](../brand.md)
+- [SEO and AEO playbook](../../docs/seo-aeo.md)
+- [Repository metadata](../../docs/repo-metadata.md)
+- [Brand](../../docs/brand.md)

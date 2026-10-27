@@ -145,7 +145,7 @@ When the extension runs as a plain web page, `src/lib/storage.ts` falls back to 
 
 1. **Extension page to web content.** Feed and article HTML is untrusted. It is parsed with `DOMParser`, stripped of active elements, and re-emitted as escaped text.
 2. **Extension page to browser APIs.** `chrome.tabs`, `chrome.sessions`, `chrome.bookmarks`, and `declarativeNetRequest` are privileged. They are used only for explicit workspace features and the configured blocker.
-3. **Extension page to network.** Any request can reveal the user's IP and request timing to the destination. Cove minimizes requests, makes optional ones opt-in, and lists every destination.
+3. **Extension page to network.** Any request can reveal the user's IP and request timing to the destination. Cove minimizes requests, discloses every destination, and lets each network feature be disabled.
 4. **Backup import.** Imported JSON is hostile until validated. `src/lib/validation.ts` bounds array sizes, checks URL schemes, clamps numbers, and rebuilds settings over safe defaults.
 
 See [Security](security.md) for the full threat model.

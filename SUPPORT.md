@@ -4,7 +4,7 @@ Thanks for using Cove. Here is the fastest way to get help without exposing priv
 
 ## Before opening an issue
 
-1. Read the [FAQ](docs/FAQ.md) and [Troubleshooting guide](docs/TROUBLESHOOTING.md).
+1. Read the [FAQ](docs/faq.md) and [Troubleshooting guide](docs/troubleshooting.md).
 2. Confirm you are on the latest release from [GitHub Releases](https://github.com/DevAnimecx/cove/releases).
 3. Run `npm run typecheck && npm test` if you are building from source.
 4. Check the browser console for errors and note your browser and extension versions.

@@ -11,7 +11,7 @@ Cove sits at the intersection of a new tab, a reading app, and a focus tool. Thi
 | Local-first data | Yes | N/A | Mostly | No, cloud sync | Varies |
 | Ads in the surface | No | Often | Plan-dependent | Plan-dependent | No |
 | RSS aggregation | Yes, 11 curated + 3 APIs + custom | No | Rare | Yes | No |
-| Ad-free article reader | Yes, local extraction | No | Rare | Usually paid | No |
+| Clean article reader | Yes, local extraction | No | Rare | Usually paid | No |
 | Offline article cache | Yes, up to 120 | No | No | Plan-dependent | No |
 | Procedural audio | Yes, no audio files | No | Loops or none | No | Usually loops |
 | Focus timer | Yes | No | Sometimes | No | Yes |

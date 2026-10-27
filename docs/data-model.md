@@ -38,11 +38,11 @@ In a plain web preview, `src/lib/storage.ts` uses `localStorage` keys prefixed w
 - typography: font pair, UI scale, corner style
 - layout: grid columns/rows, quick-link columns/tile size, widget configs
 - search: engines, split search, live suggestions, instant answers
-- network opt-ins: RSS, Discover, favicons, read-later metadata
+- network features: RSS, Discover, favicons, read-later metadata (each with a settings control)
 - atmosphere: background type, fit, dim, blur, brightness, contrast, vignette, chameleon accent, Unsplash opt-in
 - time awareness: work hours, work days, mode override
 - smart engine: autonomy mode, whisper mode, individual automation toggles
-- weather: opt-in, city, coordinates, unit
+- weather: enabled by default, city, coordinates, unit
 - focus: durations, intention, blocked domains, sound mix, neural mode, depth, speech shield, history, streak
 - widgets: type, size, visibility, order, pin, iframe URL/title
 

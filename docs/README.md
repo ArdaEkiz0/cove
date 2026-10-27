@@ -10,6 +10,7 @@ Cove is a local-first Manifest V3 new tab for people who want a quieter browser 
 | :--- | :--- |
 | Understand the product in five minutes | [Features](features.md) |
 | Install it for development | [Contributor onboarding](contributing.md) |
+| Fix an install or runtime problem | [Troubleshooting](troubleshooting.md) |
 | Know exactly what leaves your device | [Privacy](privacy.md) |
 | Review the architecture | [Architecture](architecture.md) |
 | Learn the keyboard | [Keyboard shortcuts](keyboard-shortcuts.md) |
@@ -51,6 +52,7 @@ Cove is a local-first Manifest V3 new tab for people who want a quieter browser 
 - [Releasing](releasing.md) - versioning, packaging, checksums, and CI.
 - [Contributing](contributing.md) - setup, conventions, and review expectations.
 - [SEO and AEO](seo-aeo.md) - structured data, answer-first content, and discovery.
+- [SEO assets](../assets/seo/README.md) - `llms.txt`, structured data, and crawler files.
 - [Launch kit](launch-kit.md) - launch narrative, channels, and assets.
 - [Repo metadata](repo-metadata.md) - GitHub About text, topics, and social preview copy.
 - [Publish to GitHub](publish-to-github.md) - copy-paste runbook for the first push.
@@ -59,7 +61,7 @@ Cove is a local-first Manifest V3 new tab for people who want a quieter browser 
 
 - **Claims are measurable.** Bundle size comes from `npm run budget`; test counts come from `npm test`; network endpoints come from source.
 - **No mock data is presented as real.** The UI must never show simulated tabs, fake analytics, or seeded engagement.
-- **Local-first means local by default.** Network features are opt-in or user-triggered and are listed in the [privacy ledger](privacy.md#network-ledger).
+- **Local-first means local by default.** Some network features (Discover, RSS, weather, favicons, search suggestions, and read-later metadata) are enabled by default and can be disabled. Every destination is listed in the [privacy ledger](privacy.md#network-ledger).
 - **Zero telemetry means no analytics, no accounts, and no Cove server.** It does not mean the extension can never make a request; RSS, weather, article extraction, favicons, and optional Unsplash images are network features.
 - **`0 ms` is a design goal, not a stopwatch promise.** It refers to pre-paint theme application or a warm in-memory cache hit. Cold device performance varies.
 

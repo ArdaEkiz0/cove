@@ -63,11 +63,11 @@ A local scratchpad with pinning and Markdown rendering. Markdown is sanitized be
 
 Save a page from the context menu, the toolbar command, the palette, or the reader. Cove extracts readable text locally and stores it in IndexedDB. The queue supports read/unread state, search, and offline reading.
 
-Metadata fetching is opt-in. Without it, Cove keeps the title and URL you saved; with it, Cove fetches the page to improve the summary and image.
+Metadata fetching can be disabled; it is on by default. Without it, Cove keeps the title and URL you saved; with it, Cove fetches the page to improve the summary and image.
 
 ### Weather
 
-Opt-in weather uses Open-Meteo for current conditions, a five-day forecast, humidity, UV, wind, sunrise, and sunset. Location can be set by city search or browser geolocation. The last response is cached so the card can render offline.
+Weather is enabled by default and can be disabled. It uses Open-Meteo for current conditions, a five-day forecast, humidity, UV, wind, sunrise, and sunset. Location can be set by city search or browser geolocation. The last response is cached so the card can render offline.
 
 ### Countdowns and embeds
 

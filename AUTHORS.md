@@ -23,7 +23,7 @@ Cove is an independent project. It is not affiliated with, endorsed by, or spons
 - [Vite](https://vite.dev/) — build tooling.
 - [Tailwind CSS](https://tailwindcss.com/) — utility styling foundation.
 - [Open Props](https://open-props.style/) — design tokens inspiration.
-- [Open-Meteo](https://open-meteo.com/) — opt-in weather data.
+- [Open-Meteo](https://open-meteo.com/) — weather data (enabled by default, with a settings toggle).
 - The publishers and public APIs whose feeds power Cove Discover. Their content remains their own; Cove only provides a local reader interface.
 - The open-source community whose browser extensions, RSS readers, and focus tools set a high bar.
 

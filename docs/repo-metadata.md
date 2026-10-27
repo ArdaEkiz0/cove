@@ -48,7 +48,7 @@ momentum-alternative
 zen-browser
 brave-browser
 offline-reader
-ad-free
+reader-mode
 ```
 
 Remove or replace topics that do not describe the shipped product. Do not add `ai` unless the local heuristic genuinely warrants it; "smart engine" is not a cloud AI product.
