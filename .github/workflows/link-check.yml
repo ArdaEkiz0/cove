@@ -1,0 +1,42 @@
+name: Link check
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '29 7 * * 4'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  link-check:
+    name: Validate documentation links
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --cache
+            --max-cache-age 1d
+            --no-progress
+            --accept 200,206,429
+            --exclude-mail
+            --exclude '^https://github.com/DevAnimecx/cove/(releases|issues|discussions)'
+            './**/*.md'
+          fail: true
+          jobSummary: true
