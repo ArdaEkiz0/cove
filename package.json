@@ -3,12 +3,48 @@
   "version": "0.1.1",
   "license": "Apache-2.0",
   "private": true,
-  "description": "Cove — Your calm corner of the web. Local-first, keyboard-first new tab extension.",
+  "author": {
+    "name": "DevAnimecx",
+    "url": "https://github.com/DevAnimecx"
+  },
+  "homepage": "https://appcove.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevAnimecx/cove.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DevAnimecx/cove/issues"
+  },
+  "description": "Cove — Calm, local-first Manifest V3 New Tab workspace with Midnight Dark spatial stages, ad-free 20+ source RSS newsroom, 0 KB Web Audio neural focus sound, and on-device Markov memory.",
+  "keywords": [
+    "browser-extension",
+    "new-tab",
+    "chrome-extension",
+    "firefox-addon",
+    "manifest-v3",
+    "rss-reader",
+    "binaural-beats",
+    "focus-timer",
+    "pomodoro",
+    "local-first",
+    "privacy-first",
+    "svelte5",
+    "typescript",
+    "web-audio-api",
+    "indexeddb",
+    "momentum-alternative",
+    "zen-browser",
+    "brave-browser",
+    "productivity",
+    "dark-mode"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
     "build": "vite build && node scripts/package-extensions.mjs",
-    "preview": "vite preview --host 0.0.0.0 --port 4173"
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
