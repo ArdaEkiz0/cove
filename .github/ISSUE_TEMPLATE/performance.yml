@@ -1,0 +1,57 @@
+name: Performance or bundle regression
+description: Report slow paint, memory growth, audio glitches, or bundle budget pressure
+title: "[Perf]: "
+labels: ["performance", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cove protects a strict gzipped JS + CSS budget and a fast cold paint. Please include measurable numbers where possible.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Cold new-tab paint
+        - Settings Studio or command palette latency
+        - Discover feed or article cache
+        - Tab triage worker
+        - Neural audio or Web Audio CPU
+        - IndexedDB storage growth
+        - Bundle size / build budget
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Cove version, browser, OS, CPU, RAM, and whether other extensions are enabled.
+      placeholder: |
+        Cove 0.1.1
+        Chrome 142 / Windows 11
+        16 GB RAM
+        Reproduced on a clean profile
+    validations:
+      required: true
+  - type: textarea
+    id: measurements
+    attributes:
+      label: Measurements
+      description: Timings, memory readings, bundle output, or a performance profile. Raw numbers are better than "feels slow".
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I ran `npm run budget` and/or `npm run build` if this is a build issue.
+        - label: I searched existing performance issues.
+          required: true
