@@ -1,0 +1,10 @@
+# Cove maintainers. Review requests are automatically routed here.
+* @DevAnimecx
+
+# Security-sensitive surfaces require explicit maintainer review.
+/.github/workflows/ @DevAnimecx
+/SECURITY.md @DevAnimecx
+/manifest.json @DevAnimecx
+/manifest.firefox.json @DevAnimecx
+/src/background/ @DevAnimecx
+/src/lib/validation.ts @DevAnimecx
