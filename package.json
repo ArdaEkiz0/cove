@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/DevAnimecx/cove/issues"
   },
-  "description": "Cove — Calm, local-first Manifest V3 New Tab workspace with Midnight Dark spatial stages, ad-free 20+ source RSS newsroom, 0 KB Web Audio neural focus sound, and on-device Markov memory.",
+  "description": "Cove - calm, local-first Manifest V3 new tab with a workspace, 11 curated feeds plus 3 keyless APIs, offline reader, focus timer, and procedural audio. 167.5 KB gzipped. No account, no analytics, no Cove server.",
   "keywords": [
     "browser-extension",
     "new-tab",
@@ -23,7 +23,8 @@
     "firefox-addon",
     "manifest-v3",
     "rss-reader",
-    "binaural-beats",
+    "offline-reader",
+    "focus-audio",
     "focus-timer",
     "pomodoro",
     "local-first",
@@ -54,6 +55,7 @@
     "budget": "node scripts/check-budget.mjs",
     "verify": "node scripts/verify-release.mjs",
     "sync:version": "node scripts/sync-version.mjs",
+    "social:preview": "node scripts/generate-social-preview.mjs",
     "release:check": "npm run typecheck && npm run build && npm test && npm run test:core && npm run verify"
   },
   "devDependencies": {

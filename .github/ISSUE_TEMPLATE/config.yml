@@ -4,7 +4,7 @@ contact_links:
     url: https://github.com/DevAnimecx/cove/discussions
     about: Use Discussions for install help, ideas, and show-and-tell.
   - name: Read the FAQ and troubleshooting guide
-    url: https://github.com/DevAnimecx/cove/blob/main/docs/FAQ.md
+    url: https://github.com/DevAnimecx/cove/blob/main/docs/faq.md
     about: Most setup and privacy questions are answered here.
   - name: Report a security vulnerability privately
     url: https://github.com/DevAnimecx/cove/security/advisories/new

@@ -39,7 +39,7 @@
 
 ## Privacy and security checklist
 
-- [ ] No new network request without an explicit opt-in and a visible explanation.
+- [ ] No new network request without a documented destination, default state, off switch, and user-visible explanation.
 - [ ] No analytics, telemetry, remote fonts, or remote scripts.
 - [ ] No inline scripts or CSP relaxation.
 - [ ] No secrets, tokens, personal paths, or backup files committed.
