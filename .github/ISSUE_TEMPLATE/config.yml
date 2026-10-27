@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or share a setup
+    url: https://github.com/DevAnimecx/cove/discussions
+    about: Use Discussions for install help, ideas, and show-and-tell.
+  - name: Read the FAQ and troubleshooting guide
+    url: https://github.com/DevAnimecx/cove/blob/main/docs/FAQ.md
+    about: Most setup and privacy questions are answered here.
+  - name: Report a security vulnerability privately
+    url: https://github.com/DevAnimecx/cove/security/advisories/new
+    about: Never disclose a vulnerability in a public issue.
+  - name: Visit the official Cove website
+    url: https://appcove.vercel.app/
+    about: Downloads, live Discover preview, installation guide, and release notes.
