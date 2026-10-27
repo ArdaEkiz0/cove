@@ -171,6 +171,14 @@ const DICT: Record<LanguageCode, Record<string, string>> = {
   }
 };
 
+/** Stable list of translatable keys, used by parity tests and settings tooling. */
+export const I18N_KEYS = Object.freeze(Object.keys(DICT.en));
+
+/** True when a language has an explicit translation for a key (not a fallback). */
+export function hasTranslation(lang: LanguageCode, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(DICT[lang] ?? {}, key);
+}
+
 export function t(lang: LanguageCode, key: string): string {
   return DICT[lang]?.[key] ?? DICT.en[key] ?? key;
 }
