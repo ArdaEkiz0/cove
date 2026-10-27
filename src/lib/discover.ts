@@ -1,4 +1,5 @@
 import { extractDomain } from '../background/triage-core';
+import { buildStoryId } from './story-id';
 import { isExtensionContext } from './storage';
 
 /**
@@ -510,7 +511,7 @@ function parseVerifiedRssFeed(xml: string, src: VerifiedRssSource): DiscoverStor
     const readingTimeMin = Math.max(2, Math.min(18, Math.round(words / 210) || 4));
 
     out.push({
-      id: `rss-${src.id}-${btoa(encodeURIComponent(link)).slice(0, 22)}`,
+      id: buildStoryId(`rss-${src.id}`, link),
       title: rawTitle,
       summary: summary || rawTitle,
       highlights,
