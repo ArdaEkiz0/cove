@@ -1,0 +1,43 @@
+title: "[Idea] "
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Good ideas start with a real moment of friction. Describe the moment, not just the widget.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      placeholder: I lose track of the articles I saved while switching between work and personal tabs.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like Cove to do?
+    validations:
+      required: true
+  - type: dropdown
+    id: principle
+    attributes:
+      label: Which Cove principle does this strengthen?
+      options:
+        - Local-first privacy
+        - Calm, low-noise interface
+        - Keyboard-first speed
+        - Offline resilience
+        - Accessibility
+        - Performance and small footprint
+        - Other
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints
+      options:
+        - label: This can work without a Cove cloud account.
+          required: true
+        - label: This does not require analytics or remote tracking.
+          required: true
+        - label: I searched existing discussions.
+          required: true
