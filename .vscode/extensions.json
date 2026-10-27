@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "svelte.svelte-vscode",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "davidanson.vscode-markdownlint",
+    "EditorConfig.EditorConfig",
+    "GitHub.vscode-github-actions",
+    "ms-vscode.vscode-typescript-next"
+  ]
+}
