@@ -22,7 +22,7 @@ Cove is one new tab with several layers:
 
 ## Measured release facts
 
-- Runtime code: **167.5 KB gzipped JavaScript + CSS** at `v0.1.1`.
+- Runtime code: **167.7 KB gzipped JavaScript + CSS** at `v0.1.1`.
 - Enforced budget: **170 KB** (`170 * 1024` bytes) in CI.
 - Unit tests: **54** (`npm test`, Node `--experimental-strip-types`).
 - Integration audits: **2** (`npm run test:core`) covering MV3/CSP rules and a no-mock-UI gate.
@@ -195,7 +195,7 @@ Do not describe Cove as "the smallest extension," "zero network," "military-grad
 
 **Where is data stored?** In browser-local `chrome.storage.local`, IndexedDB, and a small `localStorage` theme cache. No server-side copy.
 
-**How large is Cove?** 167.5 KB gzipped JS + CSS at `v0.1.1`, against a 170 KB budget. The full archive is larger due to bundled wallpapers and fonts.
+**How large is Cove?** 167.7 KB gzipped JS + CSS at `v0.1.1`, against a 170 KB budget. The full archive is larger due to bundled wallpapers and fonts.
 
 ## Contact
 

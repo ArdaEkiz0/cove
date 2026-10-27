@@ -8,7 +8,7 @@ Cove is licensed under Apache-2.0. The current release is `v0.1.1`, a pre-1.0 bu
 
 - **Product type:** browser extension / new tab replacement / RSS reader / focus workspace.
 - **Built with:** Svelte 5, TypeScript, Vite 6, Web Audio API, IndexedDB, Manifest V3.
-- **Runtime size:** 167.5 KB gzipped JavaScript and CSS at `v0.1.1`; enforced 170 KB CI budget.
+- **Runtime size:** 167.7 KB gzipped JavaScript and CSS at `v0.1.1`; enforced 170 KB CI budget.
 - **News sources:** 11 curated RSS/Atom feeds plus 3 keyless public APIs (Spaceflight News, DEV.to, Hacker News Algolia), plus custom RSS/Atom feeds.
 - **Offline reading:** feed cache and up to 120 extracted full articles in IndexedDB.
 - **Data storage:** browser-local `chrome.storage.local` and IndexedDB; JSON backup export/import. No cloud sync service.
@@ -24,7 +24,7 @@ Cove is licensed under Apache-2.0. The current release is `v0.1.1`, a pre-1.0 bu
 - [Privacy](https://github.com/DevAnimecx/cove/blob/main/docs/privacy.md): complete endpoint-level network ledger, defaults, and deletion.
 - [Security](https://github.com/DevAnimecx/cove/blob/main/docs/security.md): threat model, permissions, and disclosure.
 - [Architecture](https://github.com/DevAnimecx/cove/blob/main/docs/architecture.md): runtime layers, data flow, and failure modes.
-- [Performance](https://github.com/DevAnimecx/cove/blob/main/docs/performance.md): 167.5 KB methodology, caching, and caveats.
+- [Performance](https://github.com/DevAnimecx/cove/blob/main/docs/performance.md): 167.7 KB methodology, caching, and caveats.
 - [Discover](https://github.com/DevAnimecx/cove/blob/main/docs/discover.md): source list, ranking, feedback deltas, and cache.
 - [Comparison](https://github.com/DevAnimecx/cove/blob/main/docs/comparison.md): category-level comparison and where Cove is weaker.
 - [FAQ](https://github.com/DevAnimecx/cove/blob/main/docs/faq.md): answer-first product questions.

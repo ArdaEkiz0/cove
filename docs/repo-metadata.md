@@ -7,7 +7,7 @@ Copy-paste values for GitHub. Keep them aligned with the release; do not add a s
 GitHub's About field should be one clear sentence or two. Recommended:
 
 ```text
-Calm, local-first Manifest V3 new tab: 11 curated feeds + 3 keyless APIs, offline reader, tab workspace, Pomodoro, and procedural focus audio. 167.5 KB gzipped, zero telemetry, no account. Svelte 5 + TypeScript. Apache-2.0.
+Calm, local-first Manifest V3 new tab: 11 curated feeds + 3 keyless APIs, offline reader, tab workspace, Pomodoro, and procedural focus audio. 167.7 KB gzipped, zero telemetry, no account. Svelte 5 + TypeScript. Apache-2.0.
 ```
 
 Shorter alternative:
@@ -93,7 +93,7 @@ Notes outline:
 - Local Smart Engine with inspectable Markov memory
 
 ## Measurements
-- 167.5 KB gzipped JS + CSS (170 KB CI budget)
+- 167.7 KB gzipped JS + CSS (170 KB CI budget)
 - 54 unit tests + 2 integration audits
 - Manifest V3, strict CSP, no inline script
 

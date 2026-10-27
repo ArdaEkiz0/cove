@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="benchTitle benchDesc">
   <title id="benchTitle">Cove v0.1.1 measured code budget</title>
-  <desc id="benchDesc">A measured breakdown of Cove's 167.5 KB gzipped JavaScript and CSS against a 170 KB enforced budget. The chart is code weight, not total archive size, and excludes bundled wallpapers, fonts, HTML, icons, and runtime caches.</desc>
+  <desc id="benchDesc">A measured breakdown of Cove's 167.7 KB gzipped JavaScript and CSS against a 170 KB enforced budget. The chart is code weight, not total archive size, and excludes bundled wallpapers, fonts, HTML, icons, and runtime caches.</desc>
   <defs>
     <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#0C162B"/>
@@ -20,7 +20,7 @@
   <rect x="1" y="1" width="1198" height="418" rx="19" fill="none" stroke="#1E3A5F" stroke-width="1.5"/>
 
   <text x="40" y="44" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1.2">MEASURED AT v0.1.1 · npm run budget</text>
-  <text x="40" y="76" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="24" font-weight="700">167.5 KB measured. 170 KB enforced.</text>
+  <text x="40" y="76" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="24" font-weight="700">167.7 KB measured. 170 KB enforced.</text>
   <text x="40" y="101" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">Gzipped JavaScript + CSS in dist/. Code weight, not a total download claim.</text>
 
   <!-- Left panel: composition -->
@@ -31,7 +31,7 @@
     <text x="24" y="68" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">new tab JS</text>
     <rect x="150" y="55" width="438" height="16" rx="4" fill="#1E293B"/>
     <rect x="150" y="55" width="408" height="16" rx="4" fill="url(#coveBar)"/>
-    <text x="598" y="68" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">138.8 KB</text>
+    <text x="598" y="68" fill="#E2E8F0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">139.1 KB</text>
 
     <text x="24" y="99" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">new tab CSS</text>
     <rect x="150" y="86" width="438" height="16" rx="4" fill="#1E293B"/>
@@ -51,9 +51,9 @@
     <line x1="24" y1="184" x2="624" y2="184" stroke="#1E293B"/>
 
     <text x="24" y="212" fill="#94A3B8" font-family="ui-monospace, monospace" font-size="11">measured total</text>
-    <text x="24" y="240" fill="#F8FAFC" font-family="ui-monospace, monospace" font-size="21" font-weight="700">167.5 KB</text>
+    <text x="24" y="240" fill="#F8FAFC" font-family="ui-monospace, monospace" font-size="21" font-weight="700">167.7 KB</text>
     <text x="160" y="240" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11">of 170 KB</text>
-    <text x="598" y="212" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="600">2.5 KB</text>
+    <text x="598" y="212" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="600">2.3 KB</text>
     <text x="598" y="240" fill="#34D399" font-family="ui-monospace, monospace" font-size="11" font-weight="600">headroom</text>
   </g>
 

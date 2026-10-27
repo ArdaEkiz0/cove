@@ -61,7 +61,7 @@ Do not use more than two families in one asset. Do not use all caps for long hea
 | :--- | :--- |
 | Calm, specific, quietly confident | Hype, urgency, growth language |
 | "Cove keeps your tabs healthy." | "Revolutionary AI tab optimizer!" |
-| "167.5 KB gzipped, measured." | "The smallest extension ever." |
+| "167.7 KB gzipped, measured." | "The smallest extension ever." |
 | "No account, no analytics, no Cove server." | "0 network calls." |
 | "Designed for focus." | "Clinically proven to double focus." |
 | "11 curated feeds + 3 APIs." | "20+ premium sources." |
@@ -91,7 +91,7 @@ Short bio:
 
 Launch line:
 
-> A new tab should give you a place to think, not another feed to scroll. Cove is open source, local-first, and 167.5 KB gzipped.
+> A new tab should give you a place to think, not another feed to scroll. Cove is open source, local-first, and 167.7 KB gzipped.
 
 ## Licensing of brand assets
 

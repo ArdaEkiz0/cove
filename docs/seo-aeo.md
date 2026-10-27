@@ -14,7 +14,7 @@ AEO here means **answer engine optimization**: making the repository and website
 
 - Apache-2.0, source available.
 - No account, no analytics, no Cove server.
-- 167.5 KB gzipped runtime, 170 KB enforced budget.
+- 167.7 KB gzipped runtime, 170 KB enforced budget.
 - 11 curated RSS sources + 3 keyless APIs.
 - Offline article cache up to 120 articles.
 - Manifest V3 for Chromium and Gecko.
@@ -139,7 +139,7 @@ Use static rendering, semantic headings, descriptive alt text, canonical URLs, O
 | :--- | :--- | :--- |
 | "A local-first new tab" | Category | Maintainer |
 | "How Cove caches articles offline" | Technical | Maintainer |
-| "What 167.5 KB actually means" | Proof | Maintainer |
+| "What 167.7 KB actually means" | Proof | Maintainer |
 | "Why Cove has no analytics" | Trust | Maintainer |
 | "Momentum alternative for people who want local data" | Comparative | Maintainer |
 | "Manifest V3 without inline script" | Developer | Contributor |

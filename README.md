@@ -12,7 +12,7 @@ Curated reading, an offline article reader, a tab workspace, a Pomodoro timer, a
 [![CI](https://github.com/DevAnimecx/cove/actions/workflows/ci-release.yml/badge.svg)](https://github.com/DevAnimecx/cove/actions/workflows/ci-release.yml)
 [![Release](https://img.shields.io/github/v/release/DevAnimecx/cove?style=flat-square&label=release&color=5b8def)](https://github.com/DevAnimecx/cove/releases/latest)
 [![License](https://img.shields.io/github/license/DevAnimecx/cove?style=flat-square&color=0f766e)](LICENSE)
-[![Runtime](https://img.shields.io/badge/runtime-167.5%20KB%20gzip-7c3aed?style=flat-square)](docs/performance.md)
+[![Runtime](https://img.shields.io/badge/runtime-167.7%20KB%20gzip-7c3aed?style=flat-square)](docs/performance.md)
 [![Manifest V3](https://img.shields.io/badge/manifest-v3-1d4ed8?style=flat-square)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
 [![Telemetry](https://img.shields.io/badge/telemetry-none-0f766e?style=flat-square)](docs/privacy.md)
 
@@ -49,7 +49,7 @@ Cove is not a cloud RSS service, does not bypass paywalls, and does not claim to
 | **Product** | Browser new tab / workspace / RSS reader / focus timer |
 | **Status** | `v0.1.1`, pre-1.0 — every feature described here ships today |
 | **Browsers** | Chrome, Brave, Arc, Edge · Firefox 128+, Zen |
-| **Runtime** | **167.5 KB** gzipped JS + CSS at `v0.1.1`, enforced **170 KB** budget |
+| **Runtime** | **167.7 KB** gzipped JS + CSS at `v0.1.1`, enforced **170 KB** budget |
 | **Data** | `chrome.storage.local` + IndexedDB; JSON export and import |
 | **Privacy** | No account, no analytics, no Cove server; complete [network ledger](docs/privacy.md#network-ledger) |
 | **License** | [Apache-2.0](LICENSE) — free to use, inspect, modify, and self-build |
@@ -274,15 +274,15 @@ Cove measures **code weight**, not total download size. At `v0.1.1`:
      0.3 KB  blocked page
      3.4 KB  pre-paint theme CSS
      0.5 KB  pre-paint theme JS
-   138.8 KB  new tab JS
+   139.1 KB  new tab JS
     21.4 KB  new tab CSS
      0.9 KB  triage core
      0.6 KB  triage worker
      1.5 KB  background service worker
 -----------
-   167.5 KB  total gzipped JS + CSS
+   167.7 KB  total gzipped JS + CSS
    170.0 KB  enforced budget
-     2.5 KB  headroom
+     2.3 KB  headroom
 ```
 
 The budget includes every `.js` and `.css` file in `dist/`, excludes wallpapers, fonts, HTML, icons, and runtime caches, and fails CI at `170 * 1024` bytes. The full archive is larger because eight wallpapers and four font families are bundled locally.

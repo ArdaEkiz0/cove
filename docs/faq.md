@@ -36,7 +36,7 @@ Not in `v0.1.1`. Installation is manual: download the release archive, unzip it,
 
 ## How large is Cove?
 
-The gzipped JavaScript and CSS total **167.5 KB** at `v0.1.1`, against an enforced **170 KB** budget. The full extension archive is larger because it includes eight local wallpapers and four font families. Those assets are local and do not require a network request at runtime.
+The gzipped JavaScript and CSS total **167.7 KB** at `v0.1.1`, against an enforced **170 KB** budget. The full extension archive is larger because it includes eight local wallpapers and four font families. Those assets are local and do not require a network request at runtime.
 
 ## How many news sources does Discover have?
 

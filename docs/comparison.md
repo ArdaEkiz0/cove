@@ -40,7 +40,7 @@ The sound engine synthesizes pads and textures with Web Audio. There are no samp
 
 ### 5. Honest smallness
 
-The code budget is 170 KB gzipped, measured at 167.5 KB in `v0.1.1`. The full archive is larger because wallpapers and fonts are bundled. Cove does not claim to be the smallest extension on earth; it claims to keep its runtime code deliberately constrained.
+The code budget is 170 KB gzipped, measured at 167.7 KB in `v0.1.1`. The full archive is larger because wallpapers and fonts are bundled. Cove does not claim to be the smallest extension on earth; it claims to keep its runtime code deliberately constrained.
 
 ## Where Cove is weaker
 

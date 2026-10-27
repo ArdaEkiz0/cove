@@ -10,15 +10,15 @@ At `v0.1.1`, the production build measures:
      0.3 KB  assets/blocked-*.js
      3.4 KB  assets/boot-theme-*.css
      0.5 KB  assets/boot-theme-*.js
-   138.8 KB  assets/newtab-*.js
+   139.1 KB  assets/newtab-*.js
     21.4 KB  assets/newtab-*.css
      0.9 KB  assets/triage-core-*.js
      0.6 KB  assets/triage.worker-*.js
      1.5 KB  background.js
 -----------
-   167.5 KB  TOTAL gzipped JS + CSS
+   167.7 KB  TOTAL gzipped JS + CSS
    170.0 KB  BUDGET
-     2.5 KB  HEADROOM
+     2.3 KB  HEADROOM
 ```
 
 These numbers come from `npm run budget` on the tracked `dist/` build. They will drift slightly with code changes and hashed file names; the budget is the durable claim.

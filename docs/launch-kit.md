@@ -8,7 +8,7 @@ This is a practical launch plan for Cove, not a promise of virality. The goal is
 
 **Problem:** Browser start pages are ad portals, wallpaper subscriptions, or unread-count inboxes. Focus apps and readers live in separate tabs with separate accounts.
 
-**Solution:** Cove puts a quiet workspace, a small newsroom, an offline reader, a Pomodoro timer, and procedural sound in one Manifest V3 extension. It stores data locally, ships 167.5 KB of gzipped runtime, and can be audited.
+**Solution:** Cove puts a quiet workspace, a small newsroom, an offline reader, a Pomodoro timer, and procedural sound in one Manifest V3 extension. It stores data locally, ships 167.7 KB of gzipped runtime, and can be audited.
 
 **Proof:** Apache-2.0, 54 unit tests, 2 integration audits, 170 KB budget, documented network ledger.
 
@@ -147,7 +147,7 @@ Cove is an open-source Manifest V3 new tab for Chrome/Firefox. It combines a
 small RSS newsroom (11 curated feeds + 3 keyless APIs), an offline article
 reader, a Pomodoro timer, tab triage, and a procedural Web Audio focus engine.
 
-It has no account, no analytics, and no Cove server. Runtime JS+CSS is 167.5 KB
+It has no account, no analytics, and no Cove server. Runtime JS+CSS is 167.7 KB
 gzipped against a 170 KB CI budget. Data lives in chrome.storage.local and
 IndexedDB. The privacy ledger lists every network destination.
 
@@ -176,7 +176,7 @@ Happy to answer architecture questions or hear what would make it a daily driver
 ```text
 Cove v0.1.1 is out: a local-first new tab with a small RSS newsroom, offline
 reader, focus timer, and procedural sound. No account, no analytics, no Cove
-server. 167.5 KB gzipped. Apache-2.0.
+server. 167.7 KB gzipped. Apache-2.0.
 
 Install: https://github.com/DevAnimecx/cove/releases
 Limits: no store listing yet, no sync, no paywall bypass.
