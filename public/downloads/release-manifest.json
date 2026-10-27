@@ -5,21 +5,21 @@
   "artifacts": {
     "chrome": {
       "filename": "cove-chrome-mv3-v0.1.1.zip",
-      "bytes": 1854682,
+      "bytes": 1854688,
       "sizeLabel": "1.77 MB",
-      "sha256": "73a751bbd3f27b775794f15d4d5c5e03e0272f57131beb8d7be80b4e2d39509d"
+      "sha256": "a1c68387c500fcc926551613330cdbb2cfe82d2602810e7526edd94cd62734a4"
     },
     "firefox": {
       "filename": "cove-firefox-mv3-v0.1.1.zip",
-      "bytes": 1854668,
+      "bytes": 1854679,
       "sizeLabel": "1.77 MB",
-      "sha256": "cc9fc4df6e53e3b92264117dfef8b3b3d74febb503c33ee47a8a3e31f98cde36"
+      "sha256": "12de37867c57a625952e5b66bbad718d58e79d8e077cd4a18554a955cd1696cd"
     },
     "source": {
       "filename": "cove-github-source-v0.1.1.zip",
-      "bytes": 4398240,
+      "bytes": 4397699,
       "sizeLabel": "4.19 MB",
-      "sha256": "7dee27b2b86fe1be541ef12c2cb9e832e09c5f902b7da9f1e6e4423cfa4cf472"
+      "sha256": "6571b373644f95c2b31bcac263522c3a8e0664a443c303b2dbd6c21c6001602a"
     }
   }
 }
