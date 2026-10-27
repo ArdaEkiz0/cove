@@ -402,10 +402,6 @@
     font-size: 12px;
     color: var(--text-muted);
   }
-  .mono {
-    font-family: var(--font-mono);
-    color: var(--accent-text);
-  }
   .close-mini {
     width: 30px;
     height: 30px;
