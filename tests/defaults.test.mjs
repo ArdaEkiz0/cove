@@ -29,7 +29,7 @@ test('boots into the calm, local-first default contract', () => {
   assert.equal(settings.version, 8);
   assert.equal(settings.theme, 'dark');
   assert.equal(settings.preset, 'cobalt');
-  assert.equal(settings.language, 'en');
+  assert.equal(settings.language, 'tr');
   assert.equal(settings.discoverOptIn, true);
   assert.equal(settings.rssOptIn, true);
   assert.equal(settings.background.cloud, undefined);
