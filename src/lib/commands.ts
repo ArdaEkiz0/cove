@@ -241,7 +241,7 @@ export function buildPaletteIndex(rawQuery: string): PaletteItem[] {
       id: 'cmd-toggle-focus',
       category: 'Focus',
       title: cove.focusRunning ? 'Pause Focus Pomodoro' : 'Start Focus Pomodoro',
-      subtitle: `${cove.settings.focus.workMinutes}m focus · syncs functional neural audio`,
+      subtitle: `${cove.settings.focus.workMinutes}m focus · syncs procedural focus audio`,
       icon: 'target',
       searchText: 'toggle focus mode start pomodoro timer',
       run: () => (cove.focusRunning ? cove.pauseFocus() : cove.startFocus())
@@ -249,45 +249,45 @@ export function buildPaletteIndex(rawQuery: string): PaletteItem[] {
     {
       id: 'cmd-neural-deep-work',
       category: 'Focus',
-      title: 'Play Neural Sound: Deep Work (16 Hz Beta)',
+      title: 'Play Focus Sound: Deep Work (16 Hz pulse)',
       subtitle: 'Phase-locked polyphonic focus pad + speech distraction shield',
       shortcut: 'M',
       icon: 'waves',
-      searchText: 'neural sound brain fm deep work focus beta 16hz audio music',
+      searchText: 'neural sound focus audio deep work focus beta 16hz audio music',
       run: () => cove.setNeuralMode('deep_focus', true)
     },
     {
       id: 'cmd-neural-flow',
       category: 'Focus',
-      title: 'Play Neural Sound: Creative Flow (10.5 Hz Alpha)',
+      title: 'Play Focus Sound: Creative Flow (10.5 Hz pulse)',
       subtitle: 'Warm major-9th alpha shimmer for writing, design & exploration',
       icon: 'waves',
-      searchText: 'neural sound brain fm creative flow alpha 10hz audio music',
+      searchText: 'neural sound focus audio creative flow alpha 10hz audio music',
       run: () => cove.setNeuralMode('creative_flow', true)
     },
     {
       id: 'cmd-neural-read',
       category: 'Focus',
-      title: 'Play Neural Sound: Calm Reading (8.5 Hz Low-Alpha)',
+      title: 'Play Focus Sound: Calm Reading (8.5 Hz pulse)',
       subtitle: 'Low-arousal acoustic stillness for deep offline reading',
       icon: 'waves',
-      searchText: 'neural sound brain fm calm reading read study alpha 8hz audio',
+      searchText: 'neural sound focus audio calm reading read study alpha 8hz audio',
       run: () => cove.setNeuralMode('calm_read', true)
     },
     {
       id: 'cmd-neural-unwind',
       category: 'Focus',
-      title: 'Play Neural Sound: Recharge & Unwind (5.5 Hz Theta)',
+      title: 'Play Focus Sound: Recharge & Unwind (5.5 Hz pulse)',
       subtitle: 'Restorative theta decompression between work sprints',
       icon: 'waves',
-      searchText: 'neural sound brain fm unwind relax theta 5hz break rest',
+      searchText: 'neural sound focus audio unwind relax theta 5hz break rest',
       run: () => cove.setNeuralMode('unwind', true)
     },
     {
       id: 'cmd-sound-studio',
       category: 'Focus',
-      title: 'Open Functional Neural Sound Sanctuary',
-      subtitle: 'Adjust Neural Effect (Subtle/Balanced/Deep), Speech Shield & organic textures',
+      title: 'Open Focus Sound Sanctuary',
+      subtitle: 'Adjust modulation depth (Subtle/Balanced/Deep), Speech Shield & organic textures',
       icon: 'sliders',
       searchText: 'sound studio sanctuary mixer rain waves cafe noise neural',
       run: () => {
@@ -383,7 +383,7 @@ export function buildPaletteIndex(rawQuery: string): PaletteItem[] {
     {
       id: 'cmd-open-settings',
       category: 'System',
-      title: 'Open Full-Page Settings (v0.1.1)',
+      title: 'Open Full-Page Settings',
       subtitle: 'General, Typography, Atmosphere, Bento Layout, Autonomous CSE, Sound, Search & Backup',
       shortcut: ',',
       icon: 'sliders',

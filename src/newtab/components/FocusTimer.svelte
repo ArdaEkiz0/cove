@@ -82,7 +82,7 @@
         class="sf-expand"
         class:live={cove.audioPlaying}
         onclick={() => (cove.soundMixerOpen = true)}
-        title="Open Functional Neural Sound Sanctuary (M)"
+        title="Open Focus Sound Sanctuary (M)"
       >
         <Icon name="waves" size={13} />
       </button>
@@ -141,8 +141,8 @@
         type="button"
         class="sf-skip"
         onclick={() => cycleNeuralMode(-1)}
-        title="Previous functional neural state"
-        aria-label="Previous neural mode"
+        title="Previous focus sound state"
+        aria-label="Previous sound mode"
       >
         <Icon name="skip-prev" size={15} />
       </button>
@@ -160,8 +160,8 @@
         type="button"
         class="sf-skip"
         onclick={() => cycleNeuralMode(1)}
-        title="Next functional neural state"
-        aria-label="Next neural mode"
+        title="Next focus sound state"
+        aria-label="Next sound mode"
       >
         <Icon name="skip-next" size={15} />
       </button>

@@ -7,7 +7,7 @@ import type {
 } from './types';
 
 /**
- * Cove Neural Sound Engine (focus-oriented procedural Web Audio synthesizer)
+ * Cove Focus Sound Engine (focus-oriented procedural Web Audio synthesizer)
  *
  * 100% Procedural Web Audio API — no external audio assets, no network requests.
  * Combines:
@@ -37,7 +37,7 @@ export const NEURAL_MODES: Record<Exclude<NeuralModeId, 'off'>, NeuralModeSpec> 
     id: 'deep_focus',
     label: 'Deep Work',
     shortLabel: 'Deep Work',
-    band: '16 Hz Beta',
+    band: '16 Hz pulse',
     hz: 16.0,
     tagline: 'Sustained cognitive drive & distraction masking',
     chordHz: [73.42, 110.0, 164.81, 220.0], // D2 - A2 - E3 - A3 (open suspended 5th/9th)
@@ -49,7 +49,7 @@ export const NEURAL_MODES: Record<Exclude<NeuralModeId, 'off'>, NeuralModeSpec> 
     id: 'creative_flow',
     label: 'Creative Flow',
     shortLabel: 'Flow',
-    band: '10.5 Hz Alpha',
+    band: '10.5 Hz pulse',
     hz: 10.5,
     tagline: 'Unhurried clarity for writing, design & exploration',
     chordHz: [65.41, 98.0, 146.83, 164.81], // C2 - G2 - D3 - E3 (warm major 9th)
@@ -61,7 +61,7 @@ export const NEURAL_MODES: Record<Exclude<NeuralModeId, 'off'>, NeuralModeSpec> 
     id: 'calm_read',
     label: 'Calm Reading',
     shortLabel: 'Read',
-    band: '8.5 Hz Low-Alpha',
+    band: '8.5 Hz pulse',
     hz: 8.5,
     tagline: 'Soft, low-arousal stillness for deep reading & study',
     chordHz: [87.31, 130.81, 196.0, 220.0], // F2 - C3 - G3 - A3
@@ -73,7 +73,7 @@ export const NEURAL_MODES: Record<Exclude<NeuralModeId, 'off'>, NeuralModeSpec> 
     id: 'unwind',
     label: 'Recharge & Unwind',
     shortLabel: 'Unwind',
-    band: '5.5 Hz Theta',
+    band: '5.5 Hz pulse',
     hz: 5.5,
     tagline: 'Restorative mental decompression between sprints',
     chordHz: [55.0, 82.41, 123.47, 138.59], // A1 - E2 - B2 - C#3
@@ -251,7 +251,7 @@ class NeuralSoundEngine {
     padOutGain.gain.setValueAtTime(0.0001, now);
     padOutGain.gain.setTargetAtTime(scale.padGain, now, 0.9);
 
-    // Neural Phase-Locking LFO (16 Hz Beta / 10.5 Hz Alpha / 8.5 Hz Read / 5.5 Hz Theta)
+    // Neural Phase-Locking LFO (16 Hz pulse / 10.5 Hz pulse / 8.5 Hz Read / 5.5 Hz pulse)
     const modOsc = ctx.createOscillator();
     modOsc.type = 'sine';
     modOsc.frequency.value = spec.hz;

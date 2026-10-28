@@ -2,9 +2,9 @@
   "manifest_version": 3,
   "name": "Cove — Calm New Tab",
   "short_name": "Cove",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage_url": "https://github.com/DevAnimecx/cove",
-  "description": "Your calm corner of the web. Precision typography, Autonomous CSE v4, Functional Neural Sound Engine (16Hz Beta / 10.5Hz Alpha / 5.5Hz Theta), and complete full-page settings.",
+  "description": "Your calm corner of the web. Precision typography, on-device ranking, procedural focus soundscapes, and complete full-page settings.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",

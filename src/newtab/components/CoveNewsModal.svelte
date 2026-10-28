@@ -2,6 +2,7 @@
   import { cove } from '../../lib/state.svelte';
   import BrandIcon from './BrandIcon.svelte';
   import Icon from './Icon.svelte';
+  import SafeHtml from './SafeHtml.svelte';
 
   let fontMode = $state<'serif' | 'sans'>('serif');
   let fontScale = $state<'sm' | 'md' | 'lg'>('md');
@@ -427,7 +428,7 @@
               </div>
             {:else if article}
               <div class="cn-prose">
-                {@html article.contentHtml}
+                <SafeHtml html={article.contentHtml} />
               </div>
             {/if}
 

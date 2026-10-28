@@ -68,7 +68,7 @@
     type="button"
     class="dock-btn"
     class:active={cove.soundMixerOpen || cove.audioPlaying}
-    data-tip="Neural Sound · M"
+    data-tip="Focus Sound · M"
     onclick={() => (cove.soundMixerOpen = !cove.soundMixerOpen)}
     aria-label="Sound Sanctuary"
   >

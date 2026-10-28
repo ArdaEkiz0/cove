@@ -2,6 +2,7 @@
   import { renderNoteMarkdown } from '../../lib/markdown';
   import { cove } from '../../lib/state.svelte';
   import Icon from './Icon.svelte';
+  import SafeHtml from './SafeHtml.svelte';
 
   let selectedNoteId = $state<string>('');
   let editRaw = $state(false);
@@ -154,7 +155,7 @@
       <!-- svelte-ignore a11y_click_events_have_key_events -->
       <!-- svelte-ignore a11y_no_static_element_interactions -->
       <div class="prose-surface" onclick={() => (editRaw = true)}>
-        {@html renderNoteMarkdown(activeNote.content || '*Click to write a note, or add a task below…*')}
+        <SafeHtml html={renderNoteMarkdown(activeNote.content || '*Click to write a note, or add a task below…*')} />
       </div>
       <form class="quick-task-form" onsubmit={addTask}>
         <input type="text" bind:value={newTaskText} placeholder="+ Add task…" />

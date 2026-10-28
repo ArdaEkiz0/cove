@@ -175,7 +175,7 @@
       </button>
     </div>
 
-    <!-- Functional Neural Sound Dock -->
+    <!-- Focus Sound Dock -->
     <div class="sanctuary-dock">
       <div class="sc-strip">
         <button

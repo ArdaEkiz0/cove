@@ -88,14 +88,17 @@ async function applyBlockerRules(domains: string[], active: boolean): Promise<vo
       id: 1000 + idx,
       priority: 1,
       action: {
-        type: chrome.declarativeNetRequest.RuleActionType.REDIRECT,
+        // Firefox implements the DNR rule shape but does not expose the
+        // RuleActionType enum at runtime. String literals keep the same rule
+        // while avoiding an unsupported API access.
+        type: 'redirect' as chrome.declarativeNetRequest.RuleActionType,
         redirect: {
           extensionPath: `/blocked.html?domain=${encodeURIComponent(domain)}`
         }
       },
       condition: {
         urlFilter: `||${domain}^`,
-        resourceTypes: [chrome.declarativeNetRequest.ResourceType.MAIN_FRAME]
+        resourceTypes: ['main_frame' as chrome.declarativeNetRequest.ResourceType]
       }
     }));
 

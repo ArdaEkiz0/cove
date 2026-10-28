@@ -86,6 +86,12 @@ import {
 } from './storage';
 import { ensureUniqueStoryIds } from './story-id';
 import {
+  checkForGithubUpdate,
+  downloadGithubUpdate,
+  getExtensionVersion,
+  type UpdateCheckResult
+} from './update-check';
+import {
   sanitizeCountdowns,
   sanitizeImportedSettings,
   sanitizeNotes,
@@ -236,6 +242,15 @@ class CoveStore {
 
   hydrated = $state(false);
   isExtension = isExtensionContext();
+
+  // GitHub release updates (checked against the live repository, cached 6h)
+  currentVersion = $state(getExtensionVersion() || '0.1.2');
+  latestVersion = $state('');
+  updateAvailable = $state(false);
+  updateStatus = $state<'idle' | 'checking' | 'current' | 'available' | 'error'>('idle');
+  updateError = $state<string | null>(null);
+  updateDownloadUrl = $state('');
+  private updateCheckPromise: Promise<void> | null = null;
 
   private triageWorker: Worker | null = null;
   private workerReqSeq = 0;
@@ -527,6 +542,9 @@ class CoveStore {
     await this.refreshWallpaperAtmosphere();
     this.hydrated = true;
 
+    // Non-blocking: show the premium update badge if GitHub has a newer tag.
+    void this.checkForUpdates(false);
+
     this.checkCircadianAutoScene();
     await this.refreshTabs();
 
@@ -764,6 +782,63 @@ class CoveStore {
     this.toastTimer = window.setTimeout(() => {
       this.toastMessage = null;
     }, 3000);
+  }
+
+  /* ==========================================================================
+   * GitHub Release Updates
+   * ======================================================================== */
+
+  public async checkForUpdates(force = false): Promise<void> {
+    if (!this.isExtension) return;
+    if (this.updateCheckPromise) return this.updateCheckPromise;
+
+    this.updateStatus = 'checking';
+    this.updateError = null;
+
+    const run = (async () => {
+      const result = await checkForGithubUpdate(force);
+      if (!result) {
+        this.updateStatus = 'error';
+        this.updateError = 'GitHub update checks are unavailable in web preview.';
+        return;
+      }
+
+      this.currentVersion = result.currentVersion;
+      this.latestVersion = result.latestVersion;
+      this.updateAvailable = result.updateAvailable;
+      this.updateDownloadUrl = result.downloadUrl;
+      this.updateError = result.error ?? null;
+      this.updateStatus = result.updateAvailable
+        ? 'available'
+        : result.error
+          ? 'error'
+          : 'current';
+    })().catch((error: unknown) => {
+      this.updateStatus = 'error';
+      this.updateError =
+        error instanceof Error ? error.message : 'GitHub update check failed.';
+    });
+
+    this.updateCheckPromise = run.finally(() => {
+      this.updateCheckPromise = null;
+    });
+    return this.updateCheckPromise;
+  }
+
+  public downloadUpdate(): void {
+    if (!this.updateDownloadUrl) {
+      this.notify('No GitHub update URL yet — run Check for updates first.');
+      return;
+    }
+    const result: UpdateCheckResult = {
+      currentVersion: this.currentVersion,
+      latestVersion: this.latestVersion || this.currentVersion,
+      updateAvailable: this.updateAvailable,
+      downloadUrl: this.updateDownloadUrl,
+      checkedAt: Date.now(),
+      error: this.updateError ?? undefined
+    };
+    downloadGithubUpdate(result, (message) => this.notify(message));
   }
 
   public async saveSettings(): Promise<void> {

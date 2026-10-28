@@ -65,6 +65,7 @@ for (const name of [
   `cove-chrome-mv3-v${expectedVersion}.zip`,
   'cove-firefox-mv3.zip',
   `cove-firefox-mv3-v${expectedVersion}.zip`,
+  'cove-github-source.zip',
   `cove-github-source-v${expectedVersion}.zip`
 ]) {
   check(`release artifact ${name} exists`, existsSync(join(root, 'releases', name)));

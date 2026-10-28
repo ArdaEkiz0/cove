@@ -57,8 +57,12 @@ jobs:
           if-no-files-found: error
           retention-days: 14
           path: |
+            releases/cove-chrome-mv3.zip
             releases/cove-chrome-mv3-v*.zip
+            releases/cove-firefox-mv3.zip
             releases/cove-firefox-mv3-v*.zip
+            releases/cove-github-source.zip
+            releases/cove-github-source-v*.zip
             releases/SHA256SUMS.txt
             releases/release-manifest.json
 
@@ -84,7 +88,11 @@ jobs:
           generate_release_notes: true
           fail_on_unmatched_files: true
           files: |
+            releases/cove-chrome-mv3.zip
             releases/cove-chrome-mv3-v*.zip
+            releases/cove-firefox-mv3.zip
             releases/cove-firefox-mv3-v*.zip
+            releases/cove-github-source.zip
+            releases/cove-github-source-v*.zip
             releases/SHA256SUMS.txt
             releases/release-manifest.json

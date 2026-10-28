@@ -1,25 +1,25 @@
 {
-  "version": "0.1.1",
-  "releasedAt": "2026-10-27",
+  "version": "0.1.2",
+  "releasedAt": "2026-10-28",
   "license": "Apache-2.0",
   "artifacts": {
     "chrome": {
-      "filename": "cove-chrome-mv3-v0.1.1.zip",
-      "bytes": 1854688,
+      "filename": "cove-chrome-mv3-v0.1.2.zip",
+      "bytes": 1856674,
       "sizeLabel": "1.77 MB",
-      "sha256": "a1c68387c500fcc926551613330cdbb2cfe82d2602810e7526edd94cd62734a4"
+      "sha256": "6d29794d8f2b79d2962fede5f0d6469c76192616fda914f3adab12ec191ca941"
     },
     "firefox": {
-      "filename": "cove-firefox-mv3-v0.1.1.zip",
-      "bytes": 1854679,
+      "filename": "cove-firefox-mv3-v0.1.2.zip",
+      "bytes": 1856709,
       "sizeLabel": "1.77 MB",
-      "sha256": "12de37867c57a625952e5b66bbad718d58e79d8e077cd4a18554a955cd1696cd"
+      "sha256": "f8091450067e20991667a6ad4893289bd20cb4fe7c6f10e5d902592737d31011"
     },
     "source": {
-      "filename": "cove-github-source-v0.1.1.zip",
-      "bytes": 4397699,
-      "sizeLabel": "4.19 MB",
-      "sha256": "6571b373644f95c2b31bcac263522c3a8e0664a443c303b2dbd6c21c6001602a"
+      "filename": "cove-github-source-v0.1.2.zip",
+      "bytes": 4401852,
+      "sizeLabel": "4.20 MB",
+      "sha256": "dc4e4fb9b8ec53eb9b30451f26b0463de673896b019da1a016c581120a57c1b3"
     }
   }
 }

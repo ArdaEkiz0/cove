@@ -474,7 +474,7 @@ export function recordSmartInteraction(
     if (event.sound && event.sound !== 'none') {
       bumpNestedScore(mem.slotSoundScores, slotKey, event.sound, 1.1);
     }
-    pushSignalLog(mem, 'sound', `Neural audio: ${event.mode.replace('_', ' ')}`, slotLabel, `sound:${event.mode}`);
+    pushSignalLog(mem, 'sound', `Focus audio: ${event.mode.replace('_', ' ')}`, slotLabel, `sound:${event.mode}`);
   } else if (event.type === 'scene') {
     if (!mem.slotSceneScores[slotKey]) mem.slotSceneScores[slotKey] = {};
     mem.slotSceneScores[slotKey][event.curatedIndex] =
@@ -807,7 +807,7 @@ export function getRecommendedNeuralProfile(
     return {
       mode: 'unwind',
       sound: getPredictedSoundscape(mem, now),
-      reason: '5.5 Hz Theta decompression during break',
+      reason: '5.5 Hz pulse decompression during break',
       isLearned: false
     };
   }
@@ -815,7 +815,7 @@ export function getRecommendedNeuralProfile(
     return {
       mode: 'calm_read',
       sound: 'rain',
-      reason: '8.5 Hz Low-Alpha for deep offline reading',
+      reason: '8.5 Hz pulse for deep offline reading',
       isLearned: false
     };
   }
@@ -856,7 +856,7 @@ export function getRecommendedNeuralProfile(
     return {
       mode: 'deep_focus',
       sound: 'rain',
-      reason: 'Morning 16 Hz Beta clarity',
+      reason: 'Morning 16 Hz pulse clarity',
       isLearned: false
     };
   }
@@ -864,7 +864,7 @@ export function getRecommendedNeuralProfile(
     return {
       mode: 'creative_flow',
       sound: 'waves',
-      reason: 'Afternoon 10.5 Hz Alpha flow',
+      reason: 'Afternoon 10.5 Hz pulse flow',
       isLearned: false
     };
   }
@@ -879,7 +879,7 @@ export function getRecommendedNeuralProfile(
   return {
     mode: 'unwind',
     sound: 'waves',
-    reason: 'Late-night 5.5 Hz Theta wind-down',
+    reason: 'Late-night 5.5 Hz pulse wind-down',
     isLearned: false
   };
 }

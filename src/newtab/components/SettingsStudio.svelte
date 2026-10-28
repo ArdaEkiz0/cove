@@ -82,10 +82,10 @@
     },
     {
       id: 'sound',
-      label: 'Neural Sound Engine',
+      label: 'Focus Sound Engine',
       subtitle: 'Brainwave modulation & speech shield',
       icon: 'waves',
-      keywords: 'sound audio brain fm neural beta alpha theta deep work flow calm read unwind speech shield volume chime'
+      keywords: 'sound audio focus audio neural beta alpha theta deep work flow calm read unwind speech shield volume chime'
     },
     {
       id: 'search',
@@ -110,10 +110,10 @@
     },
     {
       id: 'data',
-      label: 'Backup & v0.1.1',
-      subtitle: 'JSON export, bookmarks & MV3 extension',
+      label: 'Backup & Updates',
+      subtitle: 'JSON export, bookmarks & GitHub updates',
       icon: 'download',
-      keywords: 'backup export import json bookmarks html chrome firefox mv3 extension shortcuts factory reset version 0.1.1'
+      keywords: 'backup export import json bookmarks html chrome firefox mv3 extension shortcuts factory reset version update github release'
     }
   ];
 
@@ -147,7 +147,7 @@
   const WIDGET_META: Record<string, { name: string; desc: string; icon: string }> = {
     quicklinks: { name: 'Quick Access', desc: 'Smart-ranked app squircles & bookmark groups', icon: 'external' },
     triage: { name: 'Open Tabs & Triage', desc: 'Duplicate sweep, stale tab rest & live peers', icon: 'layers' },
-    focus: { name: 'Scenic Focus & Sound', desc: 'Pomodoro timer & Functional Neural Sound card', icon: 'target' },
+    focus: { name: 'Scenic Focus & Sound', desc: 'Pomodoro timer & Focus Sound card', icon: 'target' },
     notes: { name: 'Tasks & Local Notes', desc: 'Markdown scratchpad & interactive checklists', icon: 'note' },
     readlater: { name: 'Offline Article Reader', desc: 'Clean prose extracted locally into IndexedDB', icon: 'bookmark' },
     rss: { name: 'Calm RSS Feed', desc: 'Chronological headlines with zero algorithmic noise', icon: 'rss' },
@@ -293,7 +293,7 @@
           <span>←</span>
           <span>Workspace</span>
         </button>
-        <span class="ver-tag">v0.1.1</span>
+        <span class="ver-tag">v{cove.currentVersion}</span>
       </div>
 
       <div class="rail-title-block">
@@ -353,7 +353,7 @@
         <div class="page-head-copy">
           {#if qLower}
             <h1>Results for “{filterQuery}”</h1>
-            <p>Matching preferences across all Cove v0.1.1 sections</p>
+            <p>Matching preferences across all Cove v{cove.currentVersion} sections</p>
           {:else}
             {@const activeNav = NAV_ITEMS.find((n) => n.id === cove.settingsTab) || NAV_ITEMS[0]}
             <h1>{activeNav.label}</h1>
@@ -1205,8 +1205,8 @@
 
                 <div class="card-row">
                   <div class="row-info">
-                    <strong>Adaptive Neural Sound Intelligence</strong>
-                    <span>Pre-tunes functional brainwave modulation (16Hz Beta / 10.5Hz Alpha / 5.5Hz Theta) to what helps you finish</span>
+                    <strong>Adaptive Focus Sound</strong>
+                    <span>Pre-tunes procedural modulation (16Hz pulse / 10.5Hz pulse / 5.5Hz pulse) to what helps you finish</span>
                   </div>
                   {@render switchControl(
                     cove.settings.smartEngine.adaptiveSoundIntelligence,
@@ -1215,7 +1215,7 @@
                         !cove.settings.smartEngine.adaptiveSoundIntelligence;
                       cove.saveSettings();
                     },
-                    'Adaptive Neural Sound Intelligence'
+                    'Adaptive Focus Sound'
                   )}
                 </div>
 
@@ -1294,12 +1294,12 @@
                ================================================================ -->
           {#if showSection('sound')}
             <section class="studio-section">
-              {#if qLower}<h3 class="sec-heading">Neural Sound Engine</h3>{/if}
+              {#if qLower}<h3 class="sec-heading">Focus Sound Engine</h3>{/if}
 
               <div class="studio-card">
                 <div class="card-subhead">
                   <div>
-                    <strong>Neural Audio Mode (procedural Web Audio)</strong>
+                    <strong>Focus Sound Mode (procedural Web Audio)</strong>
                     <span>Polyphonic harmonic beds with phase-locked filter &amp; amplitude modulation. An aesthetic tool, not a medical treatment.</span>
                   </div>
                   <button
@@ -1329,7 +1329,7 @@
 
                 <div class="card-row">
                   <div class="row-info">
-                    <strong>Neural Phase-Locking Depth</strong>
+                    <strong>Modulation Depth</strong>
                     <span>Controls modulation intensity on harmonic pads and coupled acoustic textures</span>
                   </div>
                   <div class="seg-group">
@@ -1376,7 +1376,7 @@
                 <div class="card-row">
                   <div class="row-info">
                     <strong>Auto-Couple with Pomodoro &amp; Restorative Breaks</strong>
-                    <span>Starts automatically with Focus and shifts to 5.5 Hz Theta during breaks</span>
+                    <span>Starts automatically with Focus and shifts to 5.5 Hz pulse during breaks</span>
                   </div>
                   {@render switchControl(
                     cove.settings.focus.coupleSoundWithFocus,
@@ -1406,7 +1406,7 @@
                 <div class="card-row">
                   <div class="row-info">
                     <strong>Master Acoustic Gain ({Math.round(cove.settings.focus.ambientVolume * 100)}%)</strong>
-                    <span>Smooth output ceiling across all neural and nature layers</span>
+                    <span>Smooth output ceiling across all focus and nature layers</span>
                   </div>
                   <input
                     type="range"
@@ -1920,11 +1920,11 @@
           {/if}
 
           <!-- ================================================================
-               10. BACKUP, EXTENSION & VERSION 0.1.1
+               10. BACKUP, GITHUB UPDATES & VERSION
                ================================================================ -->
           {#if showSection('data')}
             <section class="studio-section">
-              {#if qLower}<h3 class="sec-heading">Backup &amp; v0.1.1</h3>{/if}
+              {#if qLower}<h3 class="sec-heading">Backup &amp; Updates</h3>{/if}
 
               <div class="studio-card">
                 <div class="card-subhead">
@@ -1989,21 +1989,41 @@
               </div>
 
               <div class="studio-card">
-                <div class="card-subhead">
-                  <div>
-                    <strong>Install Manifest V3 Browser Extension (v0.1.1)</strong>
-                    <span>Unzip and load via <code>chrome://extensions</code> → Developer mode → Load unpacked</span>
+                <div class="card-row">
+                  <div class="row-info">
+                    <strong>GitHub Updates · v{cove.currentVersion}</strong>
+                    <span>
+                      {#if cove.updateStatus === 'checking'}
+                        Checking the latest GitHub release…
+                      {:else if cove.updateAvailable}
+                        Cove v{cove.latestVersion} is available. Download the official GitHub zip,
+                        replace the Cove folder, then click Reload.
+                      {:else if cove.updateError}
+                        GitHub check failed: {cove.updateError}
+                      {:else if cove.updateStatus === 'current'}
+                        You are on the latest GitHub release. Settings and notes stay local.
+                      {:else}
+                        Check for the latest GitHub release. Unpacked extensions reload manually.
+                      {/if}
+                    </span>
                   </div>
-                </div>
-                <div class="action-btn-grid">
-                  <a href="/downloads/cove-chrome-mv3.zip" download class="btn-primary">
-                    <Icon name="download" size={14} />
-                    <span>Download Chrome / Brave / Arc MV3 (.zip)</span>
-                  </a>
-                  <a href="/downloads/cove-firefox-mv3.zip" download class="btn-ghost">
-                    <Icon name="download" size={14} />
-                    <span>Download Firefox MV3 (.zip)</span>
-                  </a>
+                  <div class="action-btn-grid update-actions">
+                    {#if cove.updateAvailable}
+                      <button type="button" class="btn-primary" onclick={() => cove.downloadUpdate()}>
+                        <Icon name="download" size={14} />
+                        <span>Download v{cove.latestVersion}</span>
+                      </button>
+                    {/if}
+                    <button
+                      type="button"
+                      class="btn-ghost"
+                      onclick={() => cove.checkForUpdates(true)}
+                      disabled={cove.updateStatus === 'checking'}
+                    >
+                      <Icon name="refresh" size={14} />
+                      <span>{cove.updateStatus === 'checking' ? 'Checking…' : 'Check'}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -2027,7 +2047,7 @@
               <div class="studio-card danger-card">
                 <div class="card-row">
                   <div class="row-info">
-                    <strong>Factory Reset Cove v0.1.1</strong>
+                    <strong>Factory Reset Cove v{cove.currentVersion}</strong>
                     <span>Wipes local preferences, notes, offline articles, and CSE memory</span>
                   </div>
                   {#if !confirmReset}

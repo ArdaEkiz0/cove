@@ -17,7 +17,7 @@ import { join, relative, resolve, sep } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
-const version = pkg.version || '0.1.1';
+const version = pkg.version || '0.1.2';
 const releaseDate = process.env.COVE_RELEASE_DATE || new Date().toISOString().slice(0, 10);
 
 const distDir = join(root, 'dist');
@@ -84,6 +84,7 @@ rmSync(stageDirs.firefox, { recursive: true, force: true });
 //    Stage first so generated artifacts are excluded without relying on `zip -x`,
 //    which is unavailable on Windows.
 const sourceVersionedZip = join(releasesDir, `cove-github-source-v${version}.zip`);
+const sourceZip = join(releasesDir, 'cove-github-source.zip');
 const skipRootDirs = new Set([
   'node_modules',
   'dist',
@@ -109,6 +110,7 @@ cpSync(root, sourceStage, {
   }
 });
 createZip(sourceStage, sourceVersionedZip);
+copyFileSync(sourceVersionedZip, sourceZip);
 rmSync(sourceStage, { recursive: true, force: true });
 
 // 4. Generate cryptographic SHA-256 checksums + machine-readable release-manifest.json
@@ -172,6 +174,7 @@ for (const [src, name] of [
   [chromeVersionedZip, `cove-chrome-mv3-v${version}.zip`],
   [firefoxZip, 'cove-firefox-mv3.zip'],
   [firefoxVersionedZip, `cove-firefox-mv3-v${version}.zip`],
+  [sourceZip, 'cove-github-source.zip'],
   [sourceVersionedZip, `cove-github-source-v${version}.zip`],
   [join(releasesDir, 'SHA256SUMS.txt'), 'SHA256SUMS.txt'],
   [join(releasesDir, 'release-manifest.json'), 'release-manifest.json']

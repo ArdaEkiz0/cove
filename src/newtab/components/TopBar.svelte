@@ -102,7 +102,7 @@
       type="button"
       class="cove-squircle-brand"
       onclick={() => cove.setLayoutMode('dashboard')}
-      title="Cove v0.1.1 — Calm Spatial New Tab"
+      title="Cove v{cove.currentVersion} — Calm Spatial New Tab"
     >
       <svg viewBox="0 0 36 36" width="18" height="18" fill="none" aria-hidden="true">
         <circle
@@ -151,7 +151,7 @@
     </button>
   </nav>
 
-  <!-- Top-right Clean Capsules: 1-Click Dark/Light/4K + Neural Audio + Utility -->
+  <!-- Top-right Clean Capsules: 1-Click Dark/Light/4K + Focus Sound + Utility -->
   <div class="right-capsules">
     <!-- 1-Click Signature Theme Switcher (Midnight Dark First) -->
     <div class="atmo-mode-capsule hide-md" role="group" aria-label="Theme style">
@@ -190,8 +190,8 @@
         type="button"
         class="na-play-toggle"
         onclick={() => cove.toggleAudioPlayback()}
-        title={cove.audioPlaying ? 'Pause neural soundscape' : `Play ${cove.recommendedNeural.reason}`}
-        aria-label={cove.audioPlaying ? 'Pause sound' : 'Play functional neural sound'}
+        title={cove.audioPlaying ? 'Pause focus soundscape' : `Play ${cove.recommendedNeural.reason}`}
+        aria-label={cove.audioPlaying ? 'Pause sound' : 'Play focus sound'}
       >
         <Icon name={cove.audioPlaying ? 'pause' : 'play'} size={12} />
       </button>
@@ -200,7 +200,7 @@
         type="button"
         class="na-open-studio"
         onclick={() => (cove.soundMixerOpen = true)}
-        title="Open Functional Neural Sound Sanctuary (M)"
+        title="Open Focus Sound Sanctuary (M)"
       >
         {#if cove.audioPlaying}
           <span class="eq-bars" aria-hidden="true">
@@ -211,33 +211,17 @@
       </button>
     </div>
 
-    {#if !cove.isExtension}
+    {#if cove.updateAvailable}
       <button
         type="button"
-        class="ext-pill hide-sm"
-        onclick={async () => {
-          cove.notify('Preparing Cove MV3 Extension (.zip)…');
-          try {
-            const res = await fetch('/downloads/cove-chrome-mv3.zip');
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'cove-chrome-mv3-v0.1.1.zip';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            setTimeout(() => URL.revokeObjectURL(url), 10000);
-            cove.notify('Downloaded cove-chrome-mv3-v0.1.1.zip');
-          } catch {
-            window.open('/downloads/cove-chrome-mv3.zip', '_blank', 'noopener');
-          }
-        }}
-        title="Download unpacked Chrome / Brave / Arc Manifest V3 Extension (.zip)"
+        class="update-badge"
+        onclick={() => cove.downloadUpdate()}
+        title={`Download Cove v${cove.latestVersion} from GitHub, then reload the unpacked extension`}
+        aria-label={`Update Cove to v${cove.latestVersion}`}
       >
-        <Icon name="download" size={13} />
-        <span>Get Extension</span>
+        <span class="update-spark" aria-hidden="true">✦</span>
+        <span class="update-label">Update</span>
+        <span class="update-version">v{cove.latestVersion}</span>
       </button>
     {/if}
 
@@ -570,25 +554,54 @@
     50% { transform: scaleY(1); }
   }
 
-  .ext-pill {
+  .update-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 7px 13px;
+    gap: 5px;
+    padding: 6px 11px 6px 9px;
     border-radius: var(--r-pill);
-    background: linear-gradient(180deg, #2f6bff 0%, #1d5bff 100%);
-    color: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+    background:
+      linear-gradient(var(--surface-dock), var(--surface-dock)) padding-box,
+      linear-gradient(120deg, color-mix(in srgb, var(--accent) 72%, #ffffff), transparent 55%, color-mix(in srgb, var(--accent) 42%, transparent)) border-box;
+    color: var(--accent-text);
     font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: 650;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
     box-shadow:
-      0 10px 24px -6px rgba(29, 91, 255, 0.48),
-      inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    transition: transform 160ms ease;
+      0 8px 20px -8px color-mix(in srgb, var(--accent) 55%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38);
+    transition: transform 160ms ease, box-shadow 160ms ease;
   }
 
-  .ext-pill:hover {
+  .update-badge:hover {
     transform: translateY(-1px);
+    box-shadow:
+      0 12px 24px -8px color-mix(in srgb, var(--accent) 62%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.48);
+  }
+
+  .update-spark {
+    display: inline-grid;
+    place-items: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent-text);
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  .update-version {
+    padding: 1px 5px;
+    border-radius: var(--r-pill);
+    background: color-mix(in srgb, var(--accent) 13%, transparent);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
   }
 
   .utility-capsule {
@@ -621,12 +634,6 @@
 
   .show-md-only {
     display: none;
-  }
-
-  @media (max-width: 1260px) {
-    .hide-sm {
-      display: none !important;
-    }
   }
 
   @media (max-width: 1120px) {
@@ -667,6 +674,12 @@
   @media (max-width: 560px) {
     .hide-xs {
       display: none !important;
+    }
+    .update-badge {
+      padding: 5px 8px;
+    }
+    .update-version {
+      display: none;
     }
     .island-tab {
       padding: 5px 10px;

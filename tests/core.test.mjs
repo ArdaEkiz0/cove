@@ -30,16 +30,16 @@ function walkFiles(dir) {
   return out;
 }
 
-test('MV3 Chrome manifest v0.1.1, CSP, 8 local scenic wallpapers, and <170 KB code budget', () => {
+test('MV3 Chrome manifest, CSP, 8 local scenic wallpapers, and <170 KB code budget', () => {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.1.1', 'package.json version must be 0.1.1');
+  assert.match(pkg.version, /^\d+\.\d+\.\d+$/, 'package.json must have a semver version');
 
   const distManifestPath = join(root, 'dist', 'manifest.json');
   assert.ok(existsSync(distManifestPath), 'dist/manifest.json must exist');
 
   const manifest = JSON.parse(readFileSync(distManifestPath, 'utf8'));
   assert.equal(manifest.manifest_version, 3);
-  assert.equal(manifest.version, '0.1.1');
+  assert.equal(manifest.version, pkg.version);
   assert.equal(manifest.chrome_url_overrides.newtab, 'index.html');
   assert.equal(manifest.background.service_worker, 'background.js');
   assert.equal(
@@ -96,7 +96,7 @@ test('MV3 Chrome manifest v0.1.1, CSP, 8 local scenic wallpapers, and <170 KB co
   );
 });
 
-test('Zero-Mock Audit, Precision Typography, Autonomous CSE v4 & Complete Full-Page Settings v0.1.1', () => {
+test('Zero-Mock Audit, Precision Typography, Autonomous CSE v4 & Complete Full-Page Settings', () => {
   assert.ok(
     !existsSync(join(root, 'src', 'newtab', 'components', 'BrowserSimDrawer.svelte')),
     'BrowserSimDrawer.svelte must not exist'
@@ -123,8 +123,8 @@ test('Zero-Mock Audit, Precision Typography, Autonomous CSE v4 & Complete Full-P
     'SettingsStudio.svelte must render edge-to-edge full-viewport'
   );
   assert.ok(
-    studioSrc.includes('v0.1.1'),
-    'SettingsStudio.svelte must display release version v0.1.1'
+    studioSrc.includes('v{cove.currentVersion}'),
+    'SettingsStudio.svelte must display the live extension version'
   );
 
   // Verify all 10 complete settings sections exist
