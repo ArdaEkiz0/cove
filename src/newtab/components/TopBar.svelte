@@ -104,18 +104,7 @@
       onclick={() => cove.setLayoutMode('dashboard')}
       title="Cove v{cove.currentVersion} — Calm Spatial New Tab"
     >
-      <svg viewBox="0 0 36 36" width="18" height="18" fill="none" aria-hidden="true">
-        <circle
-          cx="18"
-          cy="18"
-          r="10.2"
-          stroke="white"
-          stroke-width="3.8"
-          stroke-linecap="round"
-          stroke-dasharray="48 18"
-        />
-        <circle cx="18" cy="18" r="3.4" fill="white" />
-      </svg>
+      <img src="/icons/cove.svg" alt="" aria-hidden="true" draggable="false" />
     </button>
 
     <button
@@ -394,15 +383,22 @@
   .cove-squircle-brand {
     width: 30px;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 9px;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, #5694ff 0%, #1d5bff 55%, #1338be 100%);
-    box-shadow:
-      0 6px 14px -3px rgba(29, 91, 255, 0.48),
-      inset 0 1px 1px rgba(255, 255, 255, 0.55);
+    background: transparent;
     margin-right: 2px;
+    filter: drop-shadow(0 5px 10px rgba(29, 91, 255, 0.32));
     transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cove-squircle-brand img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   .cove-squircle-brand:hover {

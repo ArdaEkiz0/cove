@@ -20,10 +20,16 @@
       <stop offset="0%" stop-color="#13203B" stop-opacity="0.94"/>
       <stop offset="100%" stop-color="#0B1325" stop-opacity="0.98"/>
     </linearGradient>
-    <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="50%" stop-color="#3B82F6"/>
-      <stop offset="100%" stop-color="#6366F1"/>
+    <linearGradient id="heroCoveBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5A86FF"/>
+      <stop offset="0.38" stop-color="#1F56F2"/>
+      <stop offset="0.72" stop-color="#153FC7"/>
+      <stop offset="1" stop-color="#0A2A91"/>
+    </linearGradient>
+    <linearGradient id="heroCoveMark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.72" stop-color="#F4F8FF"/>
+      <stop offset="1" stop-color="#E3EEFF"/>
     </linearGradient>
     <linearGradient id="hairline" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#38BDF8" stop-opacity="0"/>
@@ -49,9 +55,10 @@
   </g>
 
   <g transform="translate(64, 112)">
-    <rect width="64" height="64" rx="18" fill="url(#logoGrad)"/>
-    <path d="M20 36C20 25.5 28.5 17 39 17C42.8 17 46.3 18.1 49.2 20C45.5 18.8 41.4 19.4 38.2 21.8C32.9 25.8 31.9 33.5 35.9 38.8C39.1 43 44.5 44.7 49.4 43.2C46.3 46.3 42 48.2 37.1 48.2C27.8 48.2 20.3 42.8 20 36Z" fill="#FFFFFF"/>
-    <circle cx="44" cy="30" r="4.7" fill="#E0F2FE"/>
+    <rect x="2" y="2" width="60" height="60" rx="14.5" fill="url(#heroCoveBg)"/>
+    <rect x="2.5" y="2.5" width="59" height="59" rx="14" fill="none" stroke="#E8F1FF" stroke-opacity="0.55" stroke-width="0.6"/>
+    <path d="M35 14C23.5 14 14 22.5 13.5 34.25C13 45.75 22 53.5 33.5 53C42.5 52.5 49.75 47.5 51 39.75" fill="none" stroke="url(#heroCoveMark)" stroke-width="8.5" stroke-linecap="round"/>
+    <circle cx="32.5" cy="32.5" r="4.75" fill="url(#heroCoveMark)"/>
     <text x="84" y="47" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="46" font-weight="800" letter-spacing="-1.4">Cove</text>
     <text x="212" y="45" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600">github.com/DevAnimecx/cove</text>
   </g>
