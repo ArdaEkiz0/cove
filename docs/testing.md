@@ -6,13 +6,13 @@ Cove uses a small, fast test pyramid: pure unit tests for logic, two integration
 
 | Suite | Command | Count | Runtime |
 | :--- | :--- | :--- | :--- |
-| Unit | `npm test` | 54 tests | under 1 second on a laptop |
+| Unit | `npm test` | 66 tests | under 1 second on a laptop |
 | Core integration | `npm run test:core` | 2 tests | a few seconds after a build |
 | TypeScript | `npm run typecheck` | project-wide | depends on machine |
 | Budget | `npm run budget` | 1 gate | under a second |
 | Release verification | `npm run verify` | artifact checks | under a second |
 
-Counts are from `v0.1.1`. Update this table when the suites change.
+Counts are from `v0.1.3`. Update this table when the suites change.
 
 ## Unit tests
 
@@ -21,7 +21,7 @@ Node's built-in test runner executes TypeScript source directly with `--experime
 | File | Covers |
 | :--- | :--- |
 | `tests/fuzzy.test.mjs` | scoring, word boundaries, consecutive runs, sorting, highlighting |
-| `tests/instant-answer.test.mjs` | arithmetic, percentages, unit conversion, focus range, hex colours, world clocks, malformed input |
+| `tests/instant-answer.test.mjs` | arithmetic, percentages, unit conversion, dates, base conversion, timestamps, colours, focus range, world clocks, malformed input |
 | `tests/markdown.test.mjs` | escaping, headings, emphasis, links, lists, code blocks, dangerous schemes |
 | `tests/moon.test.mjs` | lunar phase anchoring, illumination bounds, normalization |
 | `tests/i18n.test.mjs` | locale coverage, real translations, fallback, no placeholders |
@@ -30,6 +30,7 @@ Node's built-in test runner executes TypeScript source directly with `--experime
 | `tests/rss-parser.test.mjs` | WMO weather labels, relative time buckets, future timestamps, fallback dates |
 | `tests/validation.test.mjs` | URL schemes, image data URLs, numeric bounds, hostile imports, no mutation, non-object input |
 | `tests/story-id.test.mjs` | deterministic hashes, collision resistance, legacy cache repair, healthy-feed no-op |
+| `tests/search.test.mjs` | bang aliases, prefix/suffix detection, URL-template validation, provider presets, Wikipedia URL |
 
 The tests deliberately cover the parts where a quiet bug would be expensive: import validation, URL handling, Markdown sanitization, parsing, and feed identity.
 
@@ -39,7 +40,7 @@ The tests deliberately cover the parts where a quiet bug would be expensive: imp
 
 ### Test 1: packaging contract
 
-- `package.json` and `dist/manifest.json` are version `0.1.1`.
+- `package.json` and `dist/manifest.json` are version `0.1.3`.
 - Manifest V3 is declared.
 - `chrome_url_overrides.newtab` is `index.html`.
 - The background service worker is `background.js`.
@@ -103,7 +104,7 @@ Before a release, verify in a clean browser profile:
 - [ ] Start each neural mode; verify audio begins only after interaction and stops cleanly.
 - [ ] Export a backup, reset, and import it.
 - [ ] Disable Discover, RSS, weather, suggestions, and favicons; confirm the page still renders.
-- [ ] Repeat the core pass in Firefox 128+ with the Firefox manifest.
+- [ ] Repeat the core pass in Firefox 140+ with the Firefox manifest.
 
 ## Known gaps
 

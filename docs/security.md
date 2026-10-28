@@ -89,7 +89,7 @@ We aim to acknowledge within 48 hours and to ship a fix or mitigation as soon as
 - Release archives are generated from a clean build and accompanied by SHA-256 checksums.
 - GitHub Actions use pinned major versions; maintainers should review action updates.
 
-**Residual risk:** no reproducible-build attestation or code signing is shipped in `v0.1.1`. Verify checksums and build from source if you need a stronger guarantee.
+**Residual risk:** no reproducible-build attestation or code signing is shipped in `v0.1.3`. Verify checksums and build from source if you need a stronger guarantee.
 
 ### Local attacker with profile access
 

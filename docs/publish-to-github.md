@@ -88,13 +88,13 @@ On GitHub, confirm:
 After the push is green:
 
 ```bash
-git tag -a v0.1.1 -m "Cove v0.1.1"
-git push origin v0.1.1
+git tag -a v0.1.3 -m "Cove v0.1.3"
+git push origin v0.1.3
 ```
 
 The tag starts the release job in `.github/workflows/ci-release.yml`. It publishes the verified Chrome ZIP, Firefox ZIP, checksums, and release manifest.
 
-If the workflow does not attach the source ZIP, add `releases/cove-github-source-v0.1.1.zip` manually to the release.
+If the workflow does not attach the source ZIP, add `releases/cove-github-source-v0.1.3.zip` manually to the release.
 
 ## If CI fails
 
@@ -131,7 +131,7 @@ Steps:
    `git remote add origin https://github.com/DevAnimecx/cove.git`
    If origin exists, run `git remote set-url origin https://github.com/DevAnimecx/cove.git`.
 7. Push `main`: `git push -u origin main`.
-8. Push the release tag only if the version is final: `git tag -a v0.1.1 -m "Cove v0.1.1"` then `git push origin v0.1.1`.
+8. Push the release tag only if the version is final: `git tag -a v0.1.3 -m "Cove v0.1.3"` then `git push origin v0.1.3`.
 9. Report the remote URL, branch, latest commit hash, push result, and the GitHub Actions run URL. If the push fails because the remote is non-empty, stop and ask before force-pushing.
 10. Do not claim the repository is live, the release is published, or CI is green unless you verified it.
 

@@ -3,6 +3,7 @@
   import { fuzzyFilter } from '../../lib/fuzzy';
   import { t } from '../../lib/i18n';
   import { resolveInstantAnswer } from '../../lib/instant-answer';
+  import { buildSearchUrl, detectBang } from '../../lib/search';
   import { cove } from '../../lib/state.svelte';
   import BrandIcon from './BrandIcon.svelte';
   import Icon from './Icon.svelte';
@@ -22,16 +23,8 @@
   const lang = $derived(cove.settings.language);
   const enabledEngines = $derived(cove.settings.searchEngines.filter((e) => e.enabled));
 
-  // Detect !bang prefix (!g, !gh, !yt, !w, !mdn, !ddg, !sp)
-  const bangDetected = $derived.by(() => {
-    const trimmed = query.trimStart();
-    const m = trimmed.match(/^(!\w+)\s*(.*)$/);
-    if (!m) return null;
-    const token = m[1].toLowerCase();
-    const eng = cove.settings.searchEngines.find((e) => e.bang?.toLowerCase() === token);
-    if (!eng) return null;
-    return { engine: eng, cleanQuery: m[2] };
-  });
+  // Detect prefix (!g query) and suffix (query !g) bangs, including aliases.
+  const bangDetected = $derived(detectBang(query, cove.settings.searchEngines));
 
   const primaryEngine = $derived(
     bangDetected?.engine ||
@@ -126,17 +119,53 @@
       });
     }
 
-    // 3. Direct URL navigation
-    if (/^[a-z0-9.-]+\.[a-z]{2,}(\/\S*)?$/i.test(raw) && !raw.includes(' ')) {
+    // 2b. Unknown or incomplete !bang: show a fast provider picker.
+    const bangDraft = raw.match(/^!([a-z0-9_-]*)\s*(.*)$/i);
+    if (bangDraft && !bangDetected) {
+      const partial = bangDraft[1].toLowerCase();
+      const clean = bangDraft[2].trim();
+      let pool = enabledEngines.filter(
+        (engine) =>
+          !partial ||
+          engine.bang.slice(1).startsWith(partial) ||
+          engine.name.toLowerCase().includes(partial)
+      );
+      if (!pool.length) pool = enabledEngines;
+      for (const engine of pool.slice(0, 5)) {
+        out.push({
+          id: `engine-${engine.id}`,
+          kind: 'web',
+          title: clean ? `Search ${engine.name}` : `Use ${engine.bang}`,
+          subtitle: clean
+            ? `Search "${clean}" with ${engine.name}`
+            : `Type your query after ${engine.bang}`,
+          badge: engine.shortLabel,
+          faviconDomain: engine.domain,
+          execute: () => {
+            if (clean) {
+              executeWebSearch(clean, engine);
+            } else {
+              query = `${engine.bang} `;
+              inputEl?.focus();
+            }
+          }
+        });
+      }
+    }
+
+    // 3. Direct URL navigation (bare domains and full http(s) URLs)
+    const bareDomain = /^[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:\/\S*)?$/i.test(raw);
+    const fullUrl = /^https?:\/\/\S+$/i.test(raw);
+    if ((bareDomain || fullUrl) && !raw.includes(' ')) {
       out.push({
         id: 'direct-url',
         kind: 'link',
-        title: `Open https://${raw}`,
+        title: `Open ${fullUrl ? raw : `https://${raw}`}`,
         subtitle: 'Direct URL · tracked in workspace',
         badge: 'Go',
         faviconDomain: raw,
         execute: () => {
-          cove.openUrlSafely(raw, true);
+          cove.openUrlSafely(fullUrl ? raw : `https://${raw}`, true);
           query = '';
           livePhrases = [];
         }
@@ -241,17 +270,22 @@
 
   function executeWebSearch(q: string, forcedEngine?: typeof primaryEngine) {
     const engines = enabledEngines.length ? enabledEngines : [cove.settings.searchEngines[0]];
-    if (!forcedEngine && cove.settings.splitSearch && engines.length > 1) {
-      engines.forEach((eng) => {
+    const usable = engines.filter((engine) => buildSearchUrl(engine.urlTemplate, q));
+    if (!forcedEngine && cove.settings.splitSearch && usable.length > 1) {
+      usable.forEach((eng) => {
         cove.recordSignal({ type: 'search', engineId: eng.id, engineName: eng.name });
-        const dest = eng.urlTemplate.replace('{q}', encodeURIComponent(q));
-        cove.openUrlSafely(dest, true, `${q} — ${eng.name}`);
+        const dest = buildSearchUrl(eng.urlTemplate, q);
+        if (dest) cove.openUrlSafely(dest, true, `${q} — ${eng.name}`);
       });
-      cove.notify(`Opened "${q}" across ${engines.length} engines.`);
+      cove.notify(`Opened "${q}" across ${usable.length} engines.`);
     } else {
       const target = forcedEngine || primaryEngine || engines[0];
+      const dest = buildSearchUrl(target.urlTemplate, q);
+      if (!dest) {
+        cove.notify(`${target.name} has an invalid search URL. Check Settings > Search.`);
+        return;
+      }
       cove.recordSignal({ type: 'search', engineId: target.id, engineName: target.name });
-      const dest = target.urlTemplate.replace('{q}', encodeURIComponent(q));
       cove.openUrlSafely(dest, true, `${q} — ${target.name}`);
     }
     query = '';

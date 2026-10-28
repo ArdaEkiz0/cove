@@ -7,7 +7,7 @@ Copy-paste values for GitHub. Keep them aligned with the release; do not add a s
 GitHub's About field should be one clear sentence or two. Recommended:
 
 ```text
-Calm, local-first Manifest V3 new tab: 11 curated feeds + 3 keyless APIs, offline reader, tab workspace, Pomodoro, and procedural focus audio. 167.7 KB gzipped, zero telemetry, no account. Svelte 5 + TypeScript. Apache-2.0.
+Calm, local-first Manifest V3 new tab: 11 curated feeds + 3 keyless APIs, offline reader, tab workspace, Pomodoro, and procedural focus audio. 166.2 KB gzipped, zero telemetry, no account. Svelte 5 + TypeScript. Apache-2.0.
 ```
 
 Shorter alternative:
@@ -81,7 +81,7 @@ Local-first. Open source. No account.
 Title:
 
 ```text
-Cove v0.1.1 - A calmer, local-first new tab
+Cove v0.1.3 - A calmer, local-first new tab
 ```
 
 Notes outline:
@@ -91,12 +91,12 @@ Notes outline:
 - Calm Bento / Ambient / Focus / Stillness stages
 - Cove Discover: 11 curated feeds + 3 keyless APIs
 - Offline Cove News reader with a 120-article cache
-- Focus timer, blocker, and procedural neural audio
+- Focus timer, blocker, and procedural Focus Sound
 - Local Smart Engine with inspectable Markov memory
 
 ## Measurements
-- 167.7 KB gzipped JS + CSS (170 KB CI budget)
-- 54 unit tests + 2 integration audits
+- 166.2 KB gzipped JS + CSS (170 KB CI budget)
+- 66 unit tests + 2 integration audits
 - Manifest V3, strict CSP, no inline script
 
 ## Install
@@ -122,7 +122,7 @@ Body:
 Welcome to Cove.
 
 - Install: download the Chrome or Firefox ZIP from Releases, unzip, and load it as an unpacked extension.
-- Requirements: Chrome/Brave/Arc/Edge, or Firefox 128+/Zen.
+- Requirements: Chrome/Brave/Arc/Edge, or Firefox 140+/Zen.
 - Not available on a store yet. Do not use a store listing claiming to be Cove.
 - Privacy: read docs/privacy.md for the complete network ledger.
 - Broken feed: include the publisher, feed URL, browser, and a screenshot.

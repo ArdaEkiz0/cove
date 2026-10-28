@@ -277,6 +277,7 @@ export function createDefaultSettings(): CoveSettings {
         name: 'DuckDuckGo',
         shortLabel: 'DDG',
         bang: '!ddg',
+        aliases: ['!duck', '!duckduckgo'],
         domain: 'duckduckgo.com',
         urlTemplate: 'https://duckduckgo.com/?q={q}',
         enabled: true
@@ -286,6 +287,7 @@ export function createDefaultSettings(): CoveSettings {
         name: 'Google',
         shortLabel: 'G',
         bang: '!g',
+        aliases: ['!google'],
         domain: 'google.com',
         urlTemplate: 'https://www.google.com/search?q={q}',
         enabled: true
@@ -295,6 +297,7 @@ export function createDefaultSettings(): CoveSettings {
         name: 'Brave',
         shortLabel: 'BRV',
         bang: '!brv',
+        aliases: ['!brave'],
         domain: 'search.brave.com',
         urlTemplate: 'https://search.brave.com/search?q={q}',
         enabled: false
@@ -304,6 +307,7 @@ export function createDefaultSettings(): CoveSettings {
         name: 'GitHub',
         shortLabel: 'GH',
         bang: '!gh',
+        aliases: ['!github'],
         domain: 'github.com',
         urlTemplate: 'https://github.com/search?q={q}',
         enabled: true
@@ -313,6 +317,7 @@ export function createDefaultSettings(): CoveSettings {
         name: 'YouTube',
         shortLabel: 'YT',
         bang: '!yt',
+        aliases: ['!youtube'],
         domain: 'youtube.com',
         urlTemplate: 'https://www.youtube.com/results?search_query={q}',
         enabled: false
@@ -322,6 +327,7 @@ export function createDefaultSettings(): CoveSettings {
         name: 'MDN Docs',
         shortLabel: 'MDN',
         bang: '!mdn',
+        aliases: ['!mozilla'],
         domain: 'developer.mozilla.org',
         urlTemplate: 'https://developer.mozilla.org/en-US/search?q={q}',
         enabled: false
@@ -331,8 +337,9 @@ export function createDefaultSettings(): CoveSettings {
         name: 'Wikipedia',
         shortLabel: 'W',
         bang: '!w',
+        aliases: ['!wiki', '!wikipedia'],
         domain: 'wikipedia.org',
-        urlTemplate: 'https://en.wikipedia.org/w/index.php?search?q={q}',
+        urlTemplate: 'https://en.wikipedia.org/w/index.php?search={q}',
         enabled: false
       }
     ],

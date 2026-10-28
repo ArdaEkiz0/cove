@@ -2,6 +2,7 @@
   import { NEURAL_MODES } from '../../lib/audio';
   import { CURATED_WALLPAPERS, STARTER_RSS_CATALOG } from '../../lib/defaults';
   import { LANGUAGE_LABELS } from '../../lib/i18n';
+  import { SEARCH_ENGINE_PRESETS } from '../../lib/search';
   import { cove } from '../../lib/state.svelte';
   import type {
     AutonomyMode,
@@ -12,6 +13,7 @@
     LayoutMode,
     NeuralDepth,
     NeuralModeId,
+    SearchEngine,
     SettingsSectionId,
     ThemeMode,
     ThemePreset,
@@ -29,6 +31,8 @@
   let newEngineName = $state('');
   let newEngineBang = $state('');
   let newEngineUrl = $state('');
+  let newEngineAliases = $state('');
+  let editingEngineId = $state<string | null>(null);
 
   let newClockCity = $state('');
   let newClockTz = $state('America/New_York');
@@ -203,14 +207,49 @@
     cove.saveSettings();
   }
 
+  function resetEngineForm() {
+    newEngineName = '';
+    newEngineBang = '';
+    newEngineUrl = '';
+    newEngineAliases = '';
+    editingEngineId = null;
+  }
+
   function handleAddEngine(e: SubmitEvent) {
     e.preventDefault();
-    if (cove.addCustomSearchEngine(newEngineName, newEngineBang, newEngineUrl)) {
-      newEngineName = '';
-      newEngineBang = '';
-      newEngineUrl = '';
-    }
+    const ok = editingEngineId
+      ? cove.updateSearchEngine(
+          editingEngineId,
+          newEngineName,
+          newEngineBang,
+          newEngineUrl,
+          newEngineAliases
+        )
+      : cove.addCustomSearchEngine(
+          newEngineName,
+          newEngineBang,
+          newEngineUrl,
+          newEngineAliases
+        );
+    if (ok) resetEngineForm();
   }
+
+  function beginEditEngine(engine: SearchEngine) {
+    editingEngineId = engine.id;
+    newEngineName = engine.name;
+    newEngineBang = engine.bang;
+    newEngineUrl = engine.urlTemplate;
+    newEngineAliases = (engine.aliases || []).join(', ');
+  }
+
+  const availableSearchPresets = $derived(
+    SEARCH_ENGINE_PRESETS.filter(
+      (preset) =>
+        !cove.settings.searchEngines.some(
+          (engine) => engine.id === preset.id || engine.bang === preset.bang
+        )
+    )
+  );
 
   function handleAddClock(e: SubmitEvent) {
     e.preventDefault();
@@ -1484,6 +1523,24 @@
                   </div>
                 </div>
 
+                {#if availableSearchPresets.length}
+                  <div class="preset-search-row">
+                    {#each availableSearchPresets as preset (preset.id)}
+                      <button
+                        type="button"
+                        class="preset-engine-chip"
+                        onclick={() => cove.addSearchEnginePreset(preset)}
+                        title={`Add ${preset.name}: ${preset.description}`}
+                      >
+                        <BrandIcon url={preset.domain} title={preset.name} size={14} radius={3} />
+                        <span>{preset.name}</span>
+                        <code>{preset.bang}</code>
+                        <Icon name="plus" size={11} />
+                      </button>
+                    {/each}
+                  </div>
+                {/if}
+
                 <div class="engine-list">
                   {#each cove.settings.searchEngines as eng (eng.id)}
                     <div class="engine-row">
@@ -1492,6 +1549,9 @@
                         <div class="eng-meta">
                           <strong>{eng.name}</strong>
                           <span>{eng.urlTemplate}</span>
+                          {#if eng.aliases?.length}
+                            <span class="eng-aliases">Also {eng.aliases.join(' ')}</span>
+                          {/if}
                         </div>
                       </div>
 
@@ -1500,8 +1560,19 @@
                         {#if eng.isCustom}
                           <button
                             type="button"
+                            class="icon-edit"
+                            onclick={() => beginEditEngine(eng)}
+                            title="Edit custom engine"
+                          >
+                            <Icon name="edit" size={13} />
+                          </button>
+                          <button
+                            type="button"
                             class="icon-del"
-                            onclick={() => cove.removeSearchEngine(eng.id)}
+                            onclick={() => {
+                              if (editingEngineId === eng.id) resetEngineForm();
+                              cove.removeSearchEngine(eng.id);
+                            }}
                             title="Remove custom engine"
                           >
                             <Icon name="x" size={13} />
@@ -1522,7 +1593,7 @@
                   {/each}
                 </div>
 
-                <form class="inline-add-form" onsubmit={handleAddEngine}>
+                <form class="inline-add-form engine-form" onsubmit={handleAddEngine}>
                   <input
                     type="text"
                     class="studio-input"
@@ -1538,14 +1609,31 @@
                     required
                   />
                   <input
+                    type="text"
+                    class="studio-input w-48"
+                    bind:value={newEngineAliases}
+                    placeholder="Aliases (optional) !kagi"
+                  />
+                  <input
                     type="url"
                     class="studio-input flex-1"
                     bind:value={newEngineUrl}
                     placeholder="https://kagi.com/search?q={q}"
                     required
                   />
-                  <button type="submit" class="btn-primary">Add Engine</button>
+                  <button type="submit" class="btn-primary">
+                    {editingEngineId ? 'Save Changes' : 'Add Engine'}
+                  </button>
+                  {#if editingEngineId}
+                    <button type="button" class="btn-ghost" onclick={resetEngineForm}>
+                      Cancel
+                    </button>
+                  {/if}
                 </form>
+                <p class="engine-hint">
+                  Use <code>{'{q}'}</code> where the query goes. HTTPS is recommended; credentials and
+                  non-http(s) URLs are rejected. Try <code>!gh svelte</code> or <code>svelte !gh</code>.
+                </p>
               </div>
             </section>
           {/if}
@@ -2814,6 +2902,35 @@
   }
 
   /* Search Engines */
+  .preset-search-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 0 8px;
+  }
+  .preset-engine-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-subtle);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+  }
+  .preset-engine-chip:hover {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  .preset-engine-chip code {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
   .engine-list {
     display: flex;
     flex-direction: column;
@@ -2852,6 +2969,11 @@
     text-overflow: ellipsis;
     max-width: 380px;
   }
+  .eng-meta .eng-aliases {
+    font-size: 0.7rem;
+    color: var(--accent-text);
+    opacity: 0.82;
+  }
   .eng-right {
     display: flex;
     align-items: center;
@@ -2865,13 +2987,30 @@
     font-family: var(--font-mono);
     font-size: 0.8rem;
   }
-  .icon-del {
+  .icon-del,
+  .icon-edit {
     color: var(--text-muted);
     display: grid;
     place-items: center;
   }
+  .icon-edit:hover {
+    color: var(--accent-text);
+  }
   .icon-del:hover {
     color: var(--status-danger);
+  }
+  .engine-form {
+    align-items: center;
+  }
+  .engine-hint {
+    margin: -4px 0 14px;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .engine-hint code {
+    font-family: var(--font-mono);
+    color: var(--accent-text);
   }
 
   /* Chips, Forms & Ledger */

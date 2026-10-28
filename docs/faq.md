@@ -28,15 +28,15 @@ The shell, fonts, wallpapers, notes, settings, focus timer, sound engine, and ca
 
 ## Which browsers are supported?
 
-Chrome, Brave, Arc, Edge, Firefox 128+, and Zen are the supported targets. Chromium browsers use the Chrome MV3 package; Firefox and Zen use the Firefox MV3 package. Safari is not packaged in `v0.1.1`.
+Chrome, Brave, Arc, Edge, Firefox 140+, and Zen are the supported targets. Chromium browsers use the Chrome MV3 package; Firefox and Zen use the Firefox MV3 package. Safari is not packaged in `v0.1.3`.
 
 ## Is Cove on the Chrome Web Store or Firefox Add-ons?
 
-Not in `v0.1.1`. Installation is manual: download the release archive, unzip it, and load it as an unpacked extension. Store submission is a roadmap item, not a current claim. Check the repository releases for the latest package.
+Not in `v0.1.3`. Installation is manual: download the release archive, unzip it, and load it as an unpacked extension. Store submission is a roadmap item, not a current claim. Check the repository releases for the latest package.
 
 ## How large is Cove?
 
-The gzipped JavaScript and CSS total **167.7 KB** at `v0.1.1`, against an enforced **170 KB** budget. The full extension archive is larger because it includes eight local wallpapers and four font families. Those assets are local and do not require a network request at runtime.
+The gzipped JavaScript and CSS total **166.2 KB** at `v0.1.3`, against an enforced **170 KB** budget. The full extension archive is larger because it includes eight local wallpapers and four font families. Those assets are local and do not require a network request at runtime.
 
 ## How many news sources does Discover have?
 
@@ -50,7 +50,7 @@ No. Cove extracts the article HTML that the publisher serves to the browser. If 
 
 It combines an 18-hour freshness half-life with selected topics, learned topic and source affinity, title keywords, community points, banner quality, unread state, and a publisher diversity pass. The model is local and deterministic; there is no remote recommendation service. See [Discover](discover.md#ranking).
 
-## Is the neural audio medically proven?
+## Is Focus Sound medically proven?
 
 No. Cove's sound engine is a procedural ambient synthesizer with adjustable modulation. It is not a medical device and does not claim to treat ADHD, anxiety, sleep disorders, tinnitus, or any other condition. If you experience discomfort, stop and consult a professional.
 

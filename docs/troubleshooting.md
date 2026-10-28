@@ -11,13 +11,13 @@ Start with the release version and browser. Most install problems are caused by 
 3. Open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**, and select the folder containing `manifest.json`.
 4. If Chrome reports "Manifest file is missing or unreadable", you selected the ZIP or its parent folder.
 
-**Firefox 128+ / Zen**
+**Firefox 140+ / Zen**
 
 1. Open `about:debugging#/runtime/this-firefox`.
 2. Choose **Load Temporary Add-on** and select `manifest.json` inside the unzipped Firefox package.
 3. Temporary add-ons disappear when the browser closes. For a persistent install, use Firefox Developer Edition/Nightly and **Install Add-on From File**.
 
-Cove is not on a store in `v0.1.1`. Do not install a store listing claiming to be Cove.
+Cove is not on a store in `v0.1.3`. Do not install a store listing claiming to be Cove.
 
 ## The new tab did not change
 

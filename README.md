@@ -12,7 +12,7 @@ Curated reading, an offline article reader, a tab workspace, a Pomodoro timer, a
 [![CI](https://github.com/DevAnimecx/cove/actions/workflows/ci-release.yml/badge.svg)](https://github.com/DevAnimecx/cove/actions/workflows/ci-release.yml)
 [![Release](https://img.shields.io/github/v/release/DevAnimecx/cove?style=flat-square&label=release&color=5b8def)](https://github.com/DevAnimecx/cove/releases/latest)
 [![License](https://img.shields.io/github/license/DevAnimecx/cove?style=flat-square&color=0f766e)](LICENSE)
-[![Runtime](https://img.shields.io/badge/runtime-167.7%20KB%20gzip-7c3aed?style=flat-square)](docs/performance.md)
+[![Runtime](https://img.shields.io/badge/runtime-166.2%20KB%20gzip-7c3aed?style=flat-square)](docs/performance.md)
 [![Manifest V3](https://img.shields.io/badge/manifest-v3-1d4ed8?style=flat-square)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
 [![Telemetry](https://img.shields.io/badge/telemetry-none-0f766e?style=flat-square)](docs/privacy.md)
 
@@ -24,7 +24,7 @@ Curated reading, an offline article reader, a tab workspace, a Pomodoro timer, a
 
 <div align="center">
 
-<sub>**Cove v0.1.1** · Apache-2.0 · pre-1.0, usable today · manual install while store packaging is on the roadmap</sub>
+<sub>**Cove v0.1.3** · Apache-2.0 · pre-1.0, usable today · manual install while store packaging is on the roadmap</sub>
 
 </div>
 
@@ -47,9 +47,9 @@ Cove is not a cloud RSS service, does not bypass paywalls, and does not claim to
 | | |
 | :--- | :--- |
 | **Product** | Browser new tab / workspace / RSS reader / focus timer |
-| **Status** | `v0.1.1`, pre-1.0 — every feature described here ships today |
-| **Browsers** | Chrome, Brave, Arc, Edge · Firefox 128+, Zen |
-| **Runtime** | **167.7 KB** gzipped JS + CSS at `v0.1.1`, enforced **170 KB** budget |
+| **Status** | `v0.1.3`, pre-1.0 — every feature described here ships today |
+| **Browsers** | Chrome, Brave, Arc, Edge · Firefox 140+, Zen |
+| **Runtime** | **166.2 KB** gzipped JS + CSS at `v0.1.3`, enforced **170 KB** budget |
 | **Data** | `chrome.storage.local` + IndexedDB; JSON export and import |
 | **Privacy** | No account, no analytics, no Cove server; complete [network ledger](docs/privacy.md#network-ledger) |
 | **License** | [Apache-2.0](LICENSE) — free to use, inspect, modify, and self-build |
@@ -65,7 +65,7 @@ Cove takes a different position:
 
 - **One surface, local state.** The workspace, reading queue, tab sessions, and focus state share one local store. No account sprawl, no sync service, no dashboard analytics.
 - **Reading is first-class, not a feed counter.** Discover shows a finite set of published sources, extracts article prose locally, and keeps cached articles readable offline.
-- **Focus tools belong in the start page.** Pomodoro, a site blocker, five procedural soundscapes, and four neural-style audio modes are included — with no audio files and no subscription.
+- **Focus tools belong in the start page.** Pomodoro, a site blocker, five procedural soundscapes, and four Focus Sound modes are included — with no audio files and no subscription.
 - **Small is a feature, not a slogan.** The runtime code is measured on every build. If a dependency pushes it past 170 KB gzipped, CI fails.
 
 ---
@@ -82,7 +82,7 @@ Cove takes a different position:
 
 ---
 
-## What ships in `v0.1.1`
+## What ships in `v0.1.3`
 
 ### A workspace, not a widget demo
 
@@ -113,7 +113,7 @@ Cove takes a different position:
 - **Pomodoro** with configurable work/break durations, intentions, history, streaks, and daily completions.
 - **Site blocker** using `declarativeNetRequest`, for focus sessions, work hours, or both. It is a friction tool, not parental control or a security boundary.
 - **Five procedural textures** — rain, café room tone, velvet noise, waves, and pine wind. No audio files are bundled.
-- **Four neural-style modes** — 16 Hz Deep Work, 10.5 Hz Creative Flow, 8.5 Hz Calm Reading, 5.5 Hz Recharge. A speech-band filter gently reduces nearby conversation intelligibility.
+- **Four Focus Sound modes** — Deep Work, Creative Flow, Calm Reading, and Recharge, each with its own procedural chord, modulation character, and texture blend. A speech-band filter gently reduces nearby conversation intelligibility.
 - **Not a medical device.** These are aesthetic and ergonomic tools; no clinical benefit is claimed.
 
 ### Atmosphere and control
@@ -149,7 +149,7 @@ Cove is a poor fit if you need multi-device sync today, team feed workflows, a p
 
 ## Install
 
-> **Status:** `v0.1.1` is installed manually. It is not on the Chrome Web Store or Firefox Add-ons yet. Do not trust a store listing claiming to be Cove.
+> **Status:** `v0.1.3` is installed manually. It is not on the Chrome Web Store or Firefox Add-ons yet. Do not trust a store listing claiming to be Cove.
 
 ### Chrome, Brave, Arc, or Edge
 
@@ -159,7 +159,7 @@ Cove is a poor fit if you need multi-device sync today, team feed workflows, a p
 4. Choose **Load unpacked** and select the unzipped folder.
 5. Open a new tab.
 
-### Firefox 128+ or Zen
+### Firefox 140+ or Zen
 
 1. Download the latest **Firefox MV3** ZIP.
 2. Open `about:debugging#/runtime/this-firefox`.
@@ -172,7 +172,7 @@ Release archives include SHA-256 checksums and a manifest:
 
 ```bash
 sha256sum -c SHA256SUMS.txt        # macOS/Linux
-Get-FileHash .\cove-chrome-mv3-v0.1.1.zip -Algorithm SHA256   # Windows PowerShell
+Get-FileHash .\cove-chrome-mv3-v0.1.3.zip -Algorithm SHA256   # Windows PowerShell
 ```
 
 Build provenance, artifact names, and rollback steps are documented in [Releasing](docs/releasing.md).
@@ -194,7 +194,7 @@ Create and verify a release build:
 
 ```bash
 npm run typecheck      # strict TypeScript check
-npm test               # 54 unit tests
+npm test               # 66 unit tests
 npm run build          # Vite build + Chrome/Firefox ZIPs + checksums
 npm run test:core      # 2 integration audits: MV3/CSP and no-mock UI
 npm run budget         # fail at >= 170 KB gzipped
@@ -268,21 +268,21 @@ Security reports should go through **GitHub Security Advisories**, not a public 
 
 ## Performance
 
-Cove measures **code weight**, not total download size. At `v0.1.1`:
+Cove measures **code weight**, not total download size. At `v0.1.3`:
 
 ```text
      0.3 KB  blocked page
      3.4 KB  pre-paint theme CSS
      0.5 KB  pre-paint theme JS
-   139.1 KB  new tab JS
-    21.4 KB  new tab CSS
+   137.3 KB  new tab JS
+    21.8 KB  new tab CSS
      0.9 KB  triage core
      0.6 KB  triage worker
      1.5 KB  background service worker
 -----------
-   167.7 KB  total gzipped JS + CSS
+   166.2 KB  total gzipped JS + CSS
    170.0 KB  enforced budget
-     2.3 KB  headroom
+     3.8 KB  headroom
 ```
 
 The budget includes every `.js` and `.css` file in `dist/`, excludes wallpapers, fonts, HTML, icons, and runtime caches, and fails CI at `170 * 1024` bytes. The full archive is larger because eight wallpapers and four font families are bundled locally.
@@ -332,13 +332,13 @@ The shell, fonts, wallpapers, notes, settings, focus timer, sound engine, and ca
 
 **11 curated RSS/Atom sources + 3 keyless public APIs** (Spaceflight News, DEV.to, Hacker News Algolia), plus any custom RSS/Atom feeds you add. The exact list is in [Discover](docs/discover.md#sources).
 
-### Is the neural audio medically proven?
+### Is Focus Sound medically proven?
 
 No. It is a procedural ambient synthesizer with adjustable modulation, not a medical device. It does not claim to treat ADHD, anxiety, sleep disorders, tinnitus, or any other condition. If you experience discomfort, stop and consult a professional.
 
 ### Is Cove on the Chrome Web Store or Firefox Add-ons?
 
-Not in `v0.1.1`. Installation is manual from GitHub Releases. Store submission is a roadmap item, not a current claim.
+Not in `v0.1.3`. Installation is manual from GitHub Releases. Store submission is a roadmap item, not a current claim.
 
 More answers: [FAQ](docs/faq.md).
 

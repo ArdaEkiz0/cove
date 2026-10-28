@@ -2,7 +2,7 @@
 
 Cove is a local-first Manifest V3 new tab for people who want a quieter browser start page without giving up useful tools. This directory is the source of truth for how it works, what it stores, how it is tested, and how it is released.
 
-> **Product status:** `v0.1.1`, pre-1.0. The extension is usable today and every feature described here exists in the repository. Features that are planned, partial, or browser-dependent are labelled as such.
+> **Product status:** `v0.1.3`, pre-1.0. The extension is usable today and every feature described here exists in the repository. Features that are planned, partial, or browser-dependent are labelled as such.
 
 ## Start here
 
@@ -16,7 +16,7 @@ Cove is a local-first Manifest V3 new tab for people who want a quieter browser 
 | Learn the keyboard | [Keyboard shortcuts](keyboard-shortcuts.md) |
 | Ship a release | [Releasing](releasing.md) |
 | Understand the newsroom | [Discover](discover.md) |
-| Understand the focus sound | [Neural audio](neural-audio.md) |
+| Understand the focus sound | [Focus Sound](neural-audio.md) |
 | Understand the adaptive layer | [Smart engine](smart-engine.md) |
 | Contribute code or docs | [Contributing](contributing.md) |
 | Report a vulnerability | [Security](security.md) |
@@ -37,7 +37,7 @@ Cove is a local-first Manifest V3 new tab for people who want a quieter browser 
 - [Architecture](architecture.md) - runtime layers, data flow, and failure modes.
 - [Data model](data-model.md) - storage keys, schemas, and backup format.
 - [Discover](discover.md) - sources, ranking, extraction, and caching.
-- [Neural audio](neural-audio.md) - synthesis graph, modes, and safety notes.
+- [Focus Sound](neural-audio.md) - synthesis graph, modes, and safety notes.
 - [Smart engine](smart-engine.md) - signals, Markov memory, decay, and controls.
 - [Design system](design-system.md) - tokens, typography, atmosphere, and motion.
 - [Accessibility](accessibility.md) - keyboard, focus, contrast, and motion.

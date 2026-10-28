@@ -34,7 +34,7 @@ There is no server-side copy. Uninstalling the extension or clearing site data r
 
 ## Network ledger
 
-This table is the complete production network surface in `v0.1.1`. The exact endpoints are visible in source.
+This table is the complete production network surface in `v0.1.3`. The exact endpoints are visible in source.
 
 | Feature | Destination | When | Default | Can disable |
 | :--- | :--- | :--- | :--- | :--- |

@@ -50,6 +50,11 @@ jobs:
       - name: Release artifact, checksum & manifest verification
         run: npm run verify
 
+      - name: Prune superseded release archives
+        run: |
+          version=$(node -p "require('./package.json').version")
+          find releases -maxdepth 1 -type f -name 'cove-*-v*.zip' ! -name "*-v${version}.zip" -delete
+
       - name: Upload MV3 extension artifacts
         uses: actions/upload-artifact@v4
         with:

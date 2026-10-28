@@ -77,6 +77,7 @@ export interface SearchEngine {
   name: string;
   shortLabel: string;
   bang: string;
+  aliases?: string[];
   domain: string;
   urlTemplate: string;
   enabled: boolean;

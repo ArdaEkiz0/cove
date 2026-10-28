@@ -8,9 +8,9 @@ This is a practical launch plan for Cove, not a promise of virality. The goal is
 
 **Problem:** Browser start pages are ad portals, wallpaper subscriptions, or unread-count inboxes. Focus apps and readers live in separate tabs with separate accounts.
 
-**Solution:** Cove puts a quiet workspace, a small newsroom, an offline reader, a Pomodoro timer, and procedural sound in one Manifest V3 extension. It stores data locally, ships 167.7 KB of gzipped runtime, and can be audited.
+**Solution:** Cove puts a quiet workspace, a small newsroom, an offline reader, a Pomodoro timer, and procedural sound in one Manifest V3 extension. It stores data locally, ships 166.2 KB of gzipped runtime, and can be audited.
 
-**Proof:** Apache-2.0, 54 unit tests, 2 integration audits, 170 KB budget, documented network ledger.
+**Proof:** Apache-2.0, 66 unit tests, 2 integration audits, 170 KB budget, documented network ledger.
 
 **Ask:** Try it, file specific issues, and tell us which source or browser breaks.
 
@@ -70,7 +70,7 @@ First comment should include:
 - the honest limitations,
 - an invitation to audit the privacy ledger.
 
-Expect criticism about `<all_urls>`, feed scraping, and the word "neural." Answer with specifics. Do not argue about taste.
+Expect criticism about `<all_urls>`, feed scraping, and audio wellness claims. Answer with specifics. Do not argue about taste.
 
 ### Reddit
 
@@ -147,7 +147,7 @@ Cove is an open-source Manifest V3 new tab for Chrome/Firefox. It combines a
 small RSS newsroom (11 curated feeds + 3 keyless APIs), an offline article
 reader, a Pomodoro timer, tab triage, and a procedural Web Audio focus engine.
 
-It has no account, no analytics, and no Cove server. Runtime JS+CSS is 167.7 KB
+It has no account, no analytics, and no Cove server. Runtime JS+CSS is 166.2 KB
 gzipped against a 170 KB CI budget. Data lives in chrome.storage.local and
 IndexedDB. The privacy ledger lists every network destination.
 
@@ -174,9 +174,9 @@ Happy to answer architecture questions or hear what would make it a daily driver
 ### Short post
 
 ```text
-Cove v0.1.1 is out: a local-first new tab with a small RSS newsroom, offline
+Cove v0.1.3 is out: a local-first new tab with a small RSS newsroom, offline
 reader, focus timer, and procedural sound. No account, no analytics, no Cove
-server. 167.7 KB gzipped. Apache-2.0.
+server. 166.2 KB gzipped. Apache-2.0.
 
 Install: https://github.com/DevAnimecx/cove/releases
 Limits: no store listing yet, no sync, no paywall bypass.
@@ -200,7 +200,7 @@ Stars are a lagging indicator. Do not optimize for them.
 | :--- | :--- |
 | "It's just another new tab." | Show the offline reader, local data model, and measured budget |
 | "`<all_urls>` is too broad." | Explain custom feeds and extraction; link the ledger; discuss a future optional-host model |
-| "Neural audio is pseudoscience." | Agree that it is not medical; describe the actual DSP and remove any overclaim |
+| "Focus Sound is pseudoscience." | Agree that it is not medical; describe the actual DSP and remove any overclaim |
 | "No store listing." | Be explicit; provide a signed release and checksums |
 | "Feed X is broken." | Reproduce, fix, add a test or a documented limitation |
 | "It looks AI-generated." | Show real screenshots, real commits, and specific design decisions |

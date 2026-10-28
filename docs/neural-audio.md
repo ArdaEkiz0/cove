@@ -1,8 +1,8 @@
-# Neural audio
+# Focus Sound
 
 Cove's sound engine is a procedural Web Audio synthesizer. It ships no audio files, downloads no loops, and makes no network requests. The result is a small, adjustable soundscape that can run offline.
 
-The name "neural" describes the modulation design, not a medical claim. Cove is not a clinical device and does not promise entrainment, treatment, or a specific cognitive outcome.
+Focus Sound is an aesthetic and ergonomic tool, not a medical claim. Cove is not a clinical device and does not promise entrainment, treatment, or a specific cognitive outcome.
 
 ## Signal chain
 
@@ -20,19 +20,19 @@ flowchart LR
 ```
 
 - **Pad**: four detuned oscillators tuned to an open chord voicing. Slow attack and release avoid clicks.
-- **Modulation**: a low-frequency oscillator moves filter cutoff and amplitude together. The rate is the mode's labelled frequency.
+- **Modulation**: a low-frequency oscillator moves filter cutoff and amplitude together. The rate and depth are tuned per mode.
 - **Textures**: filtered noise and shaped resonance create rain, room tone, velvet noise, waves, and wind.
 - **Speech shield**: a gentle peaking filter around the speech band reduces the intelligibility of nearby conversation without claiming to remove it.
 - **Analyser**: real spectrum data drives the visualizer. It is not a decorative animation.
 
 ## Modes
 
-| Mode | Rate | Chord | Character |
-| :--- | :--- | :--- | :--- |
-| Deep Work | 16.0 Hz beta | D2, A2, E3, A3 | Open suspended voicing, steady pulse, rain and velvet noise |
-| Creative Flow | 10.5 Hz alpha | C2, G2, D3, E3 | Warm major ninth, waves, café, wind |
-| Calm Reading | 8.5 Hz low-alpha | F2, C3, G3, A3 | Soft low-arousal pad, rain, quiet noise, wind |
-| Recharge & Unwind | 5.5 Hz theta | A1, E2, B2, C#3 | Deep, slow, wave-forward |
+| Mode | Chord | Character |
+| :--- | :--- | :--- |
+| Deep Work | D2, A2, E3, A3 | Open suspended voicing, steady pulse, rain and velvet noise |
+| Creative Flow | C2, G2, D3, E3 | Warm major ninth, waves, café, wind |
+| Calm Reading | F2, C3, G3, A3 | Soft low-arousal pad, rain, quiet noise, wind |
+| Recharge & Unwind | A1, E2, B2, C#3 | Deep, slow, wave-forward |
 
 Depth settings scale amplitude modulation and filter movement:
 
@@ -40,7 +40,7 @@ Depth settings scale amplitude modulation and filter movement:
 - Balanced: default.
 - High: more pronounced movement.
 
-Higher depth is not "better"; it is more noticeable. Users who are sensitive to pulsing should use Subtle or turn neural mode off.
+Higher depth is not "better"; it is more noticeable. Users who are sensitive to pulsing should use Subtle or turn Focus Sound off.
 
 ## Soundscapes
 
@@ -91,7 +91,7 @@ The engine is deliberately small enough to fit inside the 170 KB code budget. If
 - Not a replacement for silence, breaks, or professional care.
 - Not a guarantee that a frequency produces a mental state.
 
-The honest description is: a carefully designed, locally synthesized ambient focus tool with adjustable modulation.
+The honest description is: a carefully designed, locally synthesized ambient focus tool with adjustable modulation and no clinical claims.
 
 ## Related reading
 

@@ -2,6 +2,36 @@
 
 All notable changes to **Cove** are documented in this file.
 
+## [0.1.3] - 2026-10-28
+
+### Added
+- **Search provider studio**: curated one-click presets for Startpage, Kagi, Perplexity, ChatGPT, Claude, Stack Overflow, GitLab, npm, PyPI, Reddit, Hacker News, arXiv, Google Maps, and Unsplash.
+- **Bang aliases and suffix bangs**: `!gh`/`!github`, `!w`/`!wiki`, and both `!g query` and `query !g`.
+- **Custom provider editing**: add, edit, remove, and alias HTTPS search templates with `{q}`, including credential and protocol validation.
+- **Local instant answers**: date differences and offsets, Unix timestamps, base conversion, tips, percentage change, RGB/HSL colors, and word counts.
+
+### Changed
+- Switched production minification to Terser. The measured runtime is now **166.2 KB** gzipped (141.0 KB JS + 25.2 KB CSS), still inside the enforced **170 KB** budget.
+- Rebranded user-facing audio copy from "Neural" to **Focus Sound** and removed frequency-based wellness claims.
+
+### Fixed
+- Corrected the Wikipedia search URL to use the standard `search={q}` parameter.
+- Search suggestions and direct URL navigation now reject invalid templates and support full `http(s)://` URLs.
+
+## [0.1.2] - 2026-10-28
+
+### Added
+- GitHub release update checker with a six-hour cache, a premium "Update your Cove" badge, and a guided download-and-reload flow for unpacked extensions.
+- Canonical `releases/latest/download/<asset>` ZIPs for Chrome, Firefox, and source.
+
+### Changed
+- Downloads now go directly to GitHub's latest release assets instead of a release page.
+- Replaced app-level `{@html}` rendering with a sanitizing `SafeHtml` component.
+- Firefox minimum raised to 140 desktop / 142 Android with `data_collection_permissions.required: ["none"]`.
+
+### Fixed
+- Firefox add-on validation now reports zero errors and zero notices.
+
 ## [0.1.1] — 2026-10-27
 
 ### Added

@@ -10,7 +10,7 @@ Cove uses semantic versioning for the extension:
 - `MINOR` for new user-facing capabilities,
 - `PATCH` for fixes and documentation.
 
-`v0.1.1` is pre-1.0: minor versions may still include data migrations. Every migration must keep old backups importable for at least one minor release.
+`v0.1.3` is pre-1.0: minor versions may still include data migrations. Every migration must keep old backups importable for at least one minor release.
 
 The backup schema has its own `version` field (currently 6). Do not confuse it with the extension version.
 
@@ -53,7 +53,7 @@ npm run verify
 
 ### 3. Manual QA
 
-Run the checklist in [Testing](testing.md#manual-qa) in a clean Chromium profile and a Firefox 128+ profile. Pay special attention to:
+Run the checklist in [Testing](testing.md#manual-qa) in a clean Chromium profile and a Firefox 140+ profile. Pay special attention to:
 
 - install from the packaged ZIP, not only the dev server,
 - the new tab override,
@@ -134,14 +134,14 @@ Source ZIP:
 shasum -a 256 -c SHA256SUMS.txt
 
 # Windows PowerShell
-Get-FileHash .\cove-chrome-mv3-v0.1.1.zip -Algorithm SHA256
+Get-FileHash .\cove-chrome-mv3-v0.1.3.zip -Algorithm SHA256
 ```
 
 Compare the digest to `releases/release-manifest.json`.
 
 ## Store submission
 
-Store submission is not complete in `v0.1.1`. Before submitting:
+Store submission is not complete in `v0.1.3`. Before submitting:
 
 - produce a privacy policy URL,
 - justify every permission, especially `<all_urls>`,

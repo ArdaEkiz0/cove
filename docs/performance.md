@@ -4,21 +4,21 @@ Cove's performance story is a strict code budget, a pre-paint theme, local asset
 
 ## The measured number
 
-At `v0.1.1`, the production build measures:
+At `v0.1.3`, the production build measures:
 
 ```text
      0.3 KB  assets/blocked-*.js
      3.4 KB  assets/boot-theme-*.css
      0.5 KB  assets/boot-theme-*.js
-   139.1 KB  assets/newtab-*.js
-    21.4 KB  assets/newtab-*.css
+   137.3 KB  assets/newtab-*.js
+    21.8 KB  assets/newtab-*.css
      0.9 KB  assets/triage-core-*.js
      0.6 KB  assets/triage.worker-*.js
      1.5 KB  background.js
 -----------
-   167.7 KB  TOTAL gzipped JS + CSS
+   166.2 KB  TOTAL gzipped JS + CSS
    170.0 KB  BUDGET
-     2.3 KB  HEADROOM
+     3.8 KB  HEADROOM
 ```
 
 These numbers come from `npm run budget` on the tracked `dist/` build. They will drift slightly with code changes and hashed file names; the budget is the durable claim.
@@ -82,7 +82,7 @@ Feed freshness is 3 minutes for Discover and 20 minutes for the RSS widget. Weat
 
 - **No runtime framework download.** Svelte compiles components; there is no React/Vue runtime shipped.
 - **No third-party fonts.** Four `.woff2` families are bundled and subset by usage.
-- **No audio files.** Neural audio and soundscapes are synthesized with Web Audio nodes.
+- **No audio files.** Focus Sound and soundscapes are synthesized with Web Audio nodes.
 - **Local wallpapers.** Eight scenes ship in the archive; the default does not fetch Unsplash.
 - **Dependency-light parsing.** RSS and article extraction use platform APIs (`DOMParser`, `fetch`) rather than large parser libraries.
 - **Bounded work.** Feed batches, article limits, LRU eviction, and response-size caps prevent unbounded memory growth.

@@ -86,7 +86,7 @@ See [Discover](discover.md) for the source list and ranking rules.
 
 The extractor is intentionally conservative. It does not execute publisher scripts, does not embed remote frames, and does not attempt to bypass paywalls. If an article cannot be extracted, Cove shows the feed summary and a link to the original.
 
-### 6. Neural audio
+### 6. Focus Sound
 
 `src/lib/audio.ts` builds the entire soundscape with the Web Audio API. There are no audio files to download. Oscillators, filters, noise buffers, gains, and an analyser are created on demand and torn down when the mode changes.
 
@@ -96,7 +96,7 @@ The graph has three layers:
 - phase-locking modulation applied to amplitude and filter cutoff,
 - procedural nature/room textures plus a gentle speech-band shaping filter.
 
-The analyser feeds the live visualizer. Audio starts only after a user gesture, as required by browser autoplay policy. See [Neural audio](neural-audio.md).
+The analyser feeds the live visualizer. Audio starts only after a user gesture, as required by browser autoplay policy. See [Focus Sound](neural-audio.md).
 
 ### 7. Smart engine
 

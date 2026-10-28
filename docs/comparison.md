@@ -4,7 +4,7 @@ Cove sits at the intersection of a new tab, a reading app, and a focus tool. Thi
 
 ## At a glance
 
-| | Cove v0.1.1 | Default browser new tab | Wallpaper/dashboard extension | Cloud RSS reader | Dedicated focus app |
+| | Cove v0.1.3 | Default browser new tab | Wallpaper/dashboard extension | Cloud RSS reader | Dedicated focus app |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Primary job | Calm workspace + reading + focus | Search and content portal | Wallpaper and widgets | Feed inbox | Timer and sound |
 | Account required | No | No | Usually no | Usually yes | Usually yes |
@@ -40,7 +40,7 @@ The sound engine synthesizes pads and textures with Web Audio. There are no samp
 
 ### 5. Honest smallness
 
-The code budget is 170 KB gzipped, measured at 167.7 KB in `v0.1.1`. The full archive is larger because wallpapers and fonts are bundled. Cove does not claim to be the smallest extension on earth; it claims to keep its runtime code deliberately constrained.
+The code budget is 170 KB gzipped, measured at 166.2 KB in `v0.1.3`. The full archive is larger because wallpapers and fonts are bundled. Cove does not claim to be the smallest extension on earth; it claims to keep its runtime code deliberately constrained.
 
 ## Where Cove is weaker
 
@@ -51,7 +51,7 @@ The code budget is 170 KB gzipped, measured at 167.7 KB in `v0.1.1`. The full ar
 | Mobile | Browser extension only | A native or web reading app |
 | Audio library | Four synthesized modes and five textures | A produced music or ambient library |
 | Team collaboration | None | Shared workspace tools |
-| Store distribution | Manual install in `v0.1.1` | Products with store listings |
+| Store distribution | Manual install in `v0.1.3` | Products with store listings |
 | Accessibility certification | No formal audit | Audited productivity software |
 | Language coverage | Five locales, partial copy | Fully localized products |
 

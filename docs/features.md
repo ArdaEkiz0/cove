@@ -1,6 +1,6 @@
 # Features
 
-Cove is one new tab with several layers: a workspace, a reading room, a focus stage, and an optional adaptive engine. This page describes what each surface actually does in `v0.1.1` and where the limits are.
+Cove is one new tab with several layers: a workspace, a reading room, a focus stage, and an optional adaptive engine. This page describes what each surface actually does in `v0.1.3` and where the limits are.
 
 ## The new tab workspace
 
@@ -101,18 +101,18 @@ A domain list can be enforced during focus sessions, work hours, or both. Enforc
 
 Five procedural textures can be blended: rain, café room tone, white/velvet noise, waves, and pine wind. No audio files are bundled. The mix is local and starts only after interaction.
 
-### Neural modes
+### Focus Sound
 
-Four phase-modulated modes:
+Four procedural, phase-modulated modes:
 
-| Mode | Modulation | Intended use |
+| Mode | Character | Intended use |
 | :--- | :--- | :--- |
-| Deep Work | 16 Hz beta | Sustained tasks and distraction masking |
-| Creative Flow | 10.5 Hz alpha | Writing, design, exploration |
-| Calm Reading | 8.5 Hz low-alpha | Reading and study |
-| Recharge & Unwind | 5.5 Hz theta | Recovery between sprints |
+| Deep Work | Open suspended voicing, steady pulse, rain and velvet noise | Sustained tasks and distraction masking |
+| Creative Flow | Warm major ninth, waves, room tone, wind | Writing, design, exploration |
+| Calm Reading | Soft low-arousal pad, rain, quiet noise, wind | Reading and study |
+| Recharge & Unwind | Deep, slow, wave-forward | Recovery between sprints |
 
-Depth can be subtle, balanced, or high. A speech-band shaping filter gently reduces the intelligibility of nearby conversation. These are aesthetic and ergonomic tools, not medical treatment. See [Neural audio](neural-audio.md).
+Depth can be subtle, balanced, or high. A speech-band shaping filter gently reduces the intelligibility of nearby conversation. These are aesthetic and ergonomic tools, not medical treatment. See [Focus Sound](neural-audio.md).
 
 ## Atmosphere
 
@@ -155,7 +155,7 @@ Five interface languages: English, Hindi, Spanish, German, and Japanese. The lan
 | Brave | Supported | Chromium MV3 |
 | Arc | Supported | Chromium MV3; new tab override depends on Arc settings |
 | Edge | Supported | Chromium MV3 |
-| Firefox 128+ | Supported | Gecko MV3 manifest; a few APIs are feature-detected |
+| Firefox 140+ | Supported | Gecko MV3 manifest; a few APIs are feature-detected |
 | Zen | Supported | Firefox-based; install from file |
 | Safari | Not shipped | Web build may render, but extension packaging is not provided |
 

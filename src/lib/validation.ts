@@ -20,6 +20,11 @@ import type {
   WeatherSettings,
   WidgetConfig
 } from './types';
+import {
+  isValidBang,
+  normalizeBang,
+  validateSearchUrlTemplate
+} from './search.ts';
 
 /**
  * Defensive import helpers for user-created Cove backups.
@@ -420,30 +425,55 @@ function sanitizeFocus(value: unknown, fallback: FocusSettings): FocusSettings {
 }
 
 function sanitizeSearchEngines(value: unknown, fallback: SearchEngine[]): SearchEngine[] {
-  const engines = uniqueById(
-    mapBounded(value, 30, (item) => {
-      if (!isRecord(item)) return null;
-      const id = asTrimmedString(item.id, 80);
-      const name = asTrimmedString(item.name, 80);
-      const shortLabel = asTrimmedString(item.shortLabel, 24);
-      const bang = asTrimmedString(item.bang, 24);
-      const domain = asTrimmedString(item.domain, 253);
-      const urlTemplate = asTrimmedString(item.urlTemplate, 2048);
-      if (!id || !name || !shortLabel || !bang || !domain || !urlTemplate.includes('{q}')) return null;
-      if (!/^https?:\/\//i.test(urlTemplate.split('{q}')[0])) return null;
-      return {
-        id,
-        name,
-        shortLabel,
-        bang,
-        domain,
-        urlTemplate,
-        enabled: asBoolean(item.enabled, true),
-        isCustom: typeof item.isCustom === 'boolean' ? item.isCustom : undefined
-      };
-    })
-  );
-  return engines.length > 0 ? engines : fallback;
+  const mapped = mapBounded(value, 30, (item) => {
+    if (!isRecord(item)) return null;
+    const id = asTrimmedString(item.id, 80);
+    const name = asTrimmedString(item.name, 80);
+    const shortLabel = asTrimmedString(item.shortLabel, 24);
+    const bang = normalizeBang(asTrimmedString(item.bang, 24));
+    const urlTemplate = asTrimmedString(item.urlTemplate, 2048);
+    if (!id || !name || !shortLabel || !isValidBang(bang)) return null;
+
+    const template = validateSearchUrlTemplate(urlTemplate);
+    if (!template.ok || !template.urlTemplate || !template.domain) return null;
+
+    const rawAliases = Array.isArray(item.aliases) ? item.aliases : [];
+    const aliases: string[] = [];
+    for (const rawAlias of rawAliases.slice(0, 12)) {
+      const alias = normalizeBang(asTrimmedString(rawAlias, 24));
+      if (!isValidBang(alias) || alias === bang || aliases.includes(alias)) continue;
+      aliases.push(alias);
+      if (aliases.length >= 6) break;
+    }
+
+    return {
+      id,
+      name,
+      shortLabel,
+      bang,
+      aliases,
+      domain: template.domain,
+      urlTemplate: template.urlTemplate,
+      enabled: asBoolean(item.enabled, true),
+      isCustom: typeof item.isCustom === 'boolean' ? item.isCustom : undefined
+    } satisfies SearchEngine;
+  });
+
+  const engines: SearchEngine[] = [];
+  const seenIds = new Set<string>();
+  const seenBangs = new Set<string>();
+  for (const engine of mapped) {
+    if (!engine || seenIds.has(engine.id) || seenBangs.has(engine.bang)) continue;
+    engine.aliases = (engine.aliases || []).filter((alias) => !seenBangs.has(alias));
+    seenIds.add(engine.id);
+    seenBangs.add(engine.bang);
+    for (const alias of engine.aliases) seenBangs.add(alias);
+    engines.push(engine);
+  }
+
+  if (engines.length === 0) return fallback;
+  if (!engines.some((engine) => engine.enabled)) engines[0].enabled = true;
+  return engines;
 }
 
 function sanitizeWidgets(value: unknown, fallback: WidgetConfig[]): WidgetConfig[] {

@@ -27,7 +27,7 @@ body:
     id: location
     attributes:
       label: Where does it happen?
-      placeholder: Settings Studio → Sound → Neural depth
+      placeholder: Settings Studio → Sound → Focus Sound depth
     validations:
       required: true
   - type: textarea

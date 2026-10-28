@@ -704,6 +704,10 @@ export default defineConfig({
   },
   build: {
     target: 'es2022',
+    minify: 'terser',
+    terserOptions: {
+      compress: { inline: false }
+    },
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {

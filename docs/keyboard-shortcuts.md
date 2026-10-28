@@ -57,7 +57,7 @@ Bangs are configurable in **Settings > Search & !Bangs**. Custom engines can def
 - quick links,
 - notes,
 - read-later items,
-- focus and neural audio modes,
+- focus and Focus Sound modes,
 - stage and theme changes,
 - settings sections and data tools.
 

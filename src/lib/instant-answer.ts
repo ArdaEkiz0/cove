@@ -5,7 +5,7 @@
  */
 
 export interface InstantAnswer {
-  kind: 'math' | 'unit' | 'time' | 'color' | 'focus';
+  kind: 'math' | 'unit' | 'time' | 'color' | 'focus' | 'date' | 'base' | 'text' | 'timestamp' | 'percent';
   primary: string;
   secondary: string;
   copyText?: string;
@@ -117,6 +117,96 @@ function safeEvaluateMath(expr: string): number | null {
 function formatNum(n: number): string {
   if (Number.isInteger(n)) return n.toLocaleString('en-US');
   return Number(n.toFixed(6)).toLocaleString('en-US', { maximumFractionDigits: 6 });
+}
+
+function parseIsoDate(value: string): Date | null {
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (year < 1900 || year > 2200 || month < 1 || month > 12 || day < 1 || day > 31) {
+    return null;
+  }
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
+    return null;
+  }
+  return date;
+}
+
+function utcDay(date: Date): number {
+  return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+}
+
+function formatDateLabel(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    timeZone: 'UTC',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
+function parseBaseNumber(value: string, forceBase?: number): { number: number; base: number } | null {
+  const lower = value.toLowerCase();
+  let base = forceBase ?? 10;
+  let digits = lower;
+  if (lower.startsWith('0x')) {
+    base = 16;
+    digits = lower.slice(2);
+  } else if (lower.startsWith('0b')) {
+    base = 2;
+    digits = lower.slice(2);
+  } else if (lower.startsWith('0o')) {
+    base = 8;
+    digits = lower.slice(2);
+  }
+  const validDigits =
+    base === 2
+      ? /^[01]+$/
+      : base === 8
+        ? /^[0-7]+$/
+        : base === 10
+          ? /^[0-9]+$/
+          : /^[0-9a-f]+$/i;
+  if (!digits || !validDigits.test(digits)) return null;
+  const parsed = Number.parseInt(digits, base);
+  if (!Number.isSafeInteger(parsed) || parsed < 0) return null;
+  return { number: parsed, base };
+}
+
+function formatBase(value: number, base: number): string {
+  if (base === 16) return `0x${value.toString(16).toUpperCase()}`;
+  if (base === 2) return `0b${value.toString(2)}`;
+  if (base === 8) return `0o${value.toString(8)}`;
+  return String(value);
+}
+
+function rgbToHex(r: number, g: number, b: number): string {
+  const clamp = (n: number) => Math.max(0, Math.min(255, Math.round(n)));
+  return `#${[r, g, b].map((n) => clamp(n).toString(16).padStart(2, '0')).join('')}`;
+}
+
+function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+  const hue = ((h % 360) + 360) % 360;
+  const sat = Math.max(0, Math.min(100, s)) / 100;
+  const light = Math.max(0, Math.min(100, l)) / 100;
+  const chroma = (1 - Math.abs(2 * light - 1)) * sat;
+  const x = chroma * (1 - Math.abs(((hue / 60) % 2) - 1));
+  const m = light - chroma / 2;
+  let rgb: [number, number, number];
+  if (hue < 60) rgb = [chroma, x, 0];
+  else if (hue < 120) rgb = [x, chroma, 0];
+  else if (hue < 180) rgb = [0, chroma, x];
+  else if (hue < 240) rgb = [0, x, chroma];
+  else if (hue < 300) rgb = [x, 0, chroma];
+  else rgb = [chroma, 0, x];
+  return [Math.round((rgb[0] + m) * 255), Math.round((rgb[1] + m) * 255), Math.round((rgb[2] + m) * 255)];
 }
 
 export function resolveInstantAnswer(rawQuery: string, now: Date = new Date()): InstantAnswer | null {
@@ -257,7 +347,216 @@ export function resolveInstantAnswer(rawQuery: string, now: Date = new Date()): 
     };
   }
 
-  // 6. Safe arithmetic expression
+  // 6. Date differences and simple date offsets
+  const dateBetween = lower.match(
+    /^days?\s+between\s+(\d{4}-\d{2}-\d{2})\s+(?:and|to)\s+(\d{4}-\d{2}-\d{2})$/
+  );
+  if (dateBetween) {
+    const start = parseIsoDate(dateBetween[1]);
+    const end = parseIsoDate(dateBetween[2]);
+    if (start && end) {
+      const diff = Math.round((utcDay(end) - utcDay(start)) / 86_400_000);
+      return {
+        kind: 'date',
+        primary: `= ${Math.abs(diff).toLocaleString('en-US')} days`,
+        secondary: `${formatDateLabel(start)} to ${formatDateLabel(end)} - Enter to copy`,
+        copyText: String(diff)
+      };
+    }
+  }
+
+  const dateUntil = lower.match(
+    /^days?\s+(until|to|till|before|since)\s+(\d{4}-\d{2}-\d{2})$/
+  );
+  if (dateUntil) {
+    const target = parseIsoDate(dateUntil[2]);
+    if (target) {
+      const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+      const forward = dateUntil[1] !== 'since';
+      const diff = forward
+        ? Math.round((utcDay(target) - utcDay(today)) / 86_400_000)
+        : Math.round((utcDay(today) - utcDay(target)) / 86_400_000);
+      const label = diff >= 0 ? `${diff.toLocaleString('en-US')} days` : `${Math.abs(diff).toLocaleString('en-US')} days ago`;
+      return {
+        kind: 'date',
+        primary: `= ${label}`,
+        secondary: `${forward ? 'Until' : 'Since'} ${formatDateLabel(target)} - Enter to copy`,
+        copyText: String(diff)
+      };
+    }
+  }
+
+  const dateOffset = lower.match(
+    /^(today|\d{4}-\d{2}-\d{2})\s*([+-])\s*(\d{1,4})\s*days?$/
+  );
+  if (dateOffset) {
+    const base =
+      dateOffset[1] === 'today'
+        ? new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()))
+        : parseIsoDate(dateOffset[1]);
+    if (base) {
+      const amount = Number(dateOffset[3]) * (dateOffset[2] === '-' ? -1 : 1);
+      const result = new Date(utcDay(base) + amount * 86_400_000);
+      const iso = result.toISOString().slice(0, 10);
+      return {
+        kind: 'date',
+        primary: `= ${formatDateLabel(result)}`,
+        secondary: `${dateOffset[2] === '-' ? 'Minus' : 'Plus'} ${dateOffset[3]} days - Enter to copy`,
+        copyText: iso
+      };
+    }
+  }
+
+  // 7. Base conversion: 255 in hex, 0xff in decimal, binary 1010
+  const baseMatch =
+    lower.match(
+      /^(0x[0-9a-f]+|0b[01]+|0o[0-7]+|\d+)\s+(?:in|to|as)\s+(hex|hexadecimal|decimal|dec|binary|bin|octal|oct)$/i
+    ) ||
+    lower.match(
+      /^(hex|hexadecimal|decimal|dec|binary|bin|octal|oct)\s+(0x[0-9a-f]+|0b[01]+|0o[0-7]+|[0-9a-f]+)$/i
+    );
+  if (baseMatch) {
+    const firstIsNumber = /^(0x|0b|0o|\d)/i.test(baseMatch[1]);
+    const sourceRaw = firstIsNumber ? baseMatch[1] : baseMatch[2];
+    const targetRaw = firstIsNumber ? baseMatch[2] : 'decimal';
+    const forcedBase = firstIsNumber
+      ? undefined
+      : baseMatch[1] === 'hex' || baseMatch[1] === 'hexadecimal'
+        ? 16
+        : baseMatch[1] === 'binary' || baseMatch[1] === 'bin'
+          ? 2
+          : baseMatch[1] === 'octal' || baseMatch[1] === 'oct'
+            ? 8
+            : 10;
+    const parsed = parseBaseNumber(sourceRaw, forcedBase);
+    const targetBase =
+      targetRaw === 'hex' || targetRaw === 'hexadecimal'
+        ? 16
+        : targetRaw === 'binary' || targetRaw === 'bin'
+          ? 2
+          : targetRaw === 'octal' || targetRaw === 'oct'
+            ? 8
+            : 10;
+    if (parsed) {
+      const result = formatBase(parsed.number, targetBase);
+      return {
+        kind: 'base',
+        primary: `= ${result}`,
+        secondary: `Base ${parsed.base} to base ${targetBase} - Enter to copy`,
+        copyText: result
+      };
+    }
+  }
+
+  // 8. Unix timestamp inspector
+  const timestampMatch =
+    lower.match(/^(?:unix|timestamp|epoch)\s+(\d{10,13})$/) ||
+    lower.match(/^(\d{10,13})\s+(?:unix|timestamp|epoch)$/);
+  if (timestampMatch) {
+    const raw = timestampMatch[1];
+    const millis = raw.length <= 10 ? Number(raw) * 1000 : Number(raw);
+    const date = new Date(millis);
+    if (Number.isFinite(date.getTime())) {
+      const iso = date.toISOString();
+      return {
+        kind: 'timestamp',
+        primary: iso.replace('T', ' ').replace(/\.\d{3}Z$/, ' UTC'),
+        secondary: 'Unix timestamp - Enter to copy ISO date',
+        copyText: iso
+      };
+    }
+  }
+
+  // 9. Tip and percentage change
+  const tipMatch = lower.match(
+    /^tip\s+(\d+(?:\.\d+)?)\s*%\s*(?:on|of)\s*([\d,]+(?:\.\d+)?)$/
+  );
+  if (tipMatch) {
+    const pct = Number(tipMatch[1]);
+    const base = Number(tipMatch[2].replace(/,/g, ''));
+    const tipAmount = (pct / 100) * base;
+    const total = base + tipAmount;
+    return {
+      kind: 'percent',
+      primary: `Tip ${formatNum(Number(tipAmount.toFixed(2)))} - Total ${formatNum(Number(total.toFixed(2)))}`,
+      secondary: `${pct}% on ${formatNum(base)} - Enter to copy total`,
+      copyText: String(Number(total.toFixed(2)))
+    };
+  }
+
+  const changeMatch = lower.match(
+    /^(?:percent(?:age)?\s+change\s+)?from\s+(-?\d+(?:\.\d+)?)\s+to\s+(-?\d+(?:\.\d+)?)$/
+  );
+  if (changeMatch) {
+    const from = Number(changeMatch[1]);
+    const to = Number(changeMatch[2]);
+    if (from !== 0) {
+      const pct = ((to - from) / Math.abs(from)) * 100;
+      const sign = pct > 0 ? '+' : '';
+      return {
+        kind: 'percent',
+        primary: `${sign}${formatNum(Number(pct.toFixed(2)))}%`,
+        secondary: `Change from ${formatNum(from)} to ${formatNum(to)} - Enter to copy`,
+        copyText: String(Number(pct.toFixed(2)))
+      };
+    }
+  }
+
+  // 10. RGB and HSL color inspectors
+  const rgbMatch = lower.match(
+    /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/
+  );
+  if (rgbMatch) {
+    const r = Number(rgbMatch[1]);
+    const g = Number(rgbMatch[2]);
+    const b = Number(rgbMatch[3]);
+    if (r <= 255 && g <= 255 && b <= 255) {
+      const hex = rgbToHex(r, g, b);
+      return {
+        kind: 'color',
+        primary: `${hex.toUpperCase()} - rgb(${r}, ${g}, ${b})`,
+        secondary: 'RGB color - Enter to copy hex',
+        copyText: hex,
+        swatchHex: hex
+      };
+    }
+  }
+
+  const hslMatch = lower.match(
+    /^hsl\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*\)$/
+  );
+  if (hslMatch) {
+    const h = Number(hslMatch[1]);
+    const s = Number(hslMatch[2]);
+    const l = Number(hslMatch[3]);
+    if (s <= 100 && l <= 100) {
+      const [r, g, b] = hslToRgb(h, s, l);
+      const hex = rgbToHex(r, g, b);
+      return {
+        kind: 'color',
+        primary: `${hex.toUpperCase()} - hsl(${h}, ${s}%, ${l}%)`,
+        secondary: 'HSL color - Enter to copy hex',
+        copyText: hex,
+        swatchHex: hex
+      };
+    }
+  }
+
+  // 11. Local word and character count
+  const textMatch = q.match(/^(?:wc|word count|count words)\s*[:\-]?\s+(.+)$/i);
+  if (textMatch) {
+    const text = textMatch[1].trim();
+    const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+    const characters = text.length;
+    return {
+      kind: 'text',
+      primary: `= ${words.toLocaleString('en-US')} words`,
+      secondary: `${characters.toLocaleString('en-US')} characters - Enter to copy`,
+      copyText: `${words} words, ${characters} characters`
+    };
+  }
+
+  // 12. Safe arithmetic expression
   const mathVal = safeEvaluateMath(q);
   if (mathVal !== null) {
     const formatted = formatNum(mathVal);

@@ -84,6 +84,14 @@ import {
   storageGet,
   storageSet
 } from './storage';
+import {
+  createPresetEngine,
+  isValidBang,
+  normalizeBang,
+  parseBangAliases,
+  validateSearchUrlTemplate,
+  type SearchEnginePreset
+} from './search';
 import { ensureUniqueStoryIds } from './story-id';
 import {
   checkForGithubUpdate,
@@ -429,6 +437,7 @@ class CoveStore {
         return {
           ...se,
           bang: se.bang || match?.bang || `!${se.id}`,
+          aliases: se.aliases || match?.aliases || [],
           domain: se.domain || match?.domain || extractDomain(se.urlTemplate)
         };
       });
@@ -947,34 +956,143 @@ class CoveStore {
    * Search Engines Management
    * ======================================================================== */
 
-  public addCustomSearchEngine(name: string, rawBang: string, urlTemplate: string): boolean {
-    const cleanName = name.trim();
-    const cleanBang = rawBang.trim().startsWith('!')
-      ? rawBang.trim().toLowerCase()
-      : `!${rawBang.trim().toLowerCase()}`;
-    const cleanTpl = urlTemplate.trim();
-
-    if (!cleanName || cleanBang.length < 2 || !cleanTpl.includes('{q}')) {
-      this.notify('Include {q} in the search URL template (e.g. https://kagi.com/search?q={q}).');
-      return false;
+  private prepareSearchEngine(
+    name: string,
+    rawBang: string,
+    urlTemplate: string,
+    rawAliases: string,
+    ignoreId?: string
+  ): {
+    name: string;
+    bang: string;
+    aliases: string[];
+    urlTemplate: string;
+    domain: string;
+  } | null {
+    const cleanName = name.trim().slice(0, 80);
+    if (!cleanName) {
+      this.notify('Give the search provider a name.');
+      return null;
     }
 
-    const id = `custom-${Date.now().toString(36)}`;
+    const bang = normalizeBang(rawBang);
+    if (!isValidBang(bang)) {
+      this.notify('Use a bang like !k or !kagi (letters, numbers, - and _ only).');
+      return null;
+    }
+
+    const template = validateSearchUrlTemplate(urlTemplate);
+    if (!template.ok || !template.urlTemplate || !template.domain) {
+      this.notify(template.error || 'Enter a valid http(s) search URL.');
+      return null;
+    }
+
+    const aliases = parseBangAliases(rawAliases).filter((alias) => alias !== bang);
+    const tokens = [bang, ...aliases];
+    const conflict = this.settings.searchEngines.find((engine) => {
+      if (engine.id === ignoreId) return false;
+      const existingTokens = [engine.bang, ...(engine.aliases || [])].map(normalizeBang);
+      return existingTokens.some((token) => tokens.includes(token));
+    });
+    if (conflict) {
+      this.notify(`That bang is already used by ${conflict.name}.`);
+      return null;
+    }
+
+    return {
+      name: cleanName,
+      bang,
+      aliases,
+      urlTemplate: template.urlTemplate,
+      domain: template.domain
+    };
+  }
+
+  public addCustomSearchEngine(
+    name: string,
+    rawBang: string,
+    urlTemplate: string,
+    rawAliases = ''
+  ): boolean {
+    const prepared = this.prepareSearchEngine(name, rawBang, urlTemplate, rawAliases);
+    if (!prepared) return false;
+
+    const id = `custom-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+    const shortLabel =
+      prepared.name.replace(/[^a-z0-9]/gi, '').slice(0, 4).toUpperCase() || 'WEB';
     this.settings.searchEngines = [
       ...this.settings.searchEngines,
       {
         id,
-        name: cleanName,
-        shortLabel: cleanName.slice(0, 3).toUpperCase(),
-        bang: cleanBang,
-        domain: extractDomain(cleanTpl),
-        urlTemplate: cleanTpl,
+        name: prepared.name,
+        shortLabel,
+        bang: prepared.bang,
+        aliases: prepared.aliases,
+        domain: prepared.domain,
+        urlTemplate: prepared.urlTemplate,
         enabled: true,
         isCustom: true
       }
     ];
     this.saveSettings();
-    this.notify(`Added search engine "${cleanName}" (${cleanBang}).`);
+    this.notify(`Added ${prepared.name} (${prepared.bang}).`);
+    return true;
+  }
+
+  public updateSearchEngine(
+    id: string,
+    name: string,
+    rawBang: string,
+    urlTemplate: string,
+    rawAliases = ''
+  ): boolean {
+    const current = this.settings.searchEngines.find((engine) => engine.id === id);
+    if (!current || !current.isCustom) return false;
+
+    const prepared = this.prepareSearchEngine(name, rawBang, urlTemplate, rawAliases, id);
+    if (!prepared) return false;
+
+    this.settings.searchEngines = this.settings.searchEngines.map((engine) =>
+      engine.id === id
+        ? {
+            ...engine,
+            name: prepared.name,
+            shortLabel:
+              prepared.name.replace(/[^a-z0-9]/gi, '').slice(0, 4).toUpperCase() ||
+              engine.shortLabel,
+            bang: prepared.bang,
+            aliases: prepared.aliases,
+            domain: prepared.domain,
+            urlTemplate: prepared.urlTemplate
+          }
+        : engine
+    );
+    this.saveSettings();
+    this.notify(`Updated ${prepared.name} (${prepared.bang}).`);
+    return true;
+  }
+
+  public addSearchEnginePreset(preset: SearchEnginePreset): boolean {
+    const conflict = this.settings.searchEngines.find((engine) => {
+      const tokens = [engine.bang, ...(engine.aliases || [])].map(normalizeBang);
+      const presetTokens = [preset.bang, ...(preset.aliases || [])].map(normalizeBang);
+      return engine.id === preset.id || presetTokens.some((token) => tokens.includes(token));
+    });
+    if (conflict) {
+      if (!conflict.enabled) {
+        conflict.enabled = true;
+        this.saveSettings();
+        this.notify(`Enabled ${conflict.name}.`);
+        return true;
+      }
+      this.notify(`${conflict.name} is already in your providers.`);
+      return false;
+    }
+
+    const engine = createPresetEngine(preset);
+    this.settings.searchEngines = [...this.settings.searchEngines, engine];
+    this.saveSettings();
+    this.notify(`Added ${engine.name} (${engine.bang}).`);
     return true;
   }
 

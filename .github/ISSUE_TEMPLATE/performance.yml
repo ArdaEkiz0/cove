@@ -16,7 +16,7 @@ body:
         - Settings Studio or command palette latency
         - Discover feed or article cache
         - Tab triage worker
-        - Neural audio or Web Audio CPU
+        - Focus Sound or Web Audio CPU
         - IndexedDB storage growth
         - Bundle size / build budget
         - Other
@@ -28,7 +28,7 @@ body:
       label: Environment
       description: Cove version, browser, OS, CPU, RAM, and whether other extensions are enabled.
       placeholder: |
-        Cove 0.1.1
+        Cove 0.1.3
         Chrome 142 / Windows 11
         16 GB RAM
         Reproduced on a clean profile
