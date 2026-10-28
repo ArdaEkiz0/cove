@@ -20,17 +20,52 @@
       <stop offset="0%" stop-color="#13203B" stop-opacity="0.94"/>
       <stop offset="100%" stop-color="#0B1325" stop-opacity="0.98"/>
     </linearGradient>
-    <linearGradient id="heroCoveBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#5A86FF"/>
-      <stop offset="0.38" stop-color="#1F56F2"/>
-      <stop offset="0.72" stop-color="#153FC7"/>
-      <stop offset="1" stop-color="#0A2A91"/>
+    <linearGradient id="heroCoveRim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A8C4FF"/>
+      <stop offset="0.24" stop-color="#5C86FF"/>
+      <stop offset="0.62" stop-color="#1B49D8"/>
+      <stop offset="1" stop-color="#061E6B"/>
+    </linearGradient>
+    <linearGradient id="heroCoveFace" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7098FF"/>
+      <stop offset="0.32" stop-color="#2D5EFF"/>
+      <stop offset="0.7" stop-color="#1643D8"/>
+      <stop offset="1" stop-color="#0A2A9E"/>
+    </linearGradient>
+    <radialGradient id="heroCoveGlow" cx="0.2" cy="0.12" r="0.78">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.30"/>
+      <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="heroCoveVignette" cx="0.82" cy="0.88" r="0.8">
+      <stop offset="0" stop-color="#03145C" stop-opacity="0.38"/>
+      <stop offset="0.62" stop-color="#03145C" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#03145C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroCoveRimHighlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#D9E6FF" stop-opacity="0.55"/>
+      <stop offset="0.62" stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="heroCoveRimShadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061E6B" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#061E6B" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#03104A" stop-opacity="0.62"/>
+    </linearGradient>
+    <linearGradient id="heroCoveInnerEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E4EEFF" stop-opacity="0.38"/>
+      <stop offset="0.48" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#03145C" stop-opacity="0.38"/>
     </linearGradient>
     <linearGradient id="heroCoveMark" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="0.72" stop-color="#F4F8FF"/>
-      <stop offset="1" stop-color="#E3EEFF"/>
+      <stop offset="0.66" stop-color="#F4F9FF"/>
+      <stop offset="1" stop-color="#D8E8FF"/>
     </linearGradient>
+    <filter id="heroCoveMarkShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0.75" stdDeviation="1" flood-color="#061E6B" flood-opacity="0.22"/>
+    </filter>
     <linearGradient id="hairline" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#38BDF8" stop-opacity="0"/>
       <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.55"/>
@@ -51,14 +86,21 @@
   <g transform="translate(64, 48)">
     <rect width="366" height="32" rx="16" fill="#0F1D37" stroke="#38BDF8" stroke-opacity="0.32"/>
     <circle cx="18" cy="16" r="4.5" fill="#34D399"/>
-    <text x="32" y="20.5" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="11.5" font-weight="600" letter-spacing="0.5">v0.1.1  ·  APACHE-2.0  ·  LOCAL-FIRST</text>
+    <text x="32" y="20.5" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="11.5" font-weight="600" letter-spacing="0.5">v0.1.3  ·  APACHE-2.0  ·  LOCAL-FIRST</text>
   </g>
 
   <g transform="translate(64, 112)">
-    <rect x="2" y="2" width="60" height="60" rx="14.5" fill="url(#heroCoveBg)"/>
-    <rect x="2.5" y="2.5" width="59" height="59" rx="14" fill="none" stroke="#E8F1FF" stroke-opacity="0.55" stroke-width="0.6"/>
-    <path d="M35 14C23.5 14 14 22.5 13.5 34.25C13 45.75 22 53.5 33.5 53C42.5 52.5 49.75 47.5 51 39.75" fill="none" stroke="url(#heroCoveMark)" stroke-width="8.5" stroke-linecap="round"/>
-    <circle cx="32.5" cy="32.5" r="4.75" fill="url(#heroCoveMark)"/>
+    <rect x="1" y="1" width="62" height="62" rx="13" fill="url(#heroCoveRim)"/>
+    <rect x="1.09375" y="1.09375" width="61.8125" height="61.8125" rx="12.90625" fill="none" stroke="url(#heroCoveRimHighlight)" stroke-width="0.3125"/>
+    <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="12.75" fill="none" stroke="url(#heroCoveRimShadow)" stroke-width="0.375"/>
+    <rect x="2.5" y="2.5" width="59" height="59" rx="11.5" fill="url(#heroCoveFace)"/>
+    <rect x="2.5" y="2.5" width="59" height="59" rx="11.5" fill="url(#heroCoveGlow)"/>
+    <rect x="2.5" y="2.5" width="59" height="59" rx="11.5" fill="url(#heroCoveVignette)"/>
+    <rect x="2.6875" y="2.6875" width="58.625" height="58.625" rx="11.3125" fill="none" stroke="url(#heroCoveInnerEdge)" stroke-width="0.375"/>
+    <g filter="url(#heroCoveMarkShadow)">
+      <path d="M37.5 9.75C23.5 9.75 13.25 19.75 13.25 33.5C13.25 46.5 22.5 54.75 36.5 54.75C46 54.75 53.75 50.25 54.5 40" fill="none" stroke="url(#heroCoveMark)" stroke-width="9.75" stroke-linecap="round"/>
+      <circle cx="32" cy="32.5" r="5.25" fill="url(#heroCoveMark)"/>
+    </g>
     <text x="84" y="47" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="46" font-weight="800" letter-spacing="-1.4">Cove</text>
     <text x="212" y="45" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600">github.com/DevAnimecx/cove</text>
   </g>
